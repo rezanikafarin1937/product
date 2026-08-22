@@ -6,7 +6,7 @@ function Header() {
     <header className={styles.header}>
       <div className="wrapper">
         <div className={styles.header__flex}>
-          <Logo />
+          {/* <Logo /> */}
           <Navbar />
         </div>
       </div>

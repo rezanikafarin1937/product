@@ -6,13 +6,16 @@ export const routes = [
   {
     path: "/",
     element: <Home />,
+    title : "Home"
   },
   {
     path: "/products",
     element: <Products />,
+    title : "Products"
   },
   {
     path: "/about",
     element: <About />,
+    title : "About"
   },
 ];

@@ -1,11 +1,18 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+import { routes } from "../../routes/RouteManager";
+import styles from "./Navbar.module.scss";
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <div>
-      <h1>Navbar</h1>
-    </div>
-  )
+    <nav className={styles.nav}>
+        {routes.map((route,index) => (
+            <div>
+                <Link to={route.path} key={index}>{route.title}</Link>
+                <span style={{margin : "0 1rem"}}></span>
+            </div>
+        ))}
+    </nav>
+  );
 }
 
-export default Navbar
+export default Navbar;
