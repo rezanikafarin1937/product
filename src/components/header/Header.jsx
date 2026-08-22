@@ -6,7 +6,8 @@ function Header() {
     <header className={styles.header}>
       <div className="wrapper">
         <div className={styles.header__flex}>
-          {/* <Logo /> */}
+          <Logo />
+          <span className="space-item"></span>
           <Navbar />
         </div>
       </div>

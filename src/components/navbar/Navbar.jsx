@@ -5,17 +5,14 @@ import styles from "./Navbar.module.scss";
 
 function Navbar() {
   const location = useLocation();
-  const path = location.pathname;
-  console.log("path = ",path)
   return (
     <nav className={styles.nav}>
       {routes.map((route, index) => (
         <div  key={index}>
-            {console.log(" === ",route.path === path)}
-          <Link to={route.path} className={path  === route.path ? styles.nav__active : ""}>
+          <Link to={route.path} className={location.pathname  === route.path ? styles.nav__active : ""}>
             {route.title}
           </Link>
-          <span style={{ margin: "0 1rem" }}></span>
+          <span className="space-item"></span>
         </div>
       ))}
     </nav>
