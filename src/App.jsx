@@ -1,16 +1,10 @@
-import React from "react";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-
+import Layout from "./layout/Layout";
+import Home from "./pages/home/Home";
 const App = () => {
   return (
-    <>
-      <Header/>
-      <div className="wrapper">
-        <h1>App</h1>
-      </div>
-      <Footer/>
-    </>
+    <Layout>
+      <Home />
+    </Layout>
   );
 };
 
