@@ -8,3 +8,11 @@
   cursor: pointer;
   text-decoration: none;
 }
+
+.nav a:hover {
+  color: orange;
+}
+
+.nav__active {
+  color: orangered !important;
+}
