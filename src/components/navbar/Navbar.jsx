@@ -9,7 +9,7 @@ function Navbar() {
     <nav className={styles.nav}>
       {routes.map((route, index) => (
         <div  key={index}>
-          <Link to={route.path} className={location.pathname  === route.path ? styles.nav__active : ""}>
+          <Link to={route?.path} className={location.pathname  === route.path ? styles.nav__active : ""}>
             {route.title}
           </Link>
           <span className="space-item"></span>

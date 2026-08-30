@@ -1,5 +1,6 @@
 import Home from "../pages/home/Home";
 import Products from "../pages/products/Products";
+import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import About from "../pages/about/About";
 import Login from "../pages/login/Login";
 
@@ -23,5 +24,9 @@ export const routes = [
     path: "/login",
     element: <Login />,
     title : "Login"
+  },
+  {
+    path: "/product-details/:id",
+    element: <ProductDetails />,
   },
 ];
