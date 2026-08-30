@@ -1,6 +1,6 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import styles from "./Layout.module.scss"
+import styles from "./Layout.module.scss";
 
 function Layout({ children }) {
   return (
@@ -8,7 +8,7 @@ function Layout({ children }) {
       <Header />
 
       <main className="wrapper">
-        {children}
+        <div className="margin-top">{children}</div>
       </main>
 
       <Footer />
