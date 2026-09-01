@@ -12,3 +12,8 @@
   max-width: 20%;
   text-align: center;
 }
+
+.parentGreen {
+  background-color: green;
+  border: 10px solid red;
+}

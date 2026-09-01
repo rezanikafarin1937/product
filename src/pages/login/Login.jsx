@@ -113,7 +113,7 @@ const Login = () => {
             {isLogin ? (
               <>
 
-                <Button title="ثبت نام" onClick={() => setMode("register")}/>
+                <Button className={styles.parentGreen} title="ثبت نام" onClick={() => setMode("register")}/>
 
                 {/* <button
                   className="btn"
