@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const CartContext = createContext({
   cartItems: [],
+  cartQty: null,
   handleIncreaseProductQty: () => {},
 });
 
@@ -27,6 +28,11 @@ export function CartProvider({ children }) {
       }
     });
   };
+
+  const cartQty = cartItems.reduce((total, item) => {
+    return total + item.qty;
+  }, 0);
+  console.log("1.cartQty = ", cartQty);
 
   const handleDecreaseProductQty = (id) => {
     setCartItems((currentItems) => {
@@ -58,6 +64,7 @@ export function CartProvider({ children }) {
     <CartContext.Provider
       value={{
         cartItems,
+        cartQty,
         handleIncreaseProductQty,
         handleDecreaseProductQty,
         getProductQty,

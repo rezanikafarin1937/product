@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { getProduct } from "../../services/api";
 import GalleryImage from "../../components/gallery-image/GalleryImage";
 import Button from "../../components/button/Button";
 import { useCartContext } from "../../context/CartContext";
@@ -16,20 +16,17 @@ const ProductDetails = () => {
     getProductQty,
     handleRemoveProduct,
     cartItems,
+    cartQty
   } = useCartContext();
 
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/api/products/${id}`)
-      .then((res) => {
-        console.log("Product = ", res.data);
-        setProduct(res.data);
-      })
-      .catch((err) => {
-        console.log("Error =", err);
-      });
+    getProduct(id).then(res => {
+      setProduct(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
   }, [id]);
 
   console.log("cartItems = ", cartItems);
@@ -41,6 +38,7 @@ const ProductDetails = () => {
   return (
     <div>
       <h1>{product.title}</h1>
+      <h2>cartQty = {cartQty}</h2>
       <p>description : {product.description}</p>
       <p>price : {product.price}</p>
       <p>discount : {product.discount}</p>
