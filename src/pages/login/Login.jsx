@@ -99,11 +99,8 @@ const Login = () => {
             <br />
             <br />
 
-            <Button title={isLogin ? "ورود" : "ثبت نام"} />
+            <Button  >{isLogin ? "ورود" : "ثبت نام"} </Button>
 
-            {/* <button className="btn" type="submit">
-              {isLogin ? "ورود" : "ثبت نام"}
-            </button> */}
           </form>
 
           <br />
@@ -113,28 +110,13 @@ const Login = () => {
             {isLogin ? (
               <>
 
-                <Button className={styles.parentGreen} title="ثبت نام" onClick={() => setMode("register")}/>
+                <Button  onClick={() => setMode("register")}>ثبت نام</Button>
 
-                {/* <button
-                  className="btn"
-                  type="button"
-                  onClick={() => setMode("register")}
-                >
-                  ثبت نام 
-                </button> */}
               </>
             ) : (
               <>
 
-                <Button title="وارد شوید"/>
-
-                {/* <button
-                  className="btn"
-                  type="button"
-                  onClick={() => setMode("login")}
-                >
-                  وارد شوید
-                </button> */}
+                <Button > وارد شوید  </Button>
               </>
             )}
           </div>
