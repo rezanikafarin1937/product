@@ -1,1 +1,1 @@
-.nav{color:white;display:flex}.nav a{color:#999;cursor:pointer;text-decoration:none}.nav a:hover{color:orange}.nav__active{color:orangered !important}
+.nav{color:white;display:flex}.nav__active{color:orangered !important}a{color:#999;cursor:pointer;text-decoration:none}a:hover{color:orange}

@@ -24,6 +24,7 @@ const ProductDetails = () => {
   useEffect(() => {
     getProduct(id).then(res => {
       setProduct(res.data)
+      console.log("product = ",res.data)
     }).catch(err => {
       console.log(err)
     })

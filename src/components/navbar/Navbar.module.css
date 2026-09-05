@@ -3,16 +3,16 @@
   display: flex;
 }
 
-.nav a {
+.nav__active {
+  color: orangered !important;
+}
+
+a {
   color: #999;
   cursor: pointer;
   text-decoration: none;
 }
 
-.nav a:hover {
+a:hover {
   color: orange;
-}
-
-.nav__active {
-  color: orangered !important;
 }

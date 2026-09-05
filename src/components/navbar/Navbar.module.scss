@@ -1,19 +1,18 @@
-.nav{
-    color : white;
-    display: flex;
-    
-    a{
-       color : #999;
-       cursor: pointer;
-       text-decoration: none;
-       
-       &:hover{
-        color: orange;
-       }
-    }
+.nav {
+  color: white;
+  display: flex;
 
+  &__active {
+    color: orangered !important;
+  }
+}
 
-    &__active{
-        color : orangered !important;
-    }
+a {
+  color: #999;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: orange;
+  }
 }

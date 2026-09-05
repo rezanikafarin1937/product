@@ -24,7 +24,7 @@ function Navbar() {
           </div>
         ))}
       </nav>
-            <div> cartQty : {cartQty}</div>
+            <Link to="/cart"> cartQty : {cartQty}</Link>
 
     </>
   );
