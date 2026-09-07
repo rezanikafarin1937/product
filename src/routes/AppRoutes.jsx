@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { routes } from "./RouteManager";
+import Cart from "../pages/cart/Cart";
+import PrivateRoute from "../components/privateReoute/PrivateRoute";
 
 function AppRoutes() {
   return (
@@ -11,6 +13,9 @@ function AppRoutes() {
           element={route.element}
         />
       ))}
+      <Route element={<PrivateRoute/>}>
+        <Route path="/cart" element={<Cart/>}></Route>
+      </Route>
     </Routes>
   );
 }

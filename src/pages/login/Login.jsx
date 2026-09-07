@@ -2,63 +2,31 @@ import React, { useState } from "react";
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
+import { useUserContext } from "../../context/UserContext";
+import { auth } from "../../services/api";
 import styles from "./style.module.scss";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  // login یا register
+  // login Or register
   const [mode, setMode] = useState("login");
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [mobile, setMobile] = useState("");
+  const { handleLogin } = useUserContext();
 
   const handleClick = async (e) => {
     e.preventDefault();
 
-    const data =
-      mode === "login"
-        ? {
-            mobile,
-            password,
-          }
-        : {
-            name: username,
-            mobile,
-            password,
-          };
+    const userData = await auth(username, password, mobile, mode);
 
-    const url =
-      mode === "login"
-        ? `${process.env.REACT_APP_API_URL}/api/users/login`
-        : `${process.env.REACT_APP_API_URL}/api/users`;
+    console.log("user Data = ",userData)
 
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // "Authorization": `${Cookie.get("token")}`
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        return;
-      }
-
-      // set in cookie
-      Cookie.set("token", result.token);
-
-      // setUser(result.user);
-
-      // redirect to dashboard page
-      navigate("/about");
-    } catch (error) {
-      console.log("خطا در ارتباط با سرور:", error);
+    if (userData) {
+      Cookie.set("token", userData.token);
+      handleLogin();
+      navigate("/cart");
     }
   };
 
@@ -99,8 +67,7 @@ const Login = () => {
             <br />
             <br />
 
-            <Button  >{isLogin ? "ورود" : "ثبت نام"} </Button>
-
+            <Button>{isLogin ? "ورود" : "ثبت نام"} </Button>
           </form>
 
           <br />
@@ -109,14 +76,11 @@ const Login = () => {
           <div>
             {isLogin ? (
               <>
-
-                <Button  onClick={() => setMode("register")}>ثبت نام</Button>
-
+                <Button onClick={() => setMode("register")}>ثبت نام</Button>
               </>
             ) : (
               <>
-
-                <Button > وارد شوید  </Button>
+                <Button> وارد شوید </Button>
               </>
             )}
           </div>
