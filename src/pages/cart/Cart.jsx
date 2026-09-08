@@ -3,15 +3,19 @@ import CartItem from "../../components/cartItem/CartItem";
 import styles from "./Cart.module.scss"
 
 const Cart = () => {
-    const {cartItems} = useCartContext();
+    const {cartItems,totalPrice} = useCartContext();
     console.log("Cart Items in CartPage = ",cartItems)
     return (
-    <div>
+    <>
         <h1>Cart Page</h1>
-        {cartItems.map((item,index) => (
-            <CartItem key={item.id} {...item}/>
+        {cartItems.map((item) => (
+            <CartItem key={item.id} {...item } />
         ))}
-    </div>
+
+        <div className={styles.cart}>
+            <span>قیمت کل :</span><span className="margin-x">  {totalPrice.toLocaleString("fa-IR")}</span><span>تومان</span>
+        </div>
+    </>
   )
 }
 

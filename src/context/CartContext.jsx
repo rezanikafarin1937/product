@@ -13,12 +13,22 @@ export const useCartContext = () => {
 
 export function CartProvider({ children }) {
   // const [cartItems, setCartItems] = useState([]);
-  const [cartItems, setCartItems] = useLocalStorage("cartItems",[]);
-  const handleIncreaseProductQty = (id) => {
+  const [cartItems, setCartItems] = useLocalStorage("cartItems", []);
+  const handleIncreaseProductQty = ({
+    id,
+    price,
+    discount,
+    title,
+    description,
+    images,
+  }) => {
     setCartItems((currentItems) => {
       let selectedItem = currentItems.find((item) => item.id === id);
       if (selectedItem == null) {
-        return [...currentItems, { id, qty: 1 }];
+        return [
+          ...currentItems,
+          { id, qty: 1, price, discount, title, description, images },
+        ];
       } else {
         return currentItems.map((item) => {
           if (item.id === id) {
@@ -62,11 +72,16 @@ export function CartProvider({ children }) {
     });
   };
 
+  const totalPrice = cartItems.reduce((total, item) => {
+    return total + (item.price - (item.price * item.discount) / 100) * item.qty;
+  }, 0);
+  
   return (
     <CartContext.Provider
       value={{
         cartItems,
         cartQty,
+        totalPrice,
         handleIncreaseProductQty,
         handleDecreaseProductQty,
         getProductQty,
