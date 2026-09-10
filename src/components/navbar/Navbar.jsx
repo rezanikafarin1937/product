@@ -3,15 +3,16 @@ import { useLocation } from "react-router-dom";
 import { routes } from "../../routes/RouteManager";
 import { useCartContext } from "../../context/CartContext";
 import { useUserContext } from "../../context/UserContext";
+import Search from "../search/Search";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
   const location = useLocation();
   const { cartQty } = useCartContext();
-  const {isUserLogin,handleLogout} = useUserContext()
+  const { isUserLogin, handleLogout } = useUserContext();
   return (
-    <>
-      <nav className={styles.nav}>
+    <div className={styles.parent}>
+      <nav className={styles.parent__nav}>
         {routes.map((route, index) => (
           <div key={index}>
             <Link
@@ -26,10 +27,13 @@ function Navbar() {
           </div>
         ))}
       </nav>
-      <Link to="/cart"> cartQty : {cartQty}</Link>
-      <span className="margin-x"></span>
-      {isUserLogin ? <div onClick={handleLogout}>Logout</div>  : ""}
-    </>
+      <Search/>
+      <div  style={{color : "#999"}}>
+        {isUserLogin ? <span onClick={handleLogout}>Logout</span> : <span  style={{color : "#ddd"}}>Logout</span>}
+        <span className="margin-x"></span>
+        <Link to="/cart"> cartQty : {cartQty}</Link>
+      </div>
+    </div>
   );
 }
 

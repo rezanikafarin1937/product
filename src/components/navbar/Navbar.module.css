@@ -1,9 +1,16 @@
-.nav {
+.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.parent__nav {
   color: white;
   display: flex;
 }
 
-.nav__active {
+.parent__nav__active {
   color: orangered !important;
 }
 
