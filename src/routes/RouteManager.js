@@ -3,6 +3,7 @@ import Products from "../pages/products/Products";
 import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import About from "../pages/about/About";
 import Login from "../pages/login/Login";
+import Search from "../pages/search/Search";
 
 export const routes = [
   {
@@ -19,6 +20,11 @@ export const routes = [
     path: "/about",
     element: <About />,
     title : "About"
+  },
+  {
+    path: "/search",
+    element: <Search />,
+    title : "Search"
   },
   {
     path: "/login",

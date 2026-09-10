@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ProductDetails from "../../pages/ProductDetails/ProductDetails";
 import styles from "./card.module.scss";
 
 const Card = ({ id, title, price, images }) => {

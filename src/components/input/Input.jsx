@@ -1,11 +1,27 @@
-import styles from "./input.module.scss"
+import styles from "./input.module.scss";
 
-const Input = ({onChange,onKeyDown,type,placeholder})=> {
+const Input = ({
+  onChange,
+  onKeyDown,
+  type,
+  placeholder,
+  value,
+}) => {
   return (
-    <>
-     <input  type={type} onChange={onChange} onKeyDown={onKeyDown} className={styles.input} placeholder={placeholder}/> 
-    </>
-  )
-}
+    <input
+      type={type}
+      value={value}
+      onChange={onChange}
+      onKeyDown={onKeyDown}
+      className={styles.input}
+      placeholder={placeholder}
+    />
+  );
+};
 
-export default Input
+export default Input;
+
+
+
+
+

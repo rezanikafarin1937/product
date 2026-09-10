@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { routes } from "../../routes/RouteManager";
 import { useCartContext } from "../../context/CartContext";
 import { useUserContext } from "../../context/UserContext";
-import Search from "../search/Search";
+import Search from "../searchHeader/Search";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {

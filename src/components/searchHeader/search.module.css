@@ -1,0 +1,12 @@
+.search {
+  position: relative;
+  background-color: yellow;
+  min-width: 300px;
+}
+
+.search__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
