@@ -23,15 +23,15 @@ const CartItem = ({ id, qty ,price,discount,title,description,images }) => {
       <div>
         <h3>{title}</h3>
         <div>
-          <span>قیمت : </span> <del>{price.toLocaleString("fa-IR")}</del> <span>تومان</span>
+          <span>قیمت : </span> <del>{price?.toLocaleString("fa-IR")}</del> <span>تومان</span>
         </div>
         <div>
-          <span>با تخفیف : </span> {discount.toLocaleString("fa-IR")} <span>درصد </span>
+          <span>با تخفیف : </span> {discount?.toLocaleString("fa-IR")} <span>درصد </span>
           <span>میشود </span>
           <span>{(price - (price * (discount / 100))).toLocaleString("fa-IR")}</span>
           <span> تومان  </span>
         </div>
-        <div><span>برای تعداد </span> <span> {qty.toLocaleString("fa-IR")} </span> <span> عدد میشود </span> <span>{(qty * (price - (price * (discount / 100)))).toLocaleString("fa-IR")}</span> <span> تومان </span></div>
+        <div><span>برای تعداد </span> <span> {qty?.toLocaleString("fa-IR")} </span> <span> عدد میشود </span> <span>{(qty * (price - (price * (discount / 100))))?.toLocaleString("fa-IR")}</span> <span> تومان </span></div>
         <div>
           <span>توضیحات : </span> {description}
         </div>
