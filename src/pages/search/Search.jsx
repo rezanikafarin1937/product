@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import Card from "../../components/card/Card";
+import Pagination from "../../utils/pagination/Pagination";
+
 import styles from "./search.module.scss";
 
 const Search = () => {
@@ -8,12 +11,20 @@ const Search = () => {
 
   const title = searchParams.get("title");
 
+  // شماره صفحه را از URL می‌گیریم
+  const page = Number(searchParams.get("page")) || 1;
+
+  // تعداد محصولات در هر صفحه
+  const per_page = Number(searchParams.get("per_page")) || 10;
+
   const [products, setProducts] = useState([]);
+  const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!title) {
       setProducts([]);
+      setPagination({});
       return;
     }
 
@@ -22,7 +33,9 @@ const Search = () => {
         setLoading(true);
 
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/products/search?title=${encodeURIComponent(title)}`
+          `${process.env.REACT_APP_API_URL}/api/products/search?title=${encodeURIComponent(
+            title,
+          )}&page=${page}&per_page=${per_page}`,
         );
 
         if (!response.ok) {
@@ -31,17 +44,22 @@ const Search = () => {
 
         const result = await response.json();
 
-        setProducts(result);
+        console.log("Result ===", result);
+
+        setProducts(result.data);
+
+        setPagination(result.pagination);
       } catch (error) {
         console.log("Search Error =", error);
+
         setProducts([]);
+        setPagination({});
       } finally {
         setLoading(false);
       }
     };
-
     getProducts();
-  }, [title]);
+  }, [title, page, per_page]);
 
   if (loading) {
     return <div>در حال جستجو...</div>;
@@ -66,70 +84,24 @@ const Search = () => {
           ))}
         </div>
       )}
+
+      <br />
+      <div style={{ padding: "2rem",}}>
+        <Pagination
+          per_page={per_page}
+          next={pagination.next}
+          prev={pagination.prev}
+          pages={pagination.pages}
+          last={pagination.last}
+          first={pagination.first}
+          path="search"
+          searchValue={title}
+          search="title"
+        />
+      </div>
     </div>
   );
 };
 
 export default Search;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { useState } from "react";
-// import Input from "../../components/input/Input";
-// import Card from "../../components/card/Card";
-
-// const Search = () => {
-//   const [text, setText] = useState("");
-//   const [products,setProducts] = useState([]);
-//   const handleOnChange = (e) => {
-//     setText(e.target.value);
-//   };
-
-
-
-// const handleSearch = async (e) => {
-//   if (e.key !== "Enter") return;
-
-//   const text = e.target.value.trim();
-
-//   if (!text) return;
-
-//   try {
-//     const response = await fetch(
-//       `${process.env.REACT_APP_API_URL}/api/products/search?text=${encodeURIComponent(text)}`
-//     );
-
-//     const result = await response.json();
-//     setProducts(result)
-
-//     console.log("Search Result =", result);
-
-//   } catch (error) {
-//     console.log("Search Error =", error);
-//   }
-// };
-
-
-//   return (
-//     <>
-//       <Input type="text" onChange={handleOnChange}   onKeyDown={handleSearch} placeholder="جستجو" />
-
-//    {products?.map(product => (
-//         <Card key={product.id} {...product}/>
-//       ))}    </>
-//   );
-// };
-
-// export default Search;
