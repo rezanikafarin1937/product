@@ -12,15 +12,20 @@
 
 .header__flex {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 @media (max-width: 769px) {
   .header__flex {
     justify-content: space-between;
-    margin: 0 -1rem;
   }
+}
+
+.header__items {
+  display: flex;
+  align-items: center;
 }
 
 .header__mobileItem {

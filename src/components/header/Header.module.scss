@@ -11,12 +11,19 @@
 
   &__flex {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+
     @media (max-width: 769px) {
       justify-content: space-between;
-      margin: 0 -1rem;
+
     }
+  }
+
+  &__items{
+    display: flex;
+    align-items: center;
   }
 
   &__mobileItem {
