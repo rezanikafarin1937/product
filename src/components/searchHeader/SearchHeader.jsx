@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchInput from "../searchInput/SearchInput"
 import { useNavigate } from "react-router-dom";
+import styles from "./search.module.scss"
 
 const Search = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Search = () => {
   }
 
   return (
-    <div >
+    <div className={styles.search}>
       <SearchInput
         type="text"
         value={text}

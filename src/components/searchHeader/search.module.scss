@@ -1,7 +1,11 @@
 .search{
     position: relative;
-    background-color: yellow;
-    min-width: 300px;
+    width: 300px;
+
+
+    @media (max-width : 768px) {
+        display: none;
+    }
 
     &__input{
         position: absolute;

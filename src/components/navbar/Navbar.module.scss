@@ -1,18 +1,22 @@
-.parent{
+.parent {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 
-&__nav {
-  color: white;
-  display: flex;
-
-
-  &__active {
-    color: orangered !important;
+  @media (max-width: 769px) {
+    display: none;
   }
-}
+
+  &__nav {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__active {
+      color: orangered !important;
+    }
+  }
 }
 a {
   color: #999;

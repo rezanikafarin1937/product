@@ -5,9 +5,17 @@
   width: 100%;
 }
 
+@media (max-width: 769px) {
+  .parent {
+    display: none;
+  }
+}
+
 .parent__nav {
   color: white;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .parent__nav__active {

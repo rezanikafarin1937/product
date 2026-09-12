@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { routes } from "../../routes/RouteManager";
 import { useCartContext } from "../../context/CartContext";
 import { useUserContext } from "../../context/UserContext";
-import Search from "../searchHeader/Search";
+import SearchHeader from "../searchHeader/SearchHeader";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
@@ -23,13 +23,15 @@ function Navbar() {
             >
               {route?.title}
             </Link>
-            <span className="space-item"></span>
+            <span className="margin-x"></span>
           </div>
         ))}
+      <SearchHeader/>
       </nav>
-      <Search/>
       <div  style={{color : "#999"}}>
         {isUserLogin ? <span onClick={handleLogout}>Logout</span> : <span  style={{color : "#ddd"}}>Logout</span>}
+        <span className="margin-x"></span>
+        <Link to="/login"> login </Link>
         <span className="margin-x"></span>
         <Link to="/cart"> cartQty : {cartQty}</Link>
       </div>

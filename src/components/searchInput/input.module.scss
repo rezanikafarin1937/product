@@ -1,9 +1,13 @@
 .parent {
   background-color: yellow;
-  width: 400px;
+  width: 100%;
   position: relative;
   padding: 1rem;
   border-radius: 1rem;
+
+  @media (max-width: 425px) {
+    display: none;
+  }
 
   &__input {
     border-radius: 1rem;
@@ -16,10 +20,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    
-    &::placeholder{
-        color : #ddd;
-        font-size: 1rem;
+
+    &::placeholder {
+      color: #ddd;
+      font-size: 1rem;
     }
   }
 

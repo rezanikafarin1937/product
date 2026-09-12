@@ -7,8 +7,14 @@ function Header() {
       <div className="wrapper">
         <div className={styles.header__flex}>
           <Logo />
-          <span className="space-item"></span>
+          <span className="margin-x"></span>
           <Navbar />
+          <span className="margin-x"></span>
+          <div className={styles.header__mobileItem}>
+            <div className={styles.header__icon}>H</div>
+            <span className="margin-x"></span>
+            <div className={styles.header__icon}>S</div>
+          </div>
         </div>
       </div>
     </header>

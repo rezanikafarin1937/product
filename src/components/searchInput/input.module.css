@@ -1,9 +1,15 @@
 .parent {
   background-color: yellow;
-  width: 400px;
+  width: 100%;
   position: relative;
   padding: 1rem;
   border-radius: 1rem;
+}
+
+@media (max-width: 425px) {
+  .parent {
+    display: none;
+  }
 }
 
 .parent__input {

@@ -22,14 +22,12 @@ export const routes = [
     title : "About"
   },
   {
-    path: "/search",
-    element: <Search />,
-    title : "Search"
-  },
-  {
     path: "/login",
     element: <Login />,
-    title : "Login"
+  },
+  {
+    path: "/search",
+    element: <Search />,
   },
   {
     path: "/product-details/:id",
