@@ -4,18 +4,24 @@ import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import About from "../pages/about/About";
 import Login from "../pages/login/Login";
 import Search from "../pages/search/Search";
+import Store from "../store/Store";
 
 export const routes = [
+  // {
+  //   path: "/",
+  //   element: <Home />,
+  //   title : "Home"
+  // },
   {
     path: "/",
-    element: <Home />,
-    title : "Home"
+    element: <Store />,
+    title : "Store"
   },
-  {
-    path: "/products",
-    element: <Products />,
-    title : "Products"
-  },
+  // {
+  //   path: "/products",
+  //   element: <Products />,
+  //   title : "Products"
+  // },
   {
     path: "/about",
     element: <About />,
