@@ -5,8 +5,9 @@ import { CartProvider } from "./CartContext";
 const AppContext = createContext({});
 
 export function AppProvider({ children }){
+     const value = {};
     return(
-        <AppContext.Provider>
+        <AppContext.Provider value={value}>
             <UserProvider>
                 <CartProvider>
                     { children }
