@@ -3,8 +3,10 @@ import { StrictMode } from "react";
 import Layout from "./layout/Layout";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import "vazirmatn/Vazirmatn-font-face.css";
 import "./styles/global/global.scss";
 import "./styles/variables/variables.scss"
+
 
 
 const root = createRoot(document.getElementById("root"));

@@ -1,25 +1,45 @@
-html,body,h1,h2,h3,h4,h5,h6,p,ul,li{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    border: none;
-}
-.wrapper{
-    margin : 0 2rem;
-
-    @media (max-width : 425px) {
-        margin: 0 1rem;
-        
-    }
+* {
+  box-sizing: border-box;
 }
 
+html {
+  direction: rtl;
+}
 
-.margin-top{
-    margin-top: 100px;
+body {
+  font-family: Vazirmatn, sans-serif;
 }
-.margin-x{
-  margin : 0 .5rem;
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
 }
-margin-2x{
-    margin : 0 1rem;
+.wrapper {
+  margin: 0 2rem;
+
+  @media (max-width: 425px) {
+    margin: 0 1rem;
+  }
+}
+
+.margin-top {
+  margin-top: 100px;
+}
+.margin-x {
+  margin: 0 0.5rem;
+}
+.margin-2x {
+  margin: 0 1rem;
 }

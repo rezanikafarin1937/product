@@ -1,4 +1,26 @@
-html, body, h1, h2, h3, h4, h5, h6, p, ul, li {
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+}
+
+body {
+  font-family: Vazirmatn, sans-serif;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
   margin: 0;
   padding: 0;
   outline: none;
@@ -20,9 +42,9 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, li {
 }
 
 .margin-x {
-  margin: 0 .5rem;
+  margin: 0 0.5rem;
 }
 
-margin-2x {
+.margin-2x {
   margin: 0 1rem;
 }
