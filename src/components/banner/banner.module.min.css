@@ -1,0 +1,1 @@
+.banner{min-width:100%;height:450px;position:relative;background-color:#555}.banner__child{width:100%;height:100%;opacity:0;position:absolute;top:0;left:0;transition:all 1s}.banner__child img{width:100%;height:100%;object-fit:cover;object-position:center}

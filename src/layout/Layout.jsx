@@ -9,8 +9,8 @@ function Layout({ children }) {
   return (
     <AppProvider>
         <Header />
-        <main className="wrapper">
-          <div className="margin-top">{children}</div>
+        <main className="margin-top">
+          {children}
         </main>
         <Footer />
     </AppProvider>
