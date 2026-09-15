@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 import Layout from "./layout/Layout";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import "./styles/index.scss";
+import "./styles/global/global.scss";
 const root = createRoot(document.getElementById("root"));
 
 root.render(
