@@ -1,11 +1,15 @@
-.btn{
-    background-color: rgb(9, 156, 241);
-    color : #fff;
-    padding: .5rem 2rem;
-    border-radius: 1rem;
-    font-size: 1.2rem;
-    cursor: pointer;
+.btn {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-primary-dark);
+  }
 }
 .disabled {
-    color : #999;
+  color: #999;
 }
