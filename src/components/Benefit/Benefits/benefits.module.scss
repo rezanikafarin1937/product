@@ -1,0 +1,10 @@
+.benefits {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 2rem 0;
+  display : flex;
+  justify-content : space-around;
+  align-items : center;
+}

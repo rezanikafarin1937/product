@@ -1,0 +1,18 @@
+.benefitCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  &__description {
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+}
