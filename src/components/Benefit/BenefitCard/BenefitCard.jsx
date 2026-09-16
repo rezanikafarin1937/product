@@ -8,11 +8,11 @@ const BenefitCard = ({ icon, title, description }) => {
       </div>
       <span className="margin-x"></span>
       <div className={styles.benefitCard__content}>
-        <h3 className={styles.benefitCard__title}>
+        <h3 className="title-item">
           {title}
         </h3>
 
-        <p className={styles.benefitCard__description}>
+        <p className="description">
           {description}
         </p>
       </div>

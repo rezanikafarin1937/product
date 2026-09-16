@@ -52,3 +52,16 @@ li {
 .margin-y {
   margin: 1rem 0;
 }
+
+.title-item {
+  font-size: 1rem;
+  font-weight: 600;
+  word-wrap: none;
+}
+
+.description {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  word-wrap: none;
+}

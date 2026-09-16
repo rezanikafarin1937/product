@@ -11,7 +11,6 @@ const heightIcon = "50px";
 const Benefits = () => {
 
   return (
-    <div className="wrapper">
       <section className={styles.benefits}>
         <BenefitCard
           icon={<CreditCard  width={widthIcon} height={heightIcon} color="#000000" />}
@@ -39,7 +38,6 @@ const Benefits = () => {
 
 
       </section>
-    </div>
   );
 };
 

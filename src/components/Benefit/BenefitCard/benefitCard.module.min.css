@@ -1,1 +1,1 @@
-.benefitCard{display:flex;justify-content:center;align-items:center}.benefitCard__title{font-size:1rem;font-weight:600}.benefitCard__description{font-size:0.8125rem;font-weight:400}
+.benefitCard{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center}.benefitCard__title{font-size:1rem;font-weight:600}.benefitCard__description{font-size:0.8125rem;font-weight:400}

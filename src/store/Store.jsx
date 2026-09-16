@@ -5,7 +5,7 @@ const Store = () => {
   return (
     <>
       <InfiniteLoading   url={`${process.env.REACT_APP_API_URL}/api/products`} limit="10">
-        <Card/>
+        <Card />
       </InfiniteLoading>
     </>
   );

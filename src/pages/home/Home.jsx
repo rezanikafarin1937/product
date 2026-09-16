@@ -1,9 +1,8 @@
-import Card from "../../components/card/Card";
-import InfiniteLoading from "../../utils/infiniteLoading/InfiniteLoading";
 import Banner from "../../components/banner/Banner";
-
-import styles from "./home.module.scss";
 import Benefits from "../../components/Benefit/Benefits/Benefits";
+import Cats from "../../components/cats/Cats";
+import SpecialOffer from "../../components/SpecialOffer/SpecialOffer";
+import styles from "./home.module.scss";
 
 const Home = () => {
   const images= ["man.png", "woman.png"];
@@ -14,15 +13,14 @@ const Home = () => {
            <img  key={index} src={`/banner/${image}`} alt="سایت فروش عینک" />
         ))}
       </Banner>
+            <div className="wrapper">
+
       <Benefits/>
-      {/* <div className="wrapper">
-        <InfiniteLoading
-          url={`${process.env.REACT_APP_API_URL}/api/products`}
-          limit="10"
-        >
-          <Card />
-        </InfiniteLoading>
-      </div> */}
+      <br/>
+      <Cats/>
+      <br/>
+      <SpecialOffer/>
+      </div>
     </div>
   );
 };

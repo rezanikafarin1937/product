@@ -1,0 +1,27 @@
+.card {
+  width: calc(20% - 2rem);
+  background-color: #f8f8f7;
+  border-radius: 0.5rem;
+  // height: 250px;
+  overflow: hidden;
+
+  &__image {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      align-items: center;
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  &__text {
+    padding: 0  1rem 2rem 0;
+  }
+}

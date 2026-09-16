@@ -16,7 +16,6 @@ const Banner = ({ children }) => {
     return () => clearInterval(timer);
   }, [currentItem]);
 
-  console.log("children = ",children)
 
   return (
     <div className={styles.banner}>
