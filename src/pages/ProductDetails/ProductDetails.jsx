@@ -37,7 +37,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div>
+    <div className="wrapper">
       <h1>{product.title}</h1>
       <h2>cartQty = {cartQty}</h2>
       <p>description : {product.description}</p>

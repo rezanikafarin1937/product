@@ -6,8 +6,11 @@
   --color-dark: #101417;
   --color-text: #222222;
   --color-text-secondary: #666666;
+  --color-text-blue: #20b2de;
   --color-white: #ffffff;
   --color-background: #f8f8f7;
   --color-background-soft: #f3f1ee;
   --color-border: #e5e5e5;
+  --border-radius: 0.5rem;
+  --padding: 1rem;
 }

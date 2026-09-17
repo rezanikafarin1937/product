@@ -66,7 +66,7 @@ const Search = () => {
   }
 
   return (
-    <div className="container">
+    <div className="wrapper">
       <h1>نتایج جستجو برای: {title}</h1>
 
       {products.length === 0 ? (

@@ -5,21 +5,21 @@ import SpecialOffer from "../../components/SpecialOffer/SpecialOffer";
 import styles from "./home.module.scss";
 
 const Home = () => {
-  const images= ["man.png", "woman.png"];
+  const images = ["man.png", "woman.png"];
   return (
     <div className={styles.homeCards}>
       <Banner>
-        {images.map((image,index) => (
-           <img  key={index} src={`/banner/${image}`} alt="سایت فروش عینک" />
+        {images.map((image, index) => (
+          <img key={index} src={`/banner/${image}`} alt="سایت فروش عینک" />
         ))}
       </Banner>
-            <div className="wrapper">
-
-      <Benefits/>
-      <br/>
-      <Cats/>
-      <br/>
-      <SpecialOffer/>
+      <div className="wrapper">
+        <Benefits />
+        <br />
+        <Cats />
+        <br />
+        <SpecialOffer />
+        <br />
       </div>
     </div>
   );

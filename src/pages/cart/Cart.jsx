@@ -6,7 +6,7 @@ const Cart = () => {
     const {cartItems,totalPrice} = useCartContext();
     console.log("Cart Items in CartPage = ",cartItems)
     return (
-    <>
+    <div className="wrapper">
         <h1>Cart Page</h1>
         {cartItems.map((item) => (
             <CartItem key={item.id} {...item } />
@@ -15,7 +15,7 @@ const Cart = () => {
         <div className={styles.cart}>
             <span>قیمت کل :</span><span className="margin-x">  {totalPrice.toLocaleString("fa-IR")}</span><span>تومان</span>
         </div>
-    </>
+    </div>
   )
 }
 
