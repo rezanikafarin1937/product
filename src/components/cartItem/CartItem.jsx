@@ -10,8 +10,7 @@ const CartItem = ({ id, qty ,price,discount,title,description,images }) => {
     handleRemoveProduct,
   } = useCartContext();
 
- console.log("images === ",images )
-
+ 
   return (
     <div className={styles.cart}>
       <div className={styles.cart__image}>

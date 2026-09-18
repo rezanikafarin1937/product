@@ -1,5 +1,5 @@
 .star {
-  width: 100px;
+  width: 85px;
   height: 30px;
   font-size: 1rem;
   font-weight: 600;
@@ -17,5 +17,4 @@
   font-weight: 600;
   color: orange;
   overflow: hidden;
-  direction: ltr;
 }

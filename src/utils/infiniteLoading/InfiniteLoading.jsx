@@ -12,8 +12,6 @@ const InfiniteLoading = ({ url, limit, children }) => {
   useEffect(() => {
     axios(`${url}?page=${page}&limit=${limit}`)
       .then((res) => {
-        console.log("pagination data =", res.data);
-
         setProducts((prev) => [...prev, ...res.data.data]);
       })
       .catch((error) => {

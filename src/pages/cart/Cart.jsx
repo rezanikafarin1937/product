@@ -4,7 +4,6 @@ import styles from "./Cart.module.scss"
 
 const Cart = () => {
     const {cartItems,totalPrice} = useCartContext();
-    console.log("Cart Items in CartPage = ",cartItems)
     return (
     <div className="wrapper">
         <h1>Cart Page</h1>

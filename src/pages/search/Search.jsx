@@ -44,7 +44,7 @@ const Search = () => {
 
         const result = await response.json();
 
-        console.log("Result ===", result);
+        console.log("Result in Search", result);
 
         setProducts(result.data);
 

@@ -15,7 +15,6 @@ const ProductDetails = () => {
     handleDecreaseProductQty,
     getProductQty,
     handleRemoveProduct,
-    cartItems,
     cartQty
   } = useCartContext();
 
@@ -24,26 +23,27 @@ const ProductDetails = () => {
   useEffect(() => {
     getProduct(id).then(res => {
       setProduct(res.data)
-      console.log("product = ",res.data)
+      console.log("in product details data is = ",res.data)
     }).catch(err => {
       console.log(err)
     })
   }, [id]);
 
-  console.log("cartItems = ", cartItems);
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
+  console.log("DETAILS = ",product?.title)
+
   return (
-    <div className="wrapper">
-      <h1>{product.title}</h1>
+    <div className="wrapper" style={{color : "#000"}}>
+      <h1>{product?.title}</h1>
       <h2>cartQty = {cartQty}</h2>
-      <p>description : {product.description}</p>
-      <p>price : {product.price}</p>
-      <p>discount : {product.discount}</p>
-      <div>catId : {product.catId}</div>
+      <p>description : {product?.description}</p>
+      <p>price : {product?.price}</p>
+      <p>discount : {product?.discount}</p>
+      <div>catId : {product?.catId}</div>
       <br />
       <div>Add to cart</div>
       <span title="Add to Card">
@@ -63,6 +63,8 @@ const ProductDetails = () => {
         </Button>
       )}
       <br />
+      <div>{product.title}</div>
+      <div>{product.id}</div>
       <br />
       <div>gallery images : </div>
       <GalleryImage images={product?.images} />
