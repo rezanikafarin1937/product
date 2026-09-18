@@ -18,13 +18,16 @@ const Card = ({ id, title, price, discount, images }) => {
         </div>
         <div className={styles.cardText}>
           <h3 className="title-item">{title}</h3>
-          <Star rating={Math.floor(Math.random() * 5)}/>
+          <Star rating={Math.floor(Math.random() * 5)} />
           <div>
             {endPrice(price).toLocaleString("fa-IR")}
             <span> تومان </span>
+          </div>
+          <div>
             {discount !== 0 ? (
               <del className={styles.cardDel}>
-                {price.toLocaleString("fa-IR")} <span className={styles.cardDiscount}> تومان </span>
+                {price.toLocaleString("fa-IR")}{" "}
+                <span className={styles.cardDiscount}> تومان </span>
               </del>
             ) : (
               ""
