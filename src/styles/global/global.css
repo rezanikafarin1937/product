@@ -66,3 +66,7 @@ li {
   color: var(--color-text-secondary);
   word-wrap: none;
 }
+
+.ltr {
+  direction: ltr;
+}
