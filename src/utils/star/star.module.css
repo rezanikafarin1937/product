@@ -1,15 +1,16 @@
 .star {
-  width: 85px;
   height: 30px;
   font-size: 1rem;
   font-weight: 600;
   color: #999;
   position: relative;
   white-space: nowrap;
+  display: inline-block;
   direction: ltr;
 }
 
 .starLike {
+  height: 30px;
   position: absolute;
   top: 0;
   width: 0;
