@@ -1,11 +1,20 @@
-import styles from "./button.module.scss"
+import styles from "./button.module.scss";
 
-const Button = ({onClick,children,disabled = false }) => {
+const Button = ({
+  children,
+  variant = "primary",
+  onClick,
+  ...rest
+}) => {
   return (
-    <button onClick={onClick} className={styles.btn} style={disabled ? {color : "#999"} : {}}>
+    <button
+      className={`${styles.button} ${styles[variant]}`}
+      onClick={onClick}
+      {...rest}
+    >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

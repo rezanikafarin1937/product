@@ -1,15 +1,29 @@
-.btn {
-  background: var(--color-primary);
-  color: #fff;
-  padding: 0.5rem 2rem;
-  border-radius: 1rem;
-  font-size: 1.2rem;
+.button {
+  display: flex;
+  justify-content: space-between;
+  white-space: nowrap;
+  align-items: center;
+  border-radius: var(--border-radius);
   cursor: pointer;
+  border: none;
+  outline: none;
+  padding: .5rem 2rem;
+}
 
-  &:hover {
-    background: var(--color-primary-dark);
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+
+  &:hover{
+    background-color: var(--color-primary-dark);
   }
 }
-.disabled {
-  color: #999;
+
+.secondary{
+    background-color: var(--color-background);
+    color : var(--color-text-secondary);
+
+    &:hover{
+        background-color: var(--color-background-soft);
+    }
 }

@@ -8,6 +8,8 @@ import SpecialOffer from "../../components/SpecialOffer/SpecialOffer";
 import ArrowButton from "../../components/arrow-button/ArrowButton";
 import { useNavigate } from "react-router-dom";
 import styles from "./home.module.scss";
+import Button from "../../components/button/Button";
+import Arrow from "../../icons/arrow/Arrow";
 
 const Home = () => {
   const images = ["man.png", "woman.png"];
@@ -16,7 +18,7 @@ const Home = () => {
 
   const handleClick = () => {
     navigate("/store");
-  }
+  };
 
   useEffect(() => {
     getProducts().then((res) => {
@@ -36,12 +38,26 @@ const Home = () => {
       <div className="wrapper">
         <Benefits />
         <br />
+        <div className="title-bar">
+          <h3 className="primary-title">دسته بندی محصولات</h3>
+          <Button variant="secondary" onClick={handleClick}>
+            <Arrow width={20} height={20} color="var(--color-text-secondary)" />
+            <span className="margin-x"></span>
+            <span>مشاهده همه</span>
+          </Button>
+        </div>
+
         <Cats />
         <br />
         <SpecialOffer />
         <br />
-        <div className="ltr">
-          <ArrowButton title="مشاهده محصولات" onClick={handleClick} />
+        <div className="title-bar">
+          <h3 className="primary-title">محصولات پرفروش</h3>
+          <Button variant="secondary" onClick={handleClick}>
+            <Arrow width={20} height={20} color="var(--color-text-secondary)" />
+            <span className="margin-x"></span>
+            <span>مشاهده همه</span>
+          </Button>
         </div>
         <MySwiperSlider data={data} />
         <br />
