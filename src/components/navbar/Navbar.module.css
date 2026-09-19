@@ -17,16 +17,18 @@
   align-items: center;
 }
 
-.parent__nav__active {
-  color: orangered !important;
+.parent__navActive {
+  color: var(--color-primary-dark) !important;
 }
 
 a {
-  color: #999;
-  cursor: pointer;
+  font-size: .9rem;
+  font-weight: 600;
+  word-wrap: none;
+  color: var(--color-text);
   text-decoration: none;
 }
 
 a:hover {
-  color: orange;
+  color: var(--color-primary);
 }

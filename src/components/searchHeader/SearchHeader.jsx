@@ -34,7 +34,7 @@ const Search = () => {
         onChange={handleOnChange}
         onKeyDown={onEnterHandleSearch}
         onClickSearch={onClickHandleSearch}
-        placeholder="جستجو"
+        placeholder="جستجوی محصول"
       />
     </div>
   );

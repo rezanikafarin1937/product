@@ -1,0 +1,22 @@
+.btn {
+  position: relative;
+  top : 2px;
+  display: flex;
+  font-size: 0.5rem;
+
+  &Counter {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    border-radius: 50%;
+    position: absolute;
+    right: -4px;
+    top: -14px;
+    padding: .1rem;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+}

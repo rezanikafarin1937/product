@@ -44,7 +44,6 @@ export function CartProvider({ children }) {
   const cartQty = cartItems.reduce((total, item) => {
     return total + item.qty;
   }, 0);
-  console.log("1.cartQty = ", cartQty);
 
   const handleDecreaseProductQty = (id) => {
     setCartItems((currentItems) => {

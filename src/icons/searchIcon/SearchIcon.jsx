@@ -1,15 +1,23 @@
-import "./search.scss";
-const SearchIcon = ({ color = "#fff" }) => {
+const SearchIcon = ({ width = 20 ,height = 20,color = "#000" }) => {
   return (
     <>
-      <div className="parent">
-        <svg viewBox="0 0 130 130">
+      <>
+        <svg
+          width={width}
+          height={height}
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            fill={`${color}`}
-            d="M63.3 59.9c3.8-4.6 6.2-10.5 6.2-17 0-14.6-11.9-26.5-26.5-26.5S16.5 28.3 16.5 42.9 28.4 69.4 43 69.4c6.4 0 12.4-2.3 17-6.2l20.6 20.6c.5.5 1.1.7 1.7.7.6 0 1.2-.2 1.7-.7.9-.9.9-2.5 0-3.4L63.3 59.9zm-20.4 4.7c-12 0-21.7-9.7-21.7-21.7s9.7-21.7 21.7-21.7 21.7 9.7 21.7 21.7-9.7 21.7-21.7 21.7z"
-          ></path>
-        </svg>
-      </div>
+            d="M16.6725 16.6412L21 21M19 11C19 15.4183 15.4183 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11Z"
+            stroke={color}
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>{" "}
+      </>
     </>
   );
 };

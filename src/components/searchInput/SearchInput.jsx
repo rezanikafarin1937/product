@@ -21,7 +21,9 @@ const Input = ({
       />
       <div className={styles.parent__icon} onClick={onClickSearch}>
         <div className={styles.parent__svg}>
-          <SearchIcon color="#ddd"/>
+          <div style={{width : "20px" , height : "20px"}}>
+            <SearchIcon color="var(--color-text-secondary)" />
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,5 @@
 .header {
-  background-color: #eee;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  background-color: var(--color-background);
   box-shadow: .12rem .12rem .12rem #ddd;
   padding: 1rem 0;
   position: fixed;
@@ -23,6 +21,13 @@
   }
 
   &__items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  &__right{
     display: flex;
     align-items: center;
   }
@@ -46,5 +51,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &__logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary-dark) !important;
   }
 }

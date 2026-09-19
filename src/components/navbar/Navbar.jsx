@@ -13,11 +13,12 @@ function Navbar() {
             <Link
               to={route?.path}
               className={
-                location.pathname === route.path ? styles.nav__active : ""
+                location.pathname === route.path ? styles.parent__navActive : ""
               }
             >
               {route?.title}
             </Link>
+            <span className="margin-x"></span>
             <span className="margin-x"></span>
           </div>
         ))}

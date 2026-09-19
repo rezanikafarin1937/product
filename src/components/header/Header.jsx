@@ -9,13 +9,20 @@ function Header() {
       <div className="wrapper">
         <div className={styles.header__flex}>
           <div className={styles.header__items}>
-            <Logo />
+            <div className={styles.header__right}>
+              <Account />
+              <span className="margin-x"></span>
+              <SearchHeader />
+            </div>
+
             <span className="margin-x"></span>
-            <Navbar />
-            <span className="margin-x"></span>
-            <SearchHeader />
           </div>
-          <Account />
+          <Navbar />
+          <div className={styles.header__logo}>
+             <h1 style={{color : "var(--color-primary-dark)"}} className="primary-title"><i>Tizbin</i></h1>
+             <Logo />
+          </div>
+         
           <div className={styles.header__mobileItem}>
             <div className={styles.header__icon}>H</div>
             <span className="margin-x"></span>

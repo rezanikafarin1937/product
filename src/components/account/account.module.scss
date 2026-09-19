@@ -1,5 +1,16 @@
 .account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     @media (max-width : 769px) {
         display: none;
     }
+
+    &UserIcon{
+        width: var(--size-icon);
+        height: var(--size-icon);
+        cursor: pointer;
+    }
+   
 }
