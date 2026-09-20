@@ -22,3 +22,9 @@
   object-fit: cover;
   object-position: center;
 }
+
+.bannerButton {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+}

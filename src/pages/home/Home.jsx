@@ -12,7 +12,7 @@ import Button from "../../components/button/Button";
 import Arrow from "../../icons/arrow/Arrow";
 
 const Home = () => {
-  const images = ["man.png", "woman.png"];
+  const images = ["man.png", "sonwoman.png","sonman.png"];
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 

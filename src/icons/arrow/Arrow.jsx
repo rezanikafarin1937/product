@@ -17,7 +17,7 @@ const Arrow = ({ width, height, color }) => {
           stroke-linecap="round"
           stroke-linejoin="round"
         />
-      </svg>{" "}
+      </svg>
     </>
   );
 };
