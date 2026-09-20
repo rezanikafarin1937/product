@@ -1,3 +1,4 @@
+import ArrowLeft from "../../icons/arrow-left/ArrowLeft";
 import Arrow from "../../icons/arrow/Arrow";
 import Button from "../button/Button";
 import styles from "./specialOffer.module.scss";
@@ -15,9 +16,7 @@ const SpecialOffer = () => {
         <Button>
           <span> مشاهده جزئیات</span>
           <span className="margin-x"></span>
-          <div style={{transform : "rotate(180deg)"}}>
-            <Arrow width={20} height={20} color="#fff"/>
-          </div>
+            <ArrowLeft width={20} height={20} color="#fff"/>
         </Button>
       </div>
     </section>

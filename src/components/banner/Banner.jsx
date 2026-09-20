@@ -1,11 +1,16 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import styles from "./banner.module.scss";
 import Button from "../button/Button";
-import Arrow from "../../icons/arrow/Arrow";
+import ArrowLeft from "../../icons/arrow-left/ArrowLeft";
+import { useNavigate } from "react-router-dom";
 
 const Banner = ({ children }) => {
   const [currentItem, setCurrentItem] = useState(0);
+  const navigate = useNavigate();
+
+  const handleClick = () =>{
+    navigate("/store")
+  }
   useEffect(() => {
     const timer = setInterval(() => {
       if (currentItem < children.length - 1) {
@@ -30,12 +35,10 @@ const Banner = ({ children }) => {
         </div>
       ))}
       <div className={styles.bannerButton}>
-        <Button>
+        <Button onClick={handleClick}>
           <span>مشاهده محصولات</span>
           <span className="margin-x"></span>
-          <span style={{ transform: "rotate(180deg)" }}>
-            <Arrow  width={20} height={20} color="#fff" />
-          </span>
+            <ArrowLeft  width={20} height={20} color="#fff" />
         </Button>
       </div>
     </div>

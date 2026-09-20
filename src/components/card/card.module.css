@@ -45,6 +45,7 @@
   text-overflow: ellipsis;
   text-align: right;
   user-select: none;
+  min-height: 137px;
 }
 
 .cardDel {
