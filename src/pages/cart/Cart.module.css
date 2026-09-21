@@ -1,9 +1,10 @@
 .cart {
-  background-color: #ddd;
+  background-color: var(--color-);
   border-radius: .25rem;
   padding: 1rem;
   text-align: right;
   margin: 1rem 0;
+  padding: 2rem;
 }
 
 .cartImg {

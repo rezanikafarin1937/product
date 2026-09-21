@@ -74,6 +74,25 @@ export function CartProvider({ children }) {
   const totalPrice = cartItems.reduce((total, item) => {
     return total + (item.price - (item.price * item.discount) / 100) * item.qty;
   }, 0);
+
+
+  const totalDiscount = (items) => {
+    let d = 0;
+    items.map((item) => {
+      d += (item.discount / 100) * item.price;
+    });
+    return d;
+  };
+
+  const totalPriceWithoutDiscount = (items) => {
+    let allPrice = 0;
+    items.map((item) => {
+      allPrice += item.price;
+    });
+    return allPrice;
+  };
+
+
   
   return (
     <CartContext.Provider
@@ -85,6 +104,8 @@ export function CartProvider({ children }) {
         handleDecreaseProductQty,
         getProductQty,
         handleRemoveProduct,
+        totalDiscount,
+        totalPriceWithoutDiscount
       }}
     >
       {children}
