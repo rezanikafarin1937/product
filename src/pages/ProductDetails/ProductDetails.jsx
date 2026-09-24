@@ -4,7 +4,10 @@ import { getProduct } from "../../services/api";
 import Button from "../../components/button/Button";
 import { useCartContext } from "../../context/CartContext";
 import ZoomImage from "../../utils/zoom-image/ZoomImage";
+import ButtonQty from "../../components/button-qty/ButtonQty";
 import styles from "./product-details.module.scss";
+import Star from "../../utils/star/Star";
+import CloseIcon from "../../icons/close-icon/CloseIcon";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -40,65 +43,50 @@ const ProductDetails = () => {
 
   return (
     <div className="wrapper">
-      <div style={{marginTop : "150px"}}></div>
+      <div style={{ marginTop: "150px" }}></div>
       <div className={styles.parent}>
-       
-      <div className={styles.parent__info}>
-        <h1>{product?.title}</h1>
-        <h2>cartQty = {cartQty}</h2>
-        <p>description : {product?.description}</p>
-        <p>price : {product?.price}</p>
-        <p>discount : {product?.discount}</p>
-        <div>catId : {product?.catId}</div>
-        <br />
-        <div>Add to cart</div>
-        <span title="Add to Card">
-          <Button
-            onClick={() => {
-              handleIncreaseProductQty({ ...product });
-              setFlag(false);
-            }}
-          >
-            +
-          </Button>
-          <span className="margin-x">{getProductQty(product?.id)}</span>
-          <Button
-            disabled={flag}
-            onClick={() => {
-              console.log("Baleh");
-              handleDecreaseProductQty(product?.id);
-              getProductQty(product?.id) - 1 > 0
-                ? setFlag(false)
-                : setFlag(true);
-            }}
-          >
-            -
-          </Button>
-        </span>
-        <br />
-        <br />
-        {getProductQty === 0 ? (
-          <Button disabled={true}>Delete from Cart</Button>
-        ) : (
-          <Button
-            disabled={flag}
-            onClick={() => {
-              handleRemoveProduct(product?.id);
-              setFlag(true);
-            }}
-          >
-            Delete from Cart
-          </Button>
-        )}
-        <br />
-        <div>{product.title}</div>
-        <div>{product.id}</div>
-        <br />
-        <div>gallery images : </div>
+        <div className={styles.parent__info}>
+          <h1 className="primary-title">{product?.title}</h1>
+          <Star rating={Math.floor(Math.random() * 5)} />
+
+          <div className="title-item">
+            <span>{product?.price.toLocaleString("fa-IR")}</span>
+            <span>تومان</span>
+          </div>
+
+          <div className="color-blue">
+            <span>با تخفیف</span>{" "}
+            <span>{product?.discount.toLocaleString("fa-IR")}</span>{" "}
+            <span>درصد</span>
+          </div>
+
+          <div className={styles.parent__qtyInfo}>
+            <ButtonQty {...product} />
+            <span style={{ margin: "0 .12rem" }}></span>
+            <div
+              className={styles.parent__btn}
+              onClick={() => {
+                handleRemoveProduct(product?.id);
+                setFlag(true);
+              }}
+            >
+              <CloseIcon
+                width={15}
+                height={15}
+                color="var(--color-text-secondary)"
+              />
+            </div>
+          </div>
+          <Button>افزودن به سبد خرید</Button>
+        </div>
+        <div className={styles.parent__image}>
+          <ZoomImage images={product?.images} />
+        </div>
       </div>
-      <div className={styles.parent__image}>
-        <ZoomImage images={product?.images} />
-      </div>
+      <br />
+      <div className={styles.foot}>
+        <div className="primary-title">توضیحات</div>
+        <p>{product?.description}</p>
       </div>
     </div>
   );

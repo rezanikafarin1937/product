@@ -5,16 +5,16 @@
   gap: 0.5rem;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .parent {
-    flex-direction: column;
+    flex-direction: column-reverse;
     direction: ltr;
   }
 }
 
 .parent__active {
   outline: 2px solid var(--active-text);
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
 }
 
 .parent__thumbnails {
@@ -26,20 +26,17 @@
   overflow-x: hidden;
   flex: 0 0 20%;
   height: 400px;
-  padding: .125rem 1rem;
+  padding: 0.125rem 1rem;
   scrollbar-width: thin;
   scrollbar-color: var(--active-text) #eee;
 }
 
-@media (min-width: 426px) and (max-width: 768px) {
+@media (max-width: 768px) {
   .parent__thumbnails {
-    flex: 1 1 auto;
-  }
-}
-
-@media (max-width: 425px) {
-  .parent__thumbnails {
-    display: none;
+    flex-direction: row;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    height: 100px;
   }
 }
 
@@ -49,7 +46,7 @@
 
 .parent__thumbnails::-webkit-scrollbar-thumb {
   background-color: var(--active-text);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
 }
 
 .parent__thumbnails::-webkit-scrollbar-track {
@@ -60,7 +57,7 @@
   width: 100px;
   height: 100px;
   aspect-ratio: 1 / 1;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   margin-bottom: 0.25rem;
   flex: 0 0 100px;
 }
@@ -76,7 +73,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
 }
 
 .parent__image {
@@ -84,7 +81,7 @@
   height: 400px;
   display: flex;
   flex: 1 1 77%;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   background-color: #eee;
   background-repeat: no-repeat;
   background-size: cover;
@@ -95,21 +92,13 @@
   cursor: zoom-in;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .parent__image {
     width: 100%;
     flex: 1 1 auto;
-    max-height: 400px;
-    min-height: 400px;
   }
 }
 
 .parent__horizontalscroll {
   display: none;
-}
-
-@media (max-width: 425px) {
-  .parent__horizontalscroll {
-    display: block;
-  }
 }

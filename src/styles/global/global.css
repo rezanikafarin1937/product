@@ -85,3 +85,7 @@ li {
 .ltr {
   direction: ltr;
 }
+
+.color-blue {
+  color: var(--color-text-blue);
+}

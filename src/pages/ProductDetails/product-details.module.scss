@@ -1,19 +1,57 @@
-.parent{
+.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  &__image {
+    width: calc(50% - 1rem);
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &__info {
+    width: calc(50% - 1rem);
+    direction: ltr;
+    padding: var(--padding);
+    background-color: var(--color-background);
+    border-radius: var(--border-radius);
+    min-height: 370px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: start;
 
-    &__image{
-        width : calc(50% - 1rem)
+    @media (max-width: 768px) {
+      width: 100%;
+      direction: rtl;
+      margin-bottom: 1rem;
     }
+  }
 
+  &__qtyInfo {
+    display: flex;
+    direction: ltr;
 
-    &__info{
-        width : calc(50% - 1rem);
-        direction : ltr;
-        padding: 4rem 0;
-        background-color: #eee;
-        border-radius: var(--border-radius);
+    @media (max-width: 768px) {
+      flex-direction: row-reverse;
     }
+  }
 
+  &__btn {
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
