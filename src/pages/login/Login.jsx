@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Cookie from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import { useUserContext } from "../../context/UserContext";
 import { auth } from "../../services/api";
+import Input from "../../components/input/Input";
 import styles from "./style.module.scss";
 
 const Login = () => {
@@ -40,7 +41,7 @@ const Login = () => {
 
           <form onSubmit={handleClick}>
             {!isLogin && (
-              <input
+              <Input
                 type="text"
                 placeholder="نام"
                 value={username}
@@ -49,7 +50,7 @@ const Login = () => {
             )}
             <br />
             <br />
-            <input
+            <Input
               type="text"
               placeholder="شماره موبایل"
               value={mobile}
@@ -58,7 +59,7 @@ const Login = () => {
             <br />
             <br />
 
-            <input
+            <Input
               type="password"
               placeholder="رمز عبور"
               value={password}
@@ -67,7 +68,7 @@ const Login = () => {
             <br />
             <br />
 
-            <Button>{isLogin ? "ورود" : "ثبت نام"} </Button>
+            <Button width="100%" >{isLogin ? "ورود" : "ثبت نام"} </Button>
           </form>
 
           <br />
@@ -76,11 +77,11 @@ const Login = () => {
           <div>
             {isLogin ? (
               <>
-                <Button onClick={() => setMode("register")}>ثبت نام</Button>
+                <Button width="100%" onClick={() => setMode("register")}>ثبت نام</Button>
               </>
             ) : (
               <>
-                <Button> وارد شوید </Button>
+                <Button width="100%" > وارد شوید </Button>
               </>
             )}
           </div>
