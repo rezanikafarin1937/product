@@ -1,3 +1,4 @@
+import { useId } from "react";
 import styles from "./input.module.scss";
 
 const Input = ({
@@ -7,8 +8,11 @@ const Input = ({
   placeholder,
   value,
 }) => {
+
+  const uniqueId = useId();
   return (
     <input
+      id ={uniqueId}
       type={type}
       value={value}
       onChange={onChange}

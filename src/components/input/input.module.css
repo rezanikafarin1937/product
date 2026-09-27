@@ -5,4 +5,9 @@
   height: 40px;
   text-align: right;
   padding: 0 1rem;
+  background-color: #b6e4ed;
+}
+
+.input:focus {
+  background-color: var(--color-white);
 }

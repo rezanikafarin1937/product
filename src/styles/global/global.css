@@ -60,12 +60,14 @@ li {
   justify-content: space-between;
   align-items: center;
   padding: var(--padding) 0;
+  user-select: none;
 }
 
 .primary-title {
   color: var(--color-text);
   font-size: 1.25rem;
   font-weight: 600;
+  user-select: none;
 }
 
 .title-item {
@@ -73,6 +75,7 @@ li {
   font-weight: 600;
   word-wrap: none;
   color: var(--color-text);
+  user-select: none;
 }
 
 .description {

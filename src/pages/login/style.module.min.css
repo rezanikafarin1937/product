@@ -1,1 +1,1 @@
-.parent{display:flex;justify-content:center;align-items:center;padding:2rem}.parent__box{background-color:#eee;border-radius:10px;padding:1rem;max-width:20%;text-align:center}.parentGreen{background-color:green;border:10px solid red}
+.parent{display:flex;justify-content:center;align-items:center;padding:2rem;width:400px}.parent__box{background-color:#eee;border-radius:var(--border-radius);padding:1rem;width:100%;text-align:center}.parentGreen{background-color:green;border:10px solid red}
