@@ -15,10 +15,10 @@ const CatCard = ({ title, description, image }) => {
         <img src={image} alt="" />
       </div>
       <div>
-        <div className={`${styles.card__text} title-item`}>
+        <div className={`${styles.card__text}`}>
           {title}
           <div className="description">
-            <Button style={{position : "relative",left : "2rem"}} variant="secondary" onClick={handleClick}>
+            <Button variant="secondary" onClick={handleClick}>
               <span>مشاهده همه</span>
               <span className="margin-x"></span>
               <Arrow

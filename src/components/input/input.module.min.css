@@ -1,1 +1,1 @@
-.input{border-radius:1rem;border:none;outline:none;height:40px;text-align:right;padding:0 1rem;background-color:#b6e4ed}.input:focus{background-color:var(--color-white)}
+.input{border-radius:1rem;border:none;outline:none;height:40px;text-align:right;padding:0 1rem;background-color:var(--color-white);width:100%;border:1px solid #ddd}.input:focus{background-color:var(--color-white)}

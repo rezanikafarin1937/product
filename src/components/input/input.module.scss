@@ -5,7 +5,9 @@
     height: 40px;
     text-align: right;
     padding: 0 1rem;
-    background-color: rgb(182, 228, 237);
+    background-color: var(--color-white);
+    width: 100%;
+    border: 1px solid #ddd;
 
     &:focus{
         background-color: var(--color-white);

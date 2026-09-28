@@ -92,3 +92,10 @@ li {
 .color-blue {
   color: var(--color-text-blue);
 }
+
+.balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: pink;
+}

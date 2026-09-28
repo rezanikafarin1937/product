@@ -3,6 +3,20 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+  width: calc(25% - 1rem);
+
+  @media (min-width: 426px) and (max-width: 768px) {
+    width: calc(50% - 1rem);
+    margin: 0.5rem 0;
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 425px) {
+    width: calc(100% - 1rem);
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    flex-direction: row-reverse;
+  }
 
   &__icon {
   }
