@@ -1,4 +1,38 @@
 .footer{
-    background-color: cadetblue;
-    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-background);
+
+    &__column{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: calc(25% - 1rem);
+
+        @media (min-width : 426px) and (max-width : 768px) {
+            width: calc(50% - 1rem);
+        }
+
+        @media (max-width : 425px) {
+            width: 100%;
+        }
+    }
+    &__socials{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    &__social{
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--color-primary);
+        color : white;
+        border-radius: 50%;
+    }
 }
