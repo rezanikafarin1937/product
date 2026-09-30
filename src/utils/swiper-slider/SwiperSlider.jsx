@@ -1,5 +1,5 @@
 "use client";
-import Card from "../../components/card/Card";
+import CardSwiper from "../../components/CardSwiper/CardSwiper";
 import { Link } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,7 +16,7 @@ const MySwiperSlider = ({ data }) => {
       <Swiper
         dir="rtl"
         slidesPerView={5}
-        spaceBetween={15}
+        spaceBetween={16}
         // modules={[Pagination]}
         modules={[Navigation]}
         className="mySwiper sample-slider"
@@ -30,7 +30,7 @@ const MySwiperSlider = ({ data }) => {
             slidesPerView: 3,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 4,
           },
           1200: {
             slidesPerView: 5,
@@ -46,7 +46,7 @@ const MySwiperSlider = ({ data }) => {
         {data?.map((d, index) => (
           <SwiperSlide key={index}>
             <Link to={`/product-details/${d.id}`}>
-              <Card {...d}  />
+              <CardSwiper {...d}  />
             </Link>
           </SwiperSlide>
         ))}

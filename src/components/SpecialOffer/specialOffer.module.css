@@ -10,6 +10,12 @@
   background-repeat: no-repeat;
 }
 
+@media (max-width: 425px) {
+  .specialOffer {
+    display: none;
+  }
+}
+
 .specialOffer__content {
   position: absolute;
   top: 50%;

@@ -1,9 +1,16 @@
 .banner {
   min-width: 100%;
   height: 450px;
+  overflow: hidden;
   position: relative;
   background-color: #555;
   box-shadow: 0 1px 5px #999;
+}
+
+@media (max-width: 425px) {
+  .banner {
+    height: 220px;
+  }
 }
 
 .banner__child {
@@ -27,4 +34,17 @@
   position: absolute;
   bottom: 50px;
   left: 50px;
+}
+
+@media (max-width: 425px) {
+  .bannerButton {
+    bottom: 20px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .banner__arrow {
+    display: none;
+  }
 }

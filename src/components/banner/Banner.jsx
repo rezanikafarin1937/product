@@ -8,9 +8,9 @@ const Banner = ({ children }) => {
   const [currentItem, setCurrentItem] = useState(0);
   const navigate = useNavigate();
 
-  const handleClick = () =>{
-    navigate("/store")
-  }
+  const handleClick = () => {
+    navigate("/store");
+  };
   useEffect(() => {
     const timer = setInterval(() => {
       if (currentItem < children.length - 1) {
@@ -37,8 +37,10 @@ const Banner = ({ children }) => {
       <div className={styles.bannerButton}>
         <Button onClick={handleClick}>
           <span>مشاهده محصولات</span>
-          <span className="margin-x"></span>
-            <ArrowLeft  width={20} height={20} color="#fff" />
+          <span className={styles.banner__arrow}>
+            <span className="margin-x"></span>
+            <ArrowLeft width={20} height={20} color="#fff" />
+          </span>
         </Button>
       </div>
     </div>
