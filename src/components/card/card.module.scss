@@ -9,9 +9,9 @@
     width: 100%;
   }
 
-  // @media (max-width: 769px) and (min-width: 426px) {
-  //   width: calc(50% - 1rem);
-  // }
+  @media (max-width: 769px) and (min-width: 426px) {
+    width: calc(33.33333333% - 1rem);
+  }
 
   &Image {
     width: 100%;
