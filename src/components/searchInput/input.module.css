@@ -1,7 +1,6 @@
 .parent {
-  background-color: yellow;
   width: 100%;
-  height: 30px;
+  height: 40px;
   position: relative;
   padding: 1rem;
   border-radius: var(--border-radius);
@@ -43,4 +42,9 @@
   align-items: center;
   border-radius: var(--border-radius);
   cursor: pointer;
+}
+
+.parent__svg {
+  position: relative;
+  top: 5px;
 }

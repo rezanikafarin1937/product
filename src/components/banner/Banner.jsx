@@ -39,7 +39,14 @@ const Banner = ({ children }) => {
           <span>مشاهده محصولات</span>
           <span className={styles.banner__arrow}>
             <span className="margin-x"></span>
-            <ArrowLeft width={20} height={20} color="#fff" />
+            <span
+              style={{
+                position: "relative",
+                top: "4px",
+              }}
+            >
+              <ArrowLeft width={20} height={20} color="#fff" />
+            </span>
           </span>
         </Button>
       </div>

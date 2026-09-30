@@ -39,24 +39,18 @@ const Home = () => {
       <div className="wrapper">
         <Benefits />
         <br />
-        <ScrollReveal>
-          <div className="title-bar">
-            <h3 className="primary-title">دسته بندی محصولات</h3>
-            <Button variant="secondary" onClick={handleClick}>
-              <span>مشاهده همه</span>
-              <span className="margin-x"></span>
-              <Arrow
-                width={20}
-                height={20}
-                color="var(--color-text-secondary)"
-              />
-            </Button>
-          </div>
+        <div className="title-bar">
+          <h3 className="primary-title">دسته بندی محصولات</h3>
+          <Button variant="secondary" onClick={handleClick}>
+            <span>مشاهده همه</span>
+            <span className="margin-x"></span>
+            <Arrow width={20} height={20} color="var(--color-text-secondary)" />
+          </Button>
+        </div>
 
-          <Cats />
-          <br />
-          <SpecialOffer />
-        </ScrollReveal>
+        <Cats />
+        <br />
+        <SpecialOffer />
         <br />
         <ScrollReveal>
           <div className="title-bar">
@@ -64,11 +58,11 @@ const Home = () => {
             <Button variant="secondary" onClick={handleClick}>
               <span>مشاهده همه</span>
               <span className="margin-x"></span>
-              <Arrow
-                width={20}
-                height={20}
-                color="var(--color-text-secondary)"
-              />
+                <Arrow
+                  width={20}
+                  height={20}
+                  color="var(--color-text-secondary)"
+                />
             </Button>
           </div>
           <MySwiperSlider data={data} />
