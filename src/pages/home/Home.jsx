@@ -10,9 +10,10 @@ import { useNavigate } from "react-router-dom";
 import styles from "./home.module.scss";
 import Button from "../../components/button/Button";
 import Arrow from "../../icons/arrow/Arrow";
+import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
 
 const Home = () => {
-  const images = ["man.png", "sonwoman.png","sonman.png"];
+  const images = ["man.png", "sonwoman.png", "sonman.png"];
   const [data, setData] = useState([]);
   const navigate = useNavigate();
 
@@ -38,28 +39,40 @@ const Home = () => {
       <div className="wrapper">
         <Benefits />
         <br />
-        <div className="title-bar">
-          <h3 className="primary-title">دسته بندی محصولات</h3>
-          <Button variant="secondary" onClick={handleClick}>
-            <span>مشاهده همه</span>
-            <span className="margin-x"></span>
-            <Arrow width={20} height={20} color="var(--color-text-secondary)" />
-          </Button>
-        </div>
+        <ScrollReveal>
+          <div className="title-bar">
+            <h3 className="primary-title">دسته بندی محصولات</h3>
+            <Button variant="secondary" onClick={handleClick}>
+              <span>مشاهده همه</span>
+              <span className="margin-x"></span>
+              <Arrow
+                width={20}
+                height={20}
+                color="var(--color-text-secondary)"
+              />
+            </Button>
+          </div>
 
-        <Cats />
+          <Cats />
+          <br />
+          <SpecialOffer />
+        </ScrollReveal>
         <br />
-        <SpecialOffer />
-        <br />
-        <div className="title-bar">
-          <h3 className="primary-title">محصولات پرفروش</h3>
-          <Button variant="secondary" onClick={handleClick}>
-            <span>مشاهده همه</span>
-            <span className="margin-x"></span>
-            <Arrow width={20} height={20} color="var(--color-text-secondary)" />
-          </Button>
-        </div>
-        <MySwiperSlider data={data} />
+        <ScrollReveal>
+          <div className="title-bar">
+            <h3 className="primary-title">محصولات پرفروش</h3>
+            <Button variant="secondary" onClick={handleClick}>
+              <span>مشاهده همه</span>
+              <span className="margin-x"></span>
+              <Arrow
+                width={20}
+                height={20}
+                color="var(--color-text-secondary)"
+              />
+            </Button>
+          </div>
+          <MySwiperSlider data={data} />
+        </ScrollReveal>
         <br />
       </div>
     </div>
