@@ -1,0 +1,400 @@
+.contactUs {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0;
+  direction: rtl;
+
+  // -------------------------
+  // Header
+  // -------------------------
+
+  &__header {
+    text-align: center;
+    margin-bottom: 60px;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: var(--color-secondary);
+      font-size: 15px;
+      line-height: 2;
+      margin: 0;
+    }
+  }
+
+  // -------------------------
+  // Main Information
+  // -------------------------
+
+  &__info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-bottom: 100px;
+  }
+
+  // -------------------------
+  // Image
+  // -------------------------
+
+  &__image {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--color-background);
+    border-radius: var(--border-radius);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--border-radius);
+    }
+  }
+
+  // -------------------------
+  // Details
+  // -------------------------
+
+  &__details {
+    padding: 10px 0;
+
+    h2 {
+      font-size: 28px;
+      line-height: 1.8;
+      color: var(--color-text);
+      margin: 12px 0 15px;
+
+      span {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &__subtitle {
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &__description {
+    color: var(--color-secondary);
+    font-size: 14px;
+    line-height: 2.1;
+    max-width: 520px;
+    margin-bottom: 35px;
+  }
+
+  // -------------------------
+  // Contact Items
+  // -------------------------
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    > div:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    span {
+      font-size: 13px;
+      color: var(--color-secondary);
+    }
+
+    a,
+    p {
+      margin: 0;
+      color: var(--color-text);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    a {
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  &__icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: var(--color-background-soft);
+    color: var(--color-primary);
+
+    font-size: 15px;
+  }
+
+  // -------------------------
+  // Form Section
+  // -------------------------
+
+  &__formSection {
+    width: 85%;
+    margin: 0 auto;
+    padding: 55px;
+    background: var(--color-background-soft);
+    border-radius: 4px;
+  }
+
+  &__formHeader {
+    text-align: center;
+    margin-bottom: 40px;
+
+    span {
+      color: var(--color-primary);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 10px 0;
+      font-size: 25px;
+      color: var(--color-text);
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-secondary);
+      font-size: 14px;
+    }
+  }
+
+  // -------------------------
+  // Form
+  // -------------------------
+
+  &__form {
+    max-width: 850px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+
+    //     button {
+    //       align-self: center;
+    //       min-width: 150px;
+    //       padding: 12px 30px;
+
+    //       border: none;
+    //       border-radius: 3px;
+
+    //       background: var(--color-primary);
+    //       color: var(--color-white);
+
+    //       font-family: inherit;
+    //       font-size: 14px;
+
+    //       cursor: pointer;
+
+    //       transition:
+    //         background 0.2s ease,
+    //         transform 0.2s ease;
+
+    //       &:hover {
+    //         background: var(--color-primary-dark);
+    //         transform: translateY(-2px);
+    //       }
+    //     }
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+      color: var(--color-text);
+      font-size: 13px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+
+      border: 1px solid var(--color-border);
+      border-radius: 3px;
+
+      background: var(--color-white);
+      color: var(--color-text);
+
+      padding: 12px 14px;
+
+      font-family: inherit;
+      font-size: 13px;
+
+      outline: none;
+
+      transition: border-color 0.2s ease;
+
+      &::placeholder {
+        color: #aaa;
+      }
+
+      &:focus {
+        border-color: var(--color-primary);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.9;
+    }
+  }
+
+  // -------------------------
+  // Tablet
+  // -------------------------
+
+  @media (max-width: 768px) {
+    width: 92%;
+    padding: 40px 0;
+
+    &__header {
+      margin-bottom: 40px;
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+
+    &__info {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 70px;
+    }
+
+    &__image {
+      height: 400px;
+      order: 1;
+      border-radius: var(--border-radius);
+    }
+
+    &__details {
+      order: 2;
+    }
+
+    &__formSection {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 40px 25px;
+    }
+  }
+
+  // -------------------------
+  // Mobile
+  // -------------------------
+
+  @media (max-width: 425px) {
+    width: 92%;
+    padding: 30px 0;
+
+    &__header {
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+
+    &__image {
+      height: 300px;
+    }
+
+    &__details {
+      h2 {
+        font-size: 23px;
+      }
+    }
+
+    &__description {
+      font-size: 13px;
+    }
+
+    &__item {
+      gap: 12px;
+
+      a,
+      p {
+        font-size: 13px;
+      }
+    }
+
+    &__icon {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      font-size: 13px;
+    }
+
+    &__formSection {
+      padding: 30px 18px;
+    }
+
+    &__formHeader {
+      h2 {
+        font-size: 21px;
+      }
+
+      p {
+        font-size: 13px;
+        line-height: 1.9;
+      }
+    }
+
+    &__row {
+      grid-template-columns: 1fr;
+    }
+
+    &__form {
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

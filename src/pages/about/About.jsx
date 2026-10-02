@@ -6,6 +6,10 @@ const About = () => {
   return (
     <div className={styles.about}>
       <div className="wrapper-secondary">
+        <section className="margin-2y">
+          <h5 className={styles.about__mainTitle}>درباره ما</h5>
+        </section>
+        <div className={styles.about__line}></div>
         <h1>معرفی تیم های توسعه و فروش تیزبین</h1>
         <h6>تیزبین؛ برای کسانی که به دید بهتر و ظاهر متفاوت اهمیت می‌دهند.</h6>
         <section className="margin-2y">

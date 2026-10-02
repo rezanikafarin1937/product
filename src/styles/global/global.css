@@ -44,6 +44,13 @@ li {
   margin: auto;
 }
 
+@media (max-width: 425px) {
+  .wrapper-secondary {
+    width: 288px;
+    margin: auto;
+  }
+}
+
 .margin-top {
   margin-top: 75px;
 }

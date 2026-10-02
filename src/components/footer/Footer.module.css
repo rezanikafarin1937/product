@@ -86,7 +86,7 @@
   width: 100%;
   height: 1px;
   margin-bottom: 2rem;
-  background-color: #ddd;
+  background-color: var(--color-border-secondary);
 }
 
 .footer__news {
