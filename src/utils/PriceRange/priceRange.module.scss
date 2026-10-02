@@ -1,0 +1,86 @@
+.priceRange {
+  width: 100%;
+  direction: ltr;
+}
+
+.values {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  span {
+    font-size: 14px;
+    color: var(--color-text);
+  }
+}
+
+.slider {
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+
+.range {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  margin: 0;
+  padding: 0;
+
+  appearance: none;
+  background: transparent;
+
+  pointer-events: none;
+}
+
+/* خط */
+.range::-webkit-slider-runnable-track {
+  height: 5px;
+  background: var(--color-primary-dark);
+  border-radius: 5px;
+}
+
+/* گوی */
+.range::-webkit-slider-thumb {
+  appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  margin-top: -6px;
+
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+
+  background-color: var(--color-white);
+
+  cursor: pointer;
+
+  pointer-events: auto;
+}
+
+/* Firefox */
+
+.range::-moz-range-track {
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+
+  background-color: var(--color-white);
+
+  cursor: pointer;
+
+  pointer-events: auto;
+}
