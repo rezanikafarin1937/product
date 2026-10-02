@@ -11,7 +11,7 @@ import styles from "./home.module.scss";
 import Button from "../../components/button/Button";
 import Arrow from "../../icons/arrow/Arrow";
 import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
-
+import BannerCat from "../../components/banner-cat/BannerCat";
 const Home = () => {
   const images = ["man.png", "sonwoman.png", "sonman.png"];
   const [data, setData] = useState([]);
@@ -47,6 +47,8 @@ const Home = () => {
             <Arrow width={20} height={20} color="var(--color-text-secondary)" />
           </Button>
         </div>
+
+        <BannerCat/>
 
         <Cats />
         <br />
