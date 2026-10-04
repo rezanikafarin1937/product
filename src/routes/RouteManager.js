@@ -6,6 +6,7 @@ import Search from "../pages/search/Search";
 import Store from "../store/Store";
 import ContactUs from "../pages/contact-us/ContactUs";
 import CatsPage from "../pages/cats-page/CatsPage";
+import Category from "../pages/category/Category";
 
 export const routes = [
   {
@@ -18,9 +19,14 @@ export const routes = [
     element: <Store />,
     title : "محصولات"
   },
+  // {
+  //   path: "/cats-pag",
+  //   element: <CatsPage />,
+  //   title : "دسته بندی ها"
+  // },
   {
-    path: "/cats-page",
-    element: <CatsPage />,
+    path: "/category",
+    element: <Category />,
     title : "دسته بندی ها"
   },
   {

@@ -7,11 +7,13 @@ import Cats from "../../components/cats/Cats";
 import SpecialOffer from "../../components/SpecialOffer/SpecialOffer";
 import ArrowButton from "../../components/arrow-button/ArrowButton";
 import { useNavigate } from "react-router-dom";
-import styles from "./home.module.scss";
 import Button from "../../components/button/Button";
 import Arrow from "../../icons/arrow/Arrow";
 import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
 import BannerCat from "../../components/banner-cat/BannerCat";
+import Heading from "../../components/heading/Heading";
+import styles from "./home.module.scss";
+
 const Home = () => {
   const images = ["man.png", "sonwoman.png", "sonman.png"];
   const [data, setData] = useState([]);
@@ -38,38 +40,64 @@ const Home = () => {
       </Banner>
       <div className="wrapper">
         <Benefits />
-        <br />
-        <div className="title-bar">
-          <h3 className="primary-title">دسته بندی محصولات</h3>
-          <Button variant="secondary" onClick={handleClick}>
-            <span>مشاهده همه</span>
-            <span className="margin-x"></span>
-            <Arrow width={20} height={20} color="var(--color-text-secondary)" />
-          </Button>
+      </div>
+      <div className={styles.home__category}>
+        <div className="wrapper">
+          <div className="title-bar">
+            <h3 className="primary-title color-brown">دسته بندی محصولات</h3>
+            <Button variant="secondary" onClick={handleClick}>
+              <span>مشاهده همه</span>
+              <span className="margin-x"></span>
+              <Arrow
+                width={20}
+                height={20}
+                color="var(--color-text-secondary)"
+              />
+            </Button>
+          </div>
+
+          <BannerCat />
+
+          <div className="margin-4y"></div>
+
+          <Heading
+            title="محصولات شگفت انگیز"
+            linkTitle="مشاهده همه "
+            link="/store"
+          />
+
+          <div className="margin-4y"></div>
+
+          <Cats />
         </div>
-
-        <BannerCat/>
-
-        <Cats />
+      </div>
+      <div />
+      <div className="wrapper">
         <br />
-        <SpecialOffer />
-        <br />
+        <Heading
+          title="تخفیف های شگفت انگیز"
+          linkTitle="مشاهده همه "
+          link="/store"
+          bg="var(--color-text)"
+        />
+
         <ScrollReveal>
           <div className="title-bar">
             <h3 className="primary-title">محصولات پرفروش</h3>
             <Button variant="secondary" onClick={handleClick}>
               <span>مشاهده همه</span>
               <span className="margin-x"></span>
-                <Arrow
-                  width={20}
-                  height={20}
-                  color="var(--color-text-secondary)"
-                />
+              <Arrow
+                width={20}
+                height={20}
+                color="var(--color-text-secondary)"
+              />
             </Button>
           </div>
           <MySwiperSlider data={data} />
         </ScrollReveal>
         <br />
+        <SpecialOffer />
       </div>
     </div>
   );

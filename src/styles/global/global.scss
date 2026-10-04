@@ -64,6 +64,10 @@ li {
   margin : 1rem 0;
 }
 
+.margin-4y{
+  margin : 2rem 0;
+}
+
 .title-bar {
   display: flex;
   justify-content: space-between;
@@ -106,10 +110,25 @@ li {
 .color-blue {
   color: var(--color-text-blue);
 }
+.color-brown{
+  color : var(--color-primary-dark);
+}
 
 .balance {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: pink;
+}
+
+.foot{
+  color : var(--color-text-secondary);
+  font-size: .9rem;
+  font-weight: 300;
+  text-align: center;
+  line-height: 3;
+
+  @media (max-width : 425px) {
+    font-size: .7rem;
+  }
 }

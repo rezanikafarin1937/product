@@ -16,7 +16,7 @@
 }
 
 .banner__image:hover .banner__title {
-  opacity: 1;
+  transform: translateY(-20px);
 }
 
 @media (max-width: 425px) {
@@ -37,7 +37,7 @@
 }
 
 .banner__image img:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .banner__title {
@@ -47,12 +47,5 @@
   font-size: 2rem;
   font-weight: bold;
   color: var(--color-white);
-  opacity: 0;
-  transition: all 0.8s;
-}
-
-@media (max-width: 425px) {
-  .banner__title {
-    opacity: 1;
-  }
+  transition: all 0.4s;
 }

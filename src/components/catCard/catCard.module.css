@@ -1,7 +1,7 @@
 .card {
   width: calc(25% - 1rem);
-  background-color: #f8f8f7;
-  border-radius: 0.5rem;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -12,12 +12,14 @@
 @media (min-width: 426px) and (max-width: 768px) {
   .card {
     width: calc(50% - 1rem);
+    margin-bottom: var(--margin);
   }
 }
 
 @media (max-width: 425px) {
   .card {
     width: calc(100% - 1rem);
+    margin-bottom: var(--margin);
   }
 }
 

@@ -20,6 +20,8 @@ const Footer = () => {
   return (
     <>
       <div className="wrapper">
+          <div className="margin-top"></div>
+          <h1 className="foot">تیزبین؛ انتخابی برای دیدی شفاف و استایلی متمایز</h1>
         <div className={styles.footer}>
           <div className={styles.footer__line}></div>
           {/* Column-1 */}
