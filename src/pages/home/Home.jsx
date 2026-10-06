@@ -12,6 +12,7 @@ import Arrow from "../../icons/arrow/Arrow";
 import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
 import BannerCat from "../../components/banner-cat/BannerCat";
 import Heading from "../../components/heading/Heading";
+import Accessories from "../../components/accessories/Accessories";
 import styles from "./home.module.scss";
 
 const Home = () => {
@@ -40,11 +41,12 @@ const Home = () => {
       </Banner>
       <div className="wrapper">
         <Benefits />
+        <SpecialOffer />
       </div>
-      <div className={styles.home__category}>
+        <br />
         <div className="wrapper">
           <div className="title-bar">
-            <h3 className="primary-title color-brown">دسته بندی محصولات</h3>
+            <h3 className="primary-title">دسته بندی محصولات</h3>
             <Button variant="secondary" onClick={handleClick}>
               <span>مشاهده همه</span>
               <span className="margin-x"></span>
@@ -60,44 +62,52 @@ const Home = () => {
 
           <div className="margin-4y"></div>
 
-          <Heading
-            title="محصولات شگفت انگیز"
-            linkTitle="مشاهده همه "
-            link="/store"
-          />
-
           <div className="margin-4y"></div>
-
           <Cats />
-        </div>
       </div>
       <div />
       <div className="wrapper">
         <br />
         <Heading
-          title="تخفیف های شگفت انگیز"
+          title="جدیدترین محصولات"
           linkTitle="مشاهده همه "
           link="/store"
-          bg="var(--color-text)"
         />
+      </div>
 
-        <ScrollReveal>
-          <div className="title-bar">
-            <h3 className="primary-title">محصولات پرفروش</h3>
-            <Button variant="secondary" onClick={handleClick}>
-              <span>مشاهده همه</span>
-              <span className="margin-x"></span>
-              <Arrow
-                width={20}
-                height={20}
-                color="var(--color-text-secondary)"
-              />
-            </Button>
+      <br />
+
+      <ScrollReveal>
+        <div
+          className={styles.home__category}
+          style={{ backgroundColor: "var(--color-primary-light)" }}
+        >
+          <div className="wrapper">
+            <div className="title-bar">
+              <h3 className="primary-title">محصولات پرفروش</h3>
+              <Button variant="secondary" onClick={handleClick}>
+                <span>مشاهده همه</span>
+                <span className="margin-x"></span>
+                <Arrow
+                  width={20}
+                  height={20}
+                  color="var(--color-text-secondary)"
+                />
+              </Button>
+            </div>
+            <MySwiperSlider data={data} />
           </div>
-          <MySwiperSlider data={data} />
-        </ScrollReveal>
+        </div>
+      </ScrollReveal>
+      <br />
+      <div className="wrapper">
+        <Heading
+          title="محصولات شگفت انگیز"
+          linkTitle="مشاهده همه "
+          link="/store"
+        />
         <br />
-        <SpecialOffer />
+        <Accessories />
       </div>
     </div>
   );

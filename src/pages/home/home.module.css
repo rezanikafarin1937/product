@@ -1,4 +1,4 @@
 .home__category {
-  background-color: var(--color-border-secondary);
-  padding: 2rem 0 4rem 0;
+  background-color: var(--color-heading);
+  padding: 1rem 0 3rem 0;
 }
