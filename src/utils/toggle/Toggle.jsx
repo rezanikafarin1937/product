@@ -10,9 +10,11 @@ const Toggle = () => {
   const handleClick = () => {
     if (!active) {
       refCircle.current.style.transform = "translateX(-30px)";
+      refCircle.current.style.border = "2px solid var(--color-primary-dark)"
       refToggle.current.style.backgroundColor = "var(--color-primary-dark)";
     } else if (active) {
       refCircle.current.style.transform = "translateX(0)";
+      refCircle.current.style.border = "2px solid var(--color-toggle)"
       refToggle.current.style.backgroundColor = "var(--color-toggle)";
     }
     setActive(!active);
