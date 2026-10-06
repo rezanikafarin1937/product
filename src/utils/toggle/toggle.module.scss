@@ -1,0 +1,20 @@
+.parent {
+  background-color: var(--color-toggle);
+  width: 50px;
+  height: 20px;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  cursor: pointer;
+
+
+  &__circle {
+    background-color: var(--color-white);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    transition: all .2s;
+  }
+}

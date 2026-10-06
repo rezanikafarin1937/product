@@ -1,21 +1,21 @@
 .frame {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  width: 100%;
 
   &__circle {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     cursor: pointer;
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-border);
   }
-  &__title {
-    color: var(--color-text);
-    font-size: 0.75rem;
-    font-weight: 500;
-    line-height: 3;
+
+  &__border {
+    outline: 3px solid var(--color-heading);
+    border-radius: 50%;
   }
 
   .white {

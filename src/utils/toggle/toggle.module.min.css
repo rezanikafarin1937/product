@@ -1,0 +1,1 @@
+.parent{background-color:#999;width:50px;height:20px;border-radius:1rem;display:flex;justify-content:end;align-items:center;cursor:pointer}.parent:hover .parent__circle{outline:10px solid #ddd}.parent__circle{background-color:var(--color-white);width:20px;height:20px;border-radius:50%;border:1px solid var(--color-border);transition:all .4s}
