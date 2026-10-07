@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./toggle.module.scss";
 
-const Toggle = () => {
-  const [active, setActive] = useState(false);
+const Toggle = ({active,setActive}) => {
 
   const refToggle = useRef(null);
   const refCircle = useRef(null);
