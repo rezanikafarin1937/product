@@ -3,12 +3,21 @@
   display: flex;
   justify-content: space-between;
   align-items: start;
+
+  @media (max-width : 425px) {
+    align-items: center;
+    justify-content: center;
+  }
   &__cards {
     width: calc(75% - 1rem);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      justify-content: end;
+    }
   }
   &__filter {
     width: calc(25% - 1rem);
@@ -23,6 +32,16 @@
     min-height: calc(100vh - 120px);
     position: sticky;
     top: 100px;
+
+    @media (min-width : 426px) and (max-width: 768px) {
+      width: calc(33.3333% - 1rem);
+      margin-left: 1rem;
+    }
+
+    @media (max-width : 425px) {
+        display: none;
+        flex:  1 1 auto;
+    }
   }
   &__mainTitle {
     font-size: 1rem;

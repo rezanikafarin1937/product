@@ -1,27 +1,50 @@
+import { useState } from "react";
 import InfiniteLoading from "../utils/infiniteLoading/InfiniteLoading";
 import Card from "../components/card/Card";
 import Frame from "../components/frame/Frame";
 import PriceRange from "../utils/PriceRange/PriceRange";
 import Toggle from "../utils/toggle/Toggle";
+import ShapeFrame from "../components/shap-frame/ShapeFrame";
 import styles from "./store.module.scss";
 
 const Store = () => {
+  const [selectShape, setSelectShape] = useState(null);
+  const [selectFrame, setSelectFrame] = useState(null);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(50000000);
+
+  console.log("in Store selectShape = ", selectShape);
+  console.log("in Store selectFrame = ", selectFrame);
+  console.log("in Store MinPrice = ", minPrice);
+  console.log("in Store MaxPrice = ", maxPrice);
+
   return (
     <div className="wrapper">
       <div className={styles.store}>
         <div className={styles.store__filter}>
-          <div className={styles.store__mainTitle}>فیلترها</div>
+          <div className="title-bar">
+            <div className={styles.store__mainTitle}>فیلترها</div>
+            <Toggle />
+          </div>
           <div className="margin-2y">
             <div className={styles.store__title}>قیمت</div>
-            <PriceRange />
+            <PriceRange
+              minPrice={minPrice}
+              setMinPrice={setMinPrice}
+              maxPrice={maxPrice}
+              setMaxPrice={setMaxPrice}
+            />
           </div>
           <div className="margin-2y">
             <div className={styles.store__title}>رنگ فریم</div>
-            <Frame />
+            <Frame selectFrame={selectFrame} setSelectFrame={setSelectFrame} />
           </div>
-           <div className="margin-2y">
-            <div className={styles.store__title}>اعمال فیلترها</div>
-          <Toggle/>
+          <div className="margin-2y">
+            <div className={styles.store__title}>شکل فریم</div>
+            <ShapeFrame
+              selectShape={selectShape}
+              setSelectShape={setSelectShape}
+            />
           </div>
         </div>
         <div className={styles.store__cards}>

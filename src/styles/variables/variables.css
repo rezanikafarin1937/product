@@ -7,7 +7,8 @@
   --color-heading: #333;
   --color-text: #222222;
   --color-text-secondary: #666666;
-  --color-text-blue: #20b2de;
+  --color-text-blue: #a7dded;
+  --color-text-blue-dark: #4cc7ed;
   --color-placeholder: #ddd;
   --color-white: #ffffff;
   --color-background: #f8f8f7;
@@ -15,6 +16,7 @@
   --color-border: #e5e5e5;
   --color-border-secondary: #ddd;
   --color-qty: red;
+  --color-toggle: #999;
   --gradient: linear-gradient(135deg, #ffffff 0%, #f5eee6 60%, var(--color-primary) 100%);
   --border-radius: 1rem;
   --border-radius-small: .5rem;

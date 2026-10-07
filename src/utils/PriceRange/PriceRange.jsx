@@ -1,14 +1,14 @@
-import { useState } from "react";
 import styles from "./priceRange.module.scss";
 
 const PriceRange = ({
-  min = 0,
+ min = 0,
   max = 50000000,
+  minPrice = 0,
+  setMinPrice,
+  maxPrice = 50000000,
+  setMaxPrice,
   step = 100000,
 }) => {
-  const [minPrice, setMinPrice] = useState(min);
-  const [maxPrice, setMaxPrice] = useState(max);
-
   const handleMinChange = (e) => {
     const value = Number(e.target.value);
 
@@ -27,19 +27,13 @@ const PriceRange = ({
 
   return (
     <div className={styles.priceRange}>
-
       <div className={styles.values}>
-        <span>
-          {minPrice.toLocaleString("fa-IR")} تومان
-        </span>
+        <span>{minPrice.toLocaleString("fa-IR")} تومان</span>
 
-        <span>
-          {maxPrice.toLocaleString("fa-IR")} تومان
-        </span>
+        <span>{maxPrice.toLocaleString("fa-IR")} تومان</span>
       </div>
 
       <div className={styles.slider}>
-
         <input
           type="range"
           min={min}
@@ -59,9 +53,7 @@ const PriceRange = ({
           onChange={handleMaxChange}
           className={styles.range}
         />
-
       </div>
-
     </div>
   );
 };
