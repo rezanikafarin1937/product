@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import InfiniteLoading from "../utils/infiniteLoading/InfiniteLoading";
 import Card from "../components/card/Card";
 import Frame from "../components/frame/Frame";
@@ -8,23 +8,31 @@ import ShapeFrame from "../components/shap-frame/ShapeFrame";
 import styles from "./store.module.scss";
 
 const Store = () => {
-  const [selectShape, setSelectShape] = useState(null);
-  const [selectFrame, setSelectFrame] = useState(null);
+  const [selectShape, setSelectShape] = useState("");
+  const [selectFrame, setSelectFrame] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(50000000);
   const [active, setActive] = useState(false);
 
-  // console.log("in Store selectShape = ", selectShape);
-  // console.log("in Store selectFrame = ", selectFrame);
-  // console.log("in Store MinPrice = ", minPrice);
-  // console.log("in Store MaxPrice = ", maxPrice);
-  console.log("in Store active Toggle = ", active);
+  // let filters = `?color=${selectFrame}&shape=${selectShape}&min=${minPrice}&max=${maxPrice}`;
+  const params = new URLSearchParams({
+  color: selectFrame,
+  shape: selectShape,
+  min: minPrice,
+  max: maxPrice,
+});
+  let url = active
+    ? `${process.env.REACT_APP_API_URL}/api/products/filter?${params}`
+    : `${process.env.REACT_APP_API_URL}/api/products`;
 
+  console.log("in Store url = ", url);
+  console.log("params =", params.toString());
+console.log("url =", url);
 
-  useEffect(()=>{
-    setActive(false);
-    console.log('in useEffect active  = ',active)
-  },[selectShape,selectFrame,minPrice,maxPrice]);
+  // useEffect(() => {
+  //   setActive(false);
+  //   console.log("in useEffect active  = ", active);
+  // }, [selectShape, selectFrame, minPrice, maxPrice]);
 
   return (
     <div className="wrapper">
@@ -32,7 +40,7 @@ const Store = () => {
         <div className={styles.store__filter}>
           <div className="title-bar">
             <div className={styles.store__mainTitle}>فیلترها</div>
-            <MyToggle active={active} setActive={setActive}/>
+            <MyToggle active={active} setActive={setActive} />
           </div>
           <div className="margin-2y">
             <div className={styles.store__title}>قیمت</div>
@@ -56,10 +64,7 @@ const Store = () => {
           </div>
         </div>
         <div className={styles.store__cards}>
-          <InfiniteLoading
-            url={`${process.env.REACT_APP_API_URL}/api/products`}
-            limit="10"
-          >
+          <InfiniteLoading key={url} url={`${url}`} limit="10">
             <Card />
           </InfiniteLoading>
         </div>
