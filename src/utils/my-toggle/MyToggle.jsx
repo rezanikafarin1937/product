@@ -1,13 +1,14 @@
 import styles from "./myToggle.module.scss";
 
-const Toggle = ({ active, setActive }) => {
+const Toggle = ({ isFilter, setIsFilter }) => {
   return (
     <div
-      className={`${styles.body}  ${active ? styles.body__active : styles.body__notActive}`}
-      onClick={() => setActive(!active)}
+      className={`${styles.body}  ${isFilter ? styles.body__active : styles.body__notActive}`}
+      onClick={() => setIsFilter(!isFilter)}
+      title="اعمال فیلترها"
     >
       <div
-        className={`${styles.circle}  ${active ? styles.circle__active : styles.circle__notActive}`}
+        className={`${styles.circle}  ${isFilter ? styles.circle__active : styles.circle__notActive}`}
       ></div>
     </div>
   );

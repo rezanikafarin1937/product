@@ -1,6 +1,6 @@
 .body {
-  width: 50px;
-  height: 20px;
+  width: 40px;
+  height: 1rem;
   border-radius: 1rem;
   display: flex;
   justify-content: start;
@@ -18,15 +18,15 @@
 
 .circle {
   background-color: var(--color-white);
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid var(--color-toggle);
   transition: all 0.2s;
 }
 
 .circle__active {
-  transform: translateX(-30px);
+  transform: translateX(-20px);
   border: 2px solid var(--color-primary-dark);
 }
 

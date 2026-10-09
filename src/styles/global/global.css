@@ -83,6 +83,14 @@ li {
   user-select: none;
 }
 
+.padding-none {
+  padding: 0;
+}
+
+.padding-x {
+  padding: 0 1rem;
+}
+
 .primary-title {
   color: var(--color-text);
   font-size: 1.25rem;
@@ -133,7 +141,6 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: pink;
 }
 
 .foot {

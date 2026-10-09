@@ -5,7 +5,7 @@
   min-width: calc(33.333% - 1rem);
   height: 340px;
   overflow: hidden;
-  margin-top: 1rem !important;
+  margin-bottom: 2rem !important;
 }
 
 @media (max-width: 425px) {
@@ -16,7 +16,7 @@
 
 @media (max-width: 769px) and (min-width: 426px) {
   .card {
-    width: calc(33.33333333% - 1rem);
+    width: calc(50% - .5rem);
   }
 }
 
