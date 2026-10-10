@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
 import Card from "../../components/card/Card";
 import Pagination from "../../utils/pagination/Pagination";
-
+import catImage from "./allCat.png";
 import styles from "./search.module.scss";
 
 const Search = () => {
@@ -67,26 +66,13 @@ const Search = () => {
 
   return (
     <div className="wrapper">
-      <h1>نتایج جستجو برای: {title}</h1>
 
-      {products.length === 0 ? (
-        <p>محصولی پیدا نشد.</p>
-      ) : (
-        <div className={styles.products}>
-          {products.map((product) => (
-            <Card
-              key={product.id}
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              images={product.images}
-            />
-          ))}
-        </div>
-      )}
+      <div className={styles.products__banner}>
+        <img src={catImage} alt="انواع فریم عینک طبی و آفتابی" />
+      </div>
 
-      <br />
-      <div style={{ padding: "2rem",}}>
+      <div className={styles.products__titleBar}>
+        <h1 className={styles.products__title}>نتایج جستجو برای عینک : {title}</h1>
         <Pagination
           per_page={per_page}
           next={pagination.next}
@@ -99,9 +85,25 @@ const Search = () => {
           search="title"
         />
       </div>
+
+      {products.length === 0 ? (
+        <p>محصولی پیدا نشد.</p>
+      ) : (
+        <div className={styles.products}>
+          {products.map((product) => (
+            <Card
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              images={product.images}
+              state={false}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 export default Search;
-

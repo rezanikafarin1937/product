@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./shapFrame.module.scss";
 
 const shapes = ["گرد","مستطیل","مربع","بیضی","گربه ای"];

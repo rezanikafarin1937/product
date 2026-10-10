@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import styles from "./card.module.scss";
 import Star from "../../utils/star/Star";
 
-const Card = ({ id, title, price, discount, images }) => {
+const Card = ({ id, title, price, discount, images,state = true }) => {
   const endPrice = (price) => {
     const result = price * (discount / 100);
     return price - result;
   };
   return (
-    <div className={`${styles.card} margin-y`}>
+    <div className={`${styles.card} ${state ? styles.cardStateA : styles.cardStateB} margin-y`}>
       <Link to={`/product-details/${id}`}>
         <div className={styles.cardImage}>
           <img

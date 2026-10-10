@@ -6,6 +6,8 @@ import Frame from "../components/frame/Frame";
 import PriceRange from "../utils/PriceRange/PriceRange";
 import MyToggle from "../utils/my-toggle/MyToggle";
 import ShapeFrame from "../components/shap-frame/ShapeFrame";
+import Usage from "../components/usage/Usage";
+import Gender from "../components/gender/Gender";
 import CloseIcon from "../icons/close-icon/CloseIcon";
 import sunglass from "./sunglass.png";
 
@@ -22,6 +24,14 @@ const Store = () => {
     searchParams.get("color") || "",
   );
 
+  const [selectUsage, setSelectUsage] = useState(
+    searchParams.get("usage") || "",
+  );
+
+  const [selectGender, setSelectGender] = useState(
+    searchParams.get("gender") || "",
+  );
+
   const [minPrice, setMinPrice] = useState(
     Number(searchParams.get("min")) || 0,
   );
@@ -35,12 +45,13 @@ const Store = () => {
   );
 
   const [text, setText] = useState(
-    `نتایج جستجو برای رنگ ${selectFrame ? selectFrame : ""} > شکل ${selectShape ? selectShape : ""}`,
+    `نتایج جستجو برای رنگ ${selectFrame ? selectFrame : ""} > شکل ${selectShape ? selectShape : ""} موارد استفاده - ${selectUsage ? selectUsage : ""}`,
   );
 
   const params = new URLSearchParams({
     color: selectFrame,
     shape: selectShape,
+    usage : selectUsage,
     min: minPrice,
     max: maxPrice,
   });
@@ -55,6 +66,7 @@ const Store = () => {
         filter: "true",
         color: selectFrame,
         shape: selectShape,
+        usage : selectUsage,
         min: minPrice.toString(),
         max: maxPrice.toString(),
       });
@@ -62,9 +74,9 @@ const Store = () => {
       setSearchParams({});
     }
     setText(
-      `نتایج جستجو برای   ${selectFrame ? "- رنگ  "+selectFrame : ""}   ${selectShape ? "- شکل  " + selectShape : ""}`,
+      `نتایج جستجو برای   ${selectFrame ? "- رنگ  " + selectFrame : ""}   ${selectShape ? "- شکل  " + selectShape : ""} ${selectUsage ? "- مورد استفاده  " + selectUsage : ""}`,
     );
-  }, [isFilter, selectFrame, selectShape, minPrice, maxPrice, setSearchParams]);
+  }, [isFilter, selectFrame, selectShape, selectUsage,minPrice, maxPrice, setSearchParams]);
 
   // let text = `نتایج جستجو برای رنگ ${params.color ? params.color : ""} > شکل ${params.shape ? params.shape : ""}`;
 
@@ -76,13 +88,13 @@ const Store = () => {
             <h1>فروشگاه تیزبین</h1>
             <h4>
               <span>دسته بندی</span>
-              <span> آفتابی </span>
+              <span> {selectUsage} </span>
               <span> - </span>
               <span>شکل فریم</span>
-              <span> گرد </span>
+              <span> {selectShape}</span>
               <span> - </span>
               <span>رنگ فریم</span>
-              <span> خاکستری </span>
+              <span> {selectFrame} </span>
             </h4>
           </i>
         </div>
@@ -101,6 +113,20 @@ const Store = () => {
 
             <MyToggle isFilter={isFilter} setIsFilter={setIsFilter} />
           </div>
+
+          {/* <section className="margin-y">
+            <div className="title-bar padding-none">
+              <span className={styles.store__title}>cccc</span>
+              <span
+                className={styles.store__icon}
+                title="حذف"
+                onClick={() => setSelectGender("")}
+              >
+                <CloseIcon color="var(--color-text)" />
+              </span>
+            </div>
+            <Gender selectGender={selectGender} setSelectGender={setSelectGender} />
+          </section> */}
 
           <section className="margin-y">
             <div className="title-bar padding-none">
@@ -155,6 +181,20 @@ const Store = () => {
               selectShape={selectShape}
               setSelectShape={setSelectShape}
             />
+          </section>
+
+          <section className="margin-y">
+            <div className="title-bar padding-none">
+              <span className={styles.store__title}>استفاده</span>
+              <span
+                className={styles.store__icon}
+                title="حذف"
+                onClick={() => setSelectUsage("")}
+              >
+                <CloseIcon color="var(--color-text)" />
+              </span>
+            </div>
+            <Usage selectUsage={selectUsage} setSelectUsage={setSelectUsage} />
           </section>
         </div>
         <div className={styles.store__cards}>
