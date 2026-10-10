@@ -4,15 +4,15 @@
   border-radius: var(--border-radius);
   height: 340px;
   overflow: hidden;
-  margin-bottom: 2rem !important;
+  margin-bottom: .5rem !important;
 }
 
 .cardStateA {
-  min-width: calc(33.333% - 1rem);
+  min-width: calc(33.333% - .5rem);
 }
 
 .cardStateB {
-  min-width: calc(25% - 1rem);
+  min-width: calc(25% - .5rem);
 }
 
 @media (max-width: 425px) {

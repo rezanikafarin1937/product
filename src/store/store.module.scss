@@ -4,7 +4,6 @@
   justify-content: space-between;
   align-items: start;
   min-height: 100vh;
-  // margin-top: 2rem;
 
   @media (max-width: 425px) {
     align-items: center;
@@ -16,7 +15,6 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    // margin-top: 2rem;
 
     @media (max-width: 768px) {
       justify-content: end;
@@ -116,6 +114,7 @@
   h1 {
     font-size: 1.5rem;
     font-weight: bold;
+    line-height: 3;
   }
 
   h2{
@@ -123,4 +122,16 @@
     font-weight: 300;
     color : var(--color-primary-dark);
   }
-
+h3{
+  color : var(--color-primary-dark);
+      color: var(--color-primary-dark);
+      font-size: 1rem;
+      font-weight: 400;
+}
+h4{
+  color : var(--color-primary-dark);
+  line-height: 3;
+  font-size: .8rem;
+  font-weight: 300;
+  background-color: pink;
+}

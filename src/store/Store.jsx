@@ -86,7 +86,7 @@ const Store = () => {
         <div>
           <i>
             <h1>فروشگاه تیزبین</h1>
-            <h4>
+            <h3>
               <span>دسته بندی</span>
               <span> {selectUsage} </span>
               <span> - </span>
@@ -95,13 +95,16 @@ const Store = () => {
               <span> - </span>
               <span>رنگ فریم</span>
               <span> {selectFrame} </span>
-            </h4>
+            </h3>
           </i>
         </div>
         <div className={styles.store__sunglass}>
           <img src={sunglass} alt="فروشگاه اینترنتی فروش عینک طبی و آفتابی" />
         </div>
       </div>
+
+      <h4>تیزبین؛ انتخابی برای هر نگاه.</h4>
+
       <div className="title-bar padding-x margin-2y">
         <h2>{isFilter ? text : ""}</h2>
         <span></span>
