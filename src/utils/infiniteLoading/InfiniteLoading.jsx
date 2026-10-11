@@ -62,7 +62,7 @@ const InfiniteLoading = ({ url, limit, children, setLength }) => {
   }, []);
 
   return (
-    <div className={styles.infinite__cards}>
+    <div className={styles.cards}>
       {products?.map((product, index) =>
         React.cloneElement(children, {
           key: product.id || index,

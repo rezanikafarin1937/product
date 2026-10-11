@@ -15,6 +15,7 @@
   font-weight: 400;
   cursor: pointer;
   transition: all 0.2s;
+  margin: 0 .2rem .4rem 0;
 }
 
 .frame__shape:hover {

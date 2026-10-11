@@ -4,7 +4,7 @@
   border-radius: var(--border-radius);
   height: 340px;
   overflow: hidden;
-  margin-bottom: .5rem !important;
+  margin-bottom: 0.5rem !important;
 
   &StateA{
   min-width: calc(33.333% - .5rem);
@@ -19,7 +19,7 @@
   }
 
   @media (max-width: 769px) and (min-width: 426px) {
-    width: calc(50% - .5rem);
+    width: calc(50% - 0.5rem);
   }
 
   &Image {
