@@ -75,12 +75,28 @@ li {
   margin: 2rem 0;
 }
 
+.title-bar-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--padding) 0;
+  user-select: none;
+  width: 100%;
+}
+
 .title-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--padding) 0;
   user-select: none;
+  width: 100%;
+}
+
+@media (max-width: 425px) {
+  .title-bar {
+    flex-direction: column;
+  }
 }
 
 .padding-none {

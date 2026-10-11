@@ -7,13 +7,13 @@ import PriceRange from "../utils/PriceRange/PriceRange";
 import MyToggle from "../utils/my-toggle/MyToggle";
 import ShapeFrame from "../components/shap-frame/ShapeFrame";
 import Usage from "../components/usage/Usage";
-import Gender from "../components/gender/Gender";
 import CloseIcon from "../icons/close-icon/CloseIcon";
 import sunglass from "./sunglass.png";
 
 import styles from "./store.module.scss";
 
 const Store = () => {
+  const [length, setLength] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [selectShape, setSelectShape] = useState(
@@ -26,10 +26,6 @@ const Store = () => {
 
   const [selectUsage, setSelectUsage] = useState(
     searchParams.get("usage") || "",
-  );
-
-  const [selectGender, setSelectGender] = useState(
-    searchParams.get("gender") || "",
   );
 
   const [minPrice, setMinPrice] = useState(
@@ -51,7 +47,7 @@ const Store = () => {
   const params = new URLSearchParams({
     color: selectFrame,
     shape: selectShape,
-    usage : selectUsage,
+    usage: selectUsage,
     min: minPrice,
     max: maxPrice,
   });
@@ -66,7 +62,7 @@ const Store = () => {
         filter: "true",
         color: selectFrame,
         shape: selectShape,
-        usage : selectUsage,
+        usage: selectUsage,
         min: minPrice.toString(),
         max: maxPrice.toString(),
       });
@@ -76,9 +72,15 @@ const Store = () => {
     setText(
       `نتایج جستجو برای   ${selectFrame ? "- رنگ  " + selectFrame : ""}   ${selectShape ? "- شکل  " + selectShape : ""} ${selectUsage ? "- مورد استفاده  " + selectUsage : ""}`,
     );
-  }, [isFilter, selectFrame, selectShape, selectUsage,minPrice, maxPrice, setSearchParams]);
-
-  // let text = `نتایج جستجو برای رنگ ${params.color ? params.color : ""} > شکل ${params.shape ? params.shape : ""}`;
+  }, [
+    isFilter,
+    selectFrame,
+    selectShape,
+    selectUsage,
+    minPrice,
+    maxPrice,
+    setSearchParams,
+  ]);
 
   return (
     <div className="wrapper">
@@ -103,12 +105,6 @@ const Store = () => {
         </div>
       </div>
 
-      <h4>تیزبین؛ انتخابی برای هر نگاه.</h4>
-
-      <div className="title-bar padding-x margin-2y">
-        <h2>{isFilter ? text : ""}</h2>
-        <span></span>
-      </div>
       <div className={styles.store}>
         <div className={styles.store__filter}>
           <div className="title-bar">
@@ -116,20 +112,6 @@ const Store = () => {
 
             <MyToggle isFilter={isFilter} setIsFilter={setIsFilter} />
           </div>
-
-          {/* <section className="margin-y">
-            <div className="title-bar padding-none">
-              <span className={styles.store__title}>cccc</span>
-              <span
-                className={styles.store__icon}
-                title="حذف"
-                onClick={() => setSelectGender("")}
-              >
-                <CloseIcon color="var(--color-text)" />
-              </span>
-            </div>
-            <Gender selectGender={selectGender} setSelectGender={setSelectGender} />
-          </section> */}
 
           <section className="margin-y">
             <div className="title-bar padding-none">
@@ -201,7 +183,17 @@ const Store = () => {
           </section>
         </div>
         <div className={styles.store__cards}>
-          <InfiniteLoading key={apiUrl} url={apiUrl} limit={10}>
+          <div className="title-bar padding-x margin-2y">
+            <h2>{isFilter ? text : "تیزبین؛ انتخابی برای هر نگاه."}</h2>
+            <div>{parseInt(length).toLocaleString("fa")} مورد یافت شد</div>
+          </div>
+
+          <InfiniteLoading
+            key={apiUrl}
+            url={apiUrl}
+            limit={10}
+            setLength={setLength}
+          >
             <Card />
           </InfiniteLoading>
         </div>
@@ -211,74 +203,3 @@ const Store = () => {
 };
 
 export default Store;
-
-// import { useState } from "react";
-// import InfiniteLoading from "../utils/infiniteLoading/InfiniteLoading";
-// import Card from "../components/card/Card";
-// import Frame from "../components/frame/Frame";
-// import PriceRange from "../utils/PriceRange/PriceRange";
-// import MyToggle from "../utils/my-toggle/MyToggle";
-// import ShapeFrame from "../components/shap-frame/ShapeFrame";
-// import styles from "./store.module.scss";
-
-// const Store = () => {
-//   const [selectShape, setSelectShape] = useState("");
-//   const [selectFrame, setSelectFrame] = useState("");
-//   const [minPrice, setMinPrice] = useState(0);
-//   const [maxPrice, setMaxPrice] = useState(50000000);
-//   const [isFilter, setIsFilter] = useState(false);
-
-//   const params = new URLSearchParams({
-//   color: selectFrame,
-//   shape: selectShape,
-//   min: minPrice,
-//   max: maxPrice,
-// });
-//   let url = isFilter
-//     ? `${process.env.REACT_APP_API_URL}/api/products/filter?${params}`
-//     : `${process.env.REACT_APP_API_URL}/api/products`;
-
-//   console.log("in Store url = ", url);
-//   console.log("params =", params.toString());
-// console.log("url =", url);
-
-//   return (
-//     <div className="wrapper">
-//       <div className={styles.store}>
-//         <div className={styles.store__filter}>
-//           <div className="title-bar">
-//             <div className={styles.store__mainTitle}>فیلترها</div>
-//             <MyToggle isFilter={isFilter} setIsFilter={setIsFilter} />
-//           </div>
-//           <div className="margin-2y">
-//             <div className={styles.store__title}>قیمت</div>
-//             <PriceRange
-//               minPrice={minPrice}
-//               setMinPrice={setMinPrice}
-//               maxPrice={maxPrice}
-//               setMaxPrice={setMaxPrice}
-//             />
-//           </div>
-//           <div className="margin-2y">
-//             <div className={styles.store__title}>رنگ فریم</div>
-//             <Frame selectFrame={selectFrame} setSelectFrame={setSelectFrame} />
-//           </div>
-//           <div className="margin-2y">
-//             <div className={styles.store__title}>شکل فریم</div>
-//             <ShapeFrame
-//               selectShape={selectShape}
-//               setSelectShape={setSelectShape}
-//             />
-//           </div>
-//         </div>
-//         <div className={styles.store__cards}>
-//           <InfiniteLoading key={url} url={`${url}`} limit="10">
-//             <Card />
-//           </InfiniteLoading>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Store;

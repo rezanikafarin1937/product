@@ -132,7 +132,7 @@ const Footer = () => {
             <div className={styles.footer__news}>
               <h4>عضویت در خبرنامه</h4>
               <p>برای دریافت جدیدترین محصولات و تخفیف‌ها</p>
-              <div className="title-bar">
+              <div className="title-bar-mobile">
                 <Input placeholder="ایمیل خود را وارد کنید" />
                 <Button
                   style={{
