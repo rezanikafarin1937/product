@@ -22,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: end;
-    margin: .5rem 0;
+    margin: .5rem 0 1rem 0;
 
     @media (max-width: 425px) {
       flex-direction: column;
