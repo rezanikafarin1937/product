@@ -2,19 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  width: 400px;
+  padding: 3rem;
+  width: 100%;
+}
+
+@media (max-width: 425px) {
+  .parent {
+    padding: 2rem .5rem;
+  }
 }
 
 .parent__box {
   background-color: #eee;
   border-radius: var(--border-radius);
-  padding: 1rem;
-  width: 100%;
+  padding: 1rem .5rem 2rem .5rem;
+  width: 400px;
   text-align: center;
-}
-
-.parentGreen {
-  background-color: green;
-  border: 10px solid red;
 }
