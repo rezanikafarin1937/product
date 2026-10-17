@@ -1,0 +1,71 @@
+.benefitCard {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: calc(25% - 1rem);
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .benefitCard {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .benefitCard {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.benefitCard__icon {
+  width: 50px;
+  height: 50px;
+}
+
+@media (max-width: 425px) {
+  .benefitCard__icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.benefitCard__title {
+  font-size: 1rem;
+  font-weight: 600;
+  word-wrap: none;
+  color: var(--color-text);
+  user-select: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .benefitCard__title {
+    font-size: 0.75rem;
+    font-weight: 400px;
+  }
+}
+
+@media (max-width: 425px) {
+  .benefitCard__title {
+    font-size: .5rem;
+    font-weight: 300px;
+  }
+}
+
+.benefitCard__description {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  word-wrap: none;
+}
+
+@media (max-width: 768px) {
+  .benefitCard__description {
+    display: none;
+  }
+}

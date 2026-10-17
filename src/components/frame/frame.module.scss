@@ -1,0 +1,42 @@
+.frame {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &__circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid var(--color-border);
+  }
+
+  &__border {
+    outline: 3px solid var(--color-heading);
+    border-radius: 50%;
+  }
+
+  .white {
+    background-color: var(--color-white);
+  }
+  .gray {
+    background-color: gray;
+  }
+  .green {
+    background-color: green;
+  }
+  .brown {
+    background-color: var(--color-primary-dark);
+  }
+  .blue {
+    background-color: rgb(40, 40, 94);
+  }
+  .black {
+    background-color: var(--color-dark);
+  }
+  .red {
+    background-color: rgb(193, 17, 17);
+  }
+}

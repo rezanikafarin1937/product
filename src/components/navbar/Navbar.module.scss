@@ -1,0 +1,30 @@
+.parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
+
+  &__nav {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &Active {
+      color: var(--color-primary-dark) !important;
+    }
+  }
+}
+a {
+  font-size: .9rem;
+  font-weight: 600;
+  word-wrap: none;
+  color: var(--color-text);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}

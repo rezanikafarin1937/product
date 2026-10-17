@@ -1,0 +1,9 @@
+.benefitCard__title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.benefitCard__description {
+  font-size: 0.8125rem;
+  font-weight: 400;
+}

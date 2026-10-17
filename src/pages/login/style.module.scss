@@ -1,0 +1,19 @@
+.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  width: 100%;
+
+  @media (max-width: 425px) {
+    padding: 2rem .5rem;
+  }
+
+  &__box {
+    background-color: #eee;
+    border-radius: var(--border-radius);
+    padding: 1rem .5rem 2rem .5rem;
+    width: 400px;
+    text-align: center;
+  }
+}

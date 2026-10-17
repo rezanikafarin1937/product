@@ -1,0 +1,5 @@
+.home__category {
+  background-color: var(--color-heading);
+  padding: 1rem 0 3rem 0;
+  border-radius: var(--border-radius);
+}

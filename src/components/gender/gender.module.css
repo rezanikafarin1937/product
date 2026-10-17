@@ -1,0 +1,26 @@
+.frame {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.frame__shape {
+  background-color: var(--color-background-soft);
+  color: var(--color-text-secondary);
+  border-radius: var(--border-radius-small);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.frame__shape:hover {
+  background-color: var(--color-text-blue-dark);
+}
+
+.frame__select {
+  background-color: var(--color-text-blue);
+}

@@ -1,0 +1,1 @@
+.account{display:flex;justify-content:center;align-items:center;margin:0 0.5rem}@media (max-width: 769px){.account{justify-content:flex-start}}.accountUserIcon{width:var(--size-icon);height:var(--size-icon);cursor:pointer}.account__mx{margin:0 .5rem}@media (max-width: 425px){.account__mx{margin:0}}

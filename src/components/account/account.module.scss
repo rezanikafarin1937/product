@@ -1,0 +1,25 @@
+.account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.5rem;
+
+    @media (max-width : 769px) {
+        justify-content: flex-start;
+    }
+
+    &UserIcon{
+        width: var(--size-icon);
+        height: var(--size-icon);
+        cursor: pointer;
+    }
+
+    &__mx{
+        margin: 0 .5rem;
+
+        @media (max-width : 425px) {
+            margin: 0;
+        }
+    }
+   
+}

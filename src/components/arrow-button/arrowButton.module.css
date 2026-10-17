@@ -1,0 +1,14 @@
+.btn {
+  width: 200px;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: start;
+  align-items: center;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.btnText {
+  white-space: nowrap;
+}

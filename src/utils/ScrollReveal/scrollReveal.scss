@@ -1,0 +1,12 @@
+.scrollReveal {
+  opacity: 0;
+  transform: translateY(80px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.scrollReveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}

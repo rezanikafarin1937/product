@@ -1,0 +1,63 @@
+.card {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border-secondary);
+  border-radius: var(--border-radius);
+  min-width: calc(260px - .2rem);
+  height: 350px;
+  overflow: hidden;
+
+  @media (max-width: 425px) {
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) and (min-width: 1440px) {
+    min-width: calc(300px - 1rem);
+  }
+  @media (min-width: 1440px) {
+    min-width: calc(295px - 1rem);
+  }
+
+  // @media (max-width: 769px) and (min-width: 426px) {
+  //   width: calc(50% - 1rem);
+  // }
+
+  &Image {
+    width: 100%;
+    height: 200px;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+
+    img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--border-radius-small);
+      border: 1px solid var(--color-border-secondary);
+    }
+  }
+
+  &Text {
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: var(--padding);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    user-select: none;
+    min-height: 137px;
+  }
+
+  &Del {
+    color: var(--color-text-secondary);
+    font-weight: 300;
+  }
+
+  &Discount {
+    color: var(--color-text-blue);
+  }
+}
