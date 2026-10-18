@@ -20,7 +20,6 @@ function Header() {
           <Navbar />
           <div className={styles.header__logo}>
              <h1 className="primary-title"><i>Tizbin</i></h1>
-             <span></span>
              <Logo />
           </div>
          
