@@ -11,7 +11,6 @@ function Header() {
           <div className={styles.header__items}>
             <div className={styles.header__right}>
               <Account />
-              <span className="margin-x"></span>
               <SearchHeader />
             </div>
 
@@ -19,10 +18,15 @@ function Header() {
           </div>
           <Navbar />
           <div className={styles.header__logo}>
-             <h1 style={{color : "var(--color-primary-dark)"}} className="primary-title"><i>Tizbin</i></h1>
-             <Logo />
+            <h1
+              style={{ color: "var(--color-primary-dark)" }}
+              className="primary-title"
+            >
+              <i>Tizbin</i>
+            </h1>
+            <Logo />
           </div>
-         
+
           <div className={styles.header__mobileItem}>
             <div className={styles.header__icon}>H</div>
             <span className="margin-x"></span>
