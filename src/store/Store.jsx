@@ -9,7 +9,6 @@ import ShapeFrame from "../components/shap-frame/ShapeFrame";
 import Usage from "../components/usage/Usage";
 import CloseIcon from "../icons/close-icon/CloseIcon";
 import sunglass from "./sunglass.png";
-
 import styles from "./store.module.scss";
 
 const Store = () => {
@@ -82,9 +81,123 @@ const Store = () => {
     setSearchParams,
   ]);
 
+  const [isFilterMobile, setIsFilterMobile] = useState(false);
+
+  const handelClickFilter = () => {
+    setIsFilterMobile(!isFilterMobile);
+  };
+
   return (
     <div className="wrapper">
       <div className={styles.store__bar}>
+        {/* mobile & tablet  */}
+        <div className={styles.store__mobile}>
+          <div>
+            <div onClick={handelClickFilter}>فیلترها</div>
+            {isFilterMobile ? (
+              <div
+                className={styles.store__icon}
+                onClick={() => {
+                  setIsFilterMobile(false);
+                }}
+              >
+                <CloseIcon color="var(--color-text)" />
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className={`${isFilterMobile ? "margin-2y" : ""}`}></div>
+
+          <div
+            className={`${styles.store__mobileFilter} ${isFilterMobile ? styles.store__isFilter : styles.store__noFilter}`}
+          >
+            <div className={styles.store__myTitleBar}>
+              <div className={styles.store__mainTitle}>اعمال فیلترها</div>
+              <div>
+                <MyToggle isFilter={isFilter} setIsFilter={setIsFilter} />
+              </div>
+            </div>
+            <br />
+
+            <section className="margin-y">
+              <div className={styles.store__myTitleBar}>
+                <span className={styles.store__title}>قیمت</span>
+                <span
+                  className={styles.store__icon}
+                  onClick={() => {
+                    setMinPrice(0);
+                    setMaxPrice(50000000);
+                  }}
+                >
+                  <CloseIcon color="var(--color-text)" />
+                </span>
+              </div>
+
+              <PriceRange
+                minPrice={minPrice}
+                setMinPrice={setMinPrice}
+                maxPrice={maxPrice}
+                setMaxPrice={setMaxPrice}
+              />
+            </section>
+
+            <section className="margin-y">
+              <div className={styles.store__title}>
+                <div className={styles.store__myTitleBar}>
+                  <span>رنگ فریم</span>
+                  <span
+                    className={styles.store__icon}
+                    onClick={() => setSelectFrame("")}
+                  >
+                    <CloseIcon color="var(--color-text)" />
+                  </span>
+                </div>
+              </div>
+
+              <Frame
+                selectFrame={selectFrame}
+                setSelectFrame={setSelectFrame}
+              />
+            </section>
+
+            <section className="margin-y">
+              <div className={styles.store__myTitleBar}>
+                <span className={styles.store__title}>شکل فریم</span>
+                <span
+                  className={styles.store__icon}
+                  title="حذف"
+                  onClick={() => setSelectShape("")}
+                >
+                  <CloseIcon color="var(--color-text)" />
+                </span>
+              </div>
+              <ShapeFrame
+                selectShape={selectShape}
+                setSelectShape={setSelectShape}
+              />
+            </section>
+
+            <section className="margin-y">
+              <div className={styles.store__myTitleBar}>
+                <span className={styles.store__title}>استفاده</span>
+                <span
+                  className={styles.store__icon}
+                  title="حذف"
+                  onClick={() => setSelectUsage("")}
+                >
+                  <CloseIcon color="var(--color-text)" />
+                </span>
+              </div>
+              <Usage
+                selectUsage={selectUsage}
+                setSelectUsage={setSelectUsage}
+              />
+            </section>
+          </div>
+        </div>
+        {/* mobile & tablet  end */}
+
         <div>
           <i>
             <h1>فروشگاه تیزبین</h1>
@@ -105,6 +218,7 @@ const Store = () => {
         </div>
       </div>
 
+      {/* desktop */}
       <div className={styles.store}>
         <div className={styles.store__filter}>
           <div className="title-bar">
@@ -182,6 +296,8 @@ const Store = () => {
             <Usage selectUsage={selectUsage} setSelectUsage={setSelectUsage} />
           </section>
         </div>
+        {/* desktop end */}
+
         <div className={styles.store__cards}>
           <div className="title-bar padding-x margin-2y">
             <h2>{isFilter ? text : "تیزبین؛ انتخابی برای هر نگاه."}</h2>
