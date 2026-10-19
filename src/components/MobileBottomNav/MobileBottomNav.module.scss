@@ -1,0 +1,31 @@
+.mobile {
+  width: 100%;
+  background-color: var(--color-background-soft);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+  padding-top: 1rem;
+  z-index: 3;
+
+  &__item {
+    white-space: nowrap;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 425px) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  &__active{
+    color : var(--color-primary-dark);
+  }
+}

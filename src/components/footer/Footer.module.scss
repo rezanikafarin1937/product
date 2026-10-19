@@ -12,7 +12,6 @@
     align-items: center;
     width: calc(25% - 1rem);
 
-
     @media (min-width: 426px) and (max-width: 768px) {
       width: calc(50% - 1rem);
       margin-bottom: 1rem;
@@ -66,8 +65,8 @@
     line-height: 2.8;
     margin-bottom: 0.5rem;
 
-    @media (max-width : 425px) {
-        flex-wrap: wrap;
+    @media (max-width: 425px) {
+      flex-wrap: wrap;
     }
   }
 
@@ -89,10 +88,15 @@
     }
   }
 
-  &__end{
+  &__end {
     background-color: var(--color-primary);
-    color : var(--color-white);
+    color: var(--color-white);
     width: 100%;
     padding: 1rem;
+
+    @media (max-width : 425px) {
+          padding-bottom: 4rem;
+
+    }
   }
 }

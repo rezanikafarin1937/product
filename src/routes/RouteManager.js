@@ -12,12 +12,12 @@ export const routes = [
   {
     path: "/",
     element: <Home />,
-    title : "خانه"
+    title: "خانه",
   },
   {
     path: "/store",
     element: <Store />,
-    title : "محصولات"
+    title: "محصولات",
   },
   // {
   //   path: "/cats-pag",
@@ -27,17 +27,17 @@ export const routes = [
   {
     path: "/category",
     element: <Category />,
-    title : "دسته بندی ها"
+    title: "دسته بندی ها",
   },
   {
     path: "/about",
     element: <About />,
-    title : "درباره ما"
+    title: "درباره ما",
   },
   {
     path: "/contact-us",
     element: <ContactUs />,
-    title : "تماس با ما"
+    title: "تماس با ما",
   },
   {
     path: "/login",
@@ -50,5 +50,38 @@ export const routes = [
   {
     path: "/product-details/:id",
     element: <ProductDetails />,
+  },
+];
+
+export const routesMobile = [
+  {
+    key: "home",
+    path: "/",
+    element: <Home />,
+    title: "خانه",
+  },
+  {
+    key: "products",
+    path: "/store",
+    element: <Store />,
+    title: "محصولات",
+  },
+  {
+    key: "categories",
+    path: "/category",
+    element: <Category />,
+    title: "دسته بندی ها",
+  },
+  {
+    key: "about",
+    path: "/about",
+    element: <About />,
+    title: "درباره ما",
+  },
+  {
+    key: "contact",
+    path: "/contact-us",
+    element: <ContactUs />,
+    title: "تماس با ما",
   },
 ];
