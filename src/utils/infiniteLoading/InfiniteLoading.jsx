@@ -24,6 +24,8 @@ const InfiniteLoading = ({ url, limit, children, setLength }) => {
           `${url}${separator}page=${page}&per_page=${limit}`,
         );
 
+        console.log("DATA = ",response.data.data);
+
         setProducts((prev) =>
           page === 1 ? response.data.data : [...prev, ...response.data.data],
         );
