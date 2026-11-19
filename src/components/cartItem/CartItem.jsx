@@ -50,7 +50,7 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
     return (
       <div className={styles.cart__image}>
         <img
-          src={`${process.env.REACT_APP_API_URL}${images?.[0]}`}
+          src={`${process.env.PUBLIC_URL}${images?.[0]}`}
           alt={title}
         />
       </div>

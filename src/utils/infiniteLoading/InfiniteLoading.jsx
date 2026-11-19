@@ -1,79 +1,204 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
+
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+
 import styles from "./infiniteLoading.module.scss";
 
-const InfiniteLoading = ({ url, limit, children, setLength }) => {
+const InfiniteLoading = ({
+  limit = 10,
+  children,
+  setLength,
+  filters = null,
+}) => {
   const [page, setPage] = useState(1);
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const endInfinite = useRef(null);
 
-  // Reset when URL changes
+  // دریافت محصولات از فایل JSON
   useEffect(() => {
-    setPage(1);
-    setProducts([]);
-  }, [url]);
+    let isMounted = true;
 
-  // Get Products
-  useEffect(() => {
     const getProducts = async () => {
       try {
-        const separator = url.includes("?") ? "&" : "?";
+        setLoading(true);
+        setError(false);
 
-        const response = await axios(
-          `${url}${separator}page=${page}&per_page=${limit}`,
+        const response = await fetch(
+          `${process.env.PUBLIC_URL}/database/products.json`
         );
 
-        console.log("DATA = ",response.data.data);
+        if (!response.ok) {
+          throw new Error("Failed to load products.json");
+        }
 
-        setProducts((prev) =>
-          page === 1 ? response.data.data : [...prev, ...response.data.data],
-        );
-        setLength(
-          Number(
-            response.data.total
-              ? response.data.total
-              : response.data.pagination.total,
-          ),
-        );
-        // console.log("API Response =", response.data);
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid products data");
+        }
+
+        if (isMounted) {
+          setAllProducts(data);
+        }
       } catch (error) {
-        console.log("Get Products Error =", error);
+        console.error("Get Products Error =", error);
+
+        if (isMounted) {
+          setAllProducts([]);
+          setError(true);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     getProducts();
-    setLength();
-  }, [url, page, limit]);
-
-  // Infinite Loading
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setPage((prev) => prev + 1);
-      }
-    });
-
-    if (endInfinite.current) {
-      observer.observe(endInfinite.current);
-    }
 
     return () => {
-      observer.disconnect();
+      isMounted = false;
     };
   }, []);
 
+  // فیلتر محصولات
+  const filteredProducts = useMemo(() => {
+    if (!filters) {
+      return allProducts;
+    }
+
+    const color = filters.color?.trim().toLowerCase();
+    const shape = filters.shape?.trim().toLowerCase();
+    const usage = filters.usage?.trim().toLowerCase();
+
+    const min = Number(filters.min);
+    const max = Number(filters.max);
+
+    return allProducts.filter((product) => {
+      const title = (product.title || "").toLowerCase();
+      const price = Number(product.price);
+
+      // فیلتر رنگ
+      if (color && !title.includes(color)) {
+        return false;
+      }
+
+      // فیلتر شکل
+      if (shape && !title.includes(shape)) {
+        return false;
+      }
+
+      // فیلتر نوع استفاده
+      if (usage && !title.includes(usage)) {
+        return false;
+      }
+
+      // حداقل قیمت
+      if (Number.isFinite(min) && price < min) {
+        return false;
+      }
+
+      // حداکثر قیمت
+      if (Number.isFinite(max) && price > max) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [allProducts, filters]);
+
+  // به‌روزرسانی تعداد نتایج
+  useEffect(() => {
+    setLength?.(filteredProducts.length);
+  }, [filteredProducts.length, setLength]);
+
+  // با تغییر فیلترها، صفحه‌بندی از ابتدا شروع شود
+  useEffect(() => {
+    setPage(1);
+  }, [filters]);
+
+  // محصولات قابل نمایش بر اساس صفحه
+  const visibleProducts = useMemo(() => {
+    const end = page * limit;
+
+    return filteredProducts.slice(0, end);
+  }, [filteredProducts, page, limit]);
+
+  // Infinite Loading
+  useEffect(() => {
+    const target = endInfinite.current;
+
+    if (!target || loading || error) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          observer.unobserve(target);
+
+          setPage((prev) => {
+            const maxPage = Math.ceil(
+              filteredProducts.length / limit
+            );
+
+            return prev < maxPage ? prev + 1 : prev;
+          });
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, [
+    visibleProducts.length,
+    filteredProducts.length,
+    limit,
+    loading,
+    error,
+  ]);
+
   return (
     <div className={styles.cards}>
-      {products?.map((product, index) =>
+      {visibleProducts.map((product, index) =>
         React.cloneElement(children, {
           key: product.id || index,
           ...product,
-        }),
+        })
       )}
+
+      {loading && (
+        <p>در حال بارگذاری محصولات...</p>
+      )}
+
+      {error && (
+        <p>خطا در دریافت محصولات. لطفاً دوباره تلاش کنید.</p>
+      )}
+
+      {!loading && !error && filteredProducts.length === 0 && (
+        <p>محصولی یافت نشد.</p>
+      )}
+
+      {!loading &&
+        !error &&
+        visibleProducts.length < filteredProducts.length && (
+          <p>در حال بارگذاری محصولات بیشتر...</p>
+        )}
 
       <div ref={endInfinite}></div>
     </div>
   );
 };
+
 export default InfiniteLoading;

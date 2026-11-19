@@ -3,12 +3,9 @@
   font-family: Vazirmatn, sans-serif;
 }
 
-html {
+html, body {
   direction: rtl;
   background-color: var(--color-background);
-}
-
-body {
   color: var(--color-text);
 }
 

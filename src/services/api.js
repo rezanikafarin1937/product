@@ -1,59 +1,33 @@
-import axios from "axios";
 
-
-const client = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-});
+const PRODUCTS_URL = `${process.env.PUBLIC_URL}/database/products.json`;
 
 export async function getProducts() {
-  const data = await client("/api/products");
-  return data;
+  const response = await fetch(PRODUCTS_URL);
+
+  if (!response.ok) {
+    throw new Error("خطا در دریافت محصولات");
+  }
+
+  const data = await response.json();
+
+  return { data };
 }
 
 export async function getProduct(id) {
-  const data = await client(`/api/products/${id}`);
-  return data;
+  const response = await getProducts();
+
+  const product = response.data.find(
+    (item) => item.id === Number(id)
+  );
+
+  if (!product) {
+    throw new Error("محصول موردنظر پیدا نشد");
+  }
+
+  return { data: product };
 }
 
-export async function auth(username, password, mobile, mode) {
-  const data =
-    mode === "login"
-      ? {
-          mobile,
-          password,
-        }
-      : {
-          name: username,
-          mobile,
-          password,
-        };
-
-  const url =
-    mode === "login"
-      ? `${process.env.REACT_APP_API_URL}/api/users/login`
-      : `${process.env.REACT_APP_API_URL}/api/users`;
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if(result){
-        return result
-      }
-
-      if (!response.ok) {
-        return;
-      }
-
-    } catch (error) {
-      console.log("خطا در ارتباط با سرور:", error);
-    }
-
+// احراز هویت در نسخه استاتیک غیرفعال است.
+export async function auth() {
+  throw new Error("احراز هویت در نسخه استاتیک فعال نیست.");
 }

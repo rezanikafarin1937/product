@@ -1,5 +1,10 @@
 .about {
   margin-top: 120px;
+  background-color: var(--color-background);
+
+  section{
+    background-color: transparent ;
+  }
 
   &__mainTitle {
     font-size: 2rem;

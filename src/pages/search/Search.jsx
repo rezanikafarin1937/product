@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Card from "../../components/card/Card";
@@ -8,56 +9,93 @@ import styles from "./search.module.scss";
 const Search = () => {
   const [searchParams] = useSearchParams();
 
-  const title = searchParams.get("title");
+  const title = searchParams.get("title") || "";
 
-  // شماره صفحه را از URL می‌گیریم
-  const page = Number(searchParams.get("page")) || 1;
+  // شماره صفحه
+  const page = Math.max(1, Number(searchParams.get("page")) || 1);
 
   // تعداد محصولات در هر صفحه
-  const per_page = Number(searchParams.get("per_page")) || 10;
+  const per_page = Math.max(
+    1,
+    Number(searchParams.get("per_page")) || 10
+  );
 
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!title) {
-      setProducts([]);
-      setPagination({});
-      return;
-    }
+    let isMounted = true;
 
     const getProducts = async () => {
+      if (!title.trim()) {
+        setProducts([]);
+        setPagination({});
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
 
         const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/products/search?title=${encodeURIComponent(
-            title,
-          )}&page=${page}&per_page=${per_page}`,
+          `${process.env.PUBLIC_URL}/database/products.json`
         );
 
         if (!response.ok) {
           throw new Error("خطا در دریافت محصولات");
         }
 
-        const result = await response.json();
+        const allProducts = await response.json();
 
-        console.log("Result in Search", result);
+        // جستجو بر اساس عنوان
+        const filteredProducts = allProducts.filter((product) =>
+          product.title.toLowerCase().includes(title.trim().toLowerCase())
+        );
 
-        setProducts(result.data);
-        setPagination(result.pagination);
+        // محاسبه صفحه‌بندی
+        const total = filteredProducts.length;
+        const pages = Math.ceil(total / per_page);
+
+        // محدود کردن صفحه در صورت خارج بودن از محدوده
+        const currentPage = Math.min(page, Math.max(pages, 1));
+
+        const start = (currentPage - 1) * per_page;
+        const end = start + per_page;
+
+        const currentProducts = filteredProducts.slice(start, end);
+
+        if (isMounted) {
+          setProducts(currentProducts);
+
+          setPagination({
+            total,
+            pages,
+            next: currentPage < pages ? currentPage + 1 : null,
+            prev: currentPage > 1 ? currentPage - 1 : null,
+            first: 1,
+            last: pages,
+          });
+        }
       } catch (error) {
-        console.log("Search Error =", error);
+        console.error("Search Error =", error);
 
-        setProducts([]);
-        setPagination({});
+        if (isMounted) {
+          setProducts([]);
+          setPagination({});
+        }
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     getProducts();
+
+    return () => {
+      isMounted = false;
+    };
   }, [title, page, per_page]);
 
   return (
@@ -71,15 +109,18 @@ const Search = () => {
             </h2>
           </i>
         </div>
+
         <div className={styles.products__sunglass}>
-          <img src={sunglass} alt="فروشگاه اینترنتی فروش عینک طبی و آفتابی" />
+          <img
+            src={sunglass}
+            alt="فروشگاه اینترنتی فروش عینک طبی و آفتابی"
+          />
         </div>
       </div>
 
-      {/* Title + Pagination */}
       <div className={styles.products__titleBar}>
         <h3>
-          {pagination.total
+          {pagination.total > 0
             ? `تیزبین ${pagination.total.toLocaleString("fa")} محصول را برای شما پیدا کرد`
             : "تیزبین؛ زیبایی را واضح‌تر ببین."}
         </h3>
@@ -97,9 +138,10 @@ const Search = () => {
         />
       </div>
 
-      {/* Products */}
       {loading ? (
-        <div className={styles.loading}>در حال جستجو...</div>
+        <div className={styles.loading}>
+          در حال جستجو...
+        </div>
       ) : products.length === 0 ? (
         <p>محصولی پیدا نشد.</p>
       ) : (
@@ -107,10 +149,7 @@ const Search = () => {
           {products.map((product) => (
             <Card
               key={product.id}
-              id={product.id}
-              title={product.title}
-              price={product.price}
-              images={product.images}
+              {...product}
               state={false}
             />
           ))}
@@ -121,4 +160,3 @@ const Search = () => {
 };
 
 export default Search;
-

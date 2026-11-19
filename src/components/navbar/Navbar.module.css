@@ -19,6 +19,7 @@
 
 .parent__navActive {
   color: var(--color-primary-dark) !important;
+  border-bottom: 1px solid var(--color-primary-dark);
 }
 
 a {

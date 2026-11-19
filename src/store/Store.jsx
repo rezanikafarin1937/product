@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+
+import { useEffect, useMemo, useState } from "react";
+
 import { useSearchParams } from "react-router-dom";
+
 import InfiniteLoading from "../utils/infiniteLoading/InfiniteLoading";
+
 import Card from "../components/card/Card";
+
 import Frame from "../components/frame/Frame";
+
 import PriceRange from "../utils/PriceRange/PriceRange";
+
 import MyToggle from "../utils/my-toggle/MyToggle";
+
 import ShapeFrame from "../components/shap-frame/ShapeFrame";
+
 import Usage from "../components/usage/Usage";
+
 import CloseIcon from "../icons/close-icon/CloseIcon";
+
 import sunglass from "./sunglass.png";
+
 import styles from "./store.module.scss";
 
 const Store = () => {
   const [length, setLength] = useState(0);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [selectShape, setSelectShape] = useState(
@@ -39,22 +52,31 @@ const Store = () => {
     searchParams.get("filter") === "true",
   );
 
-  const [text, setText] = useState(
-    `نتایج جستجو برای رنگ ${selectFrame ? selectFrame : ""} > شکل ${selectShape ? selectShape : ""} موارد استفاده - ${selectUsage ? selectUsage : ""}`,
-  );
+  const [text, setText] = useState("");
 
-  const params = new URLSearchParams({
-    color: selectFrame,
-    shape: selectShape,
-    usage: selectUsage,
-    min: minPrice,
-    max: maxPrice,
-  });
+  const [isFilterMobile, setIsFilterMobile] = useState(false);
 
-  const apiUrl = isFilter
-    ? `${process.env.REACT_APP_API_URL}/api/products/filter?${params.toString()}`
-    : `${process.env.REACT_APP_API_URL}/api/products`;
+  // فیلترهای محلی محصولات
+  const filters = useMemo(() => {
+    if (!isFilter) return null;
 
+    return {
+      color: selectFrame,
+      shape: selectShape,
+      usage: selectUsage,
+      min: minPrice,
+      max: maxPrice,
+    };
+  }, [
+    isFilter,
+    selectFrame,
+    selectShape,
+    selectUsage,
+    minPrice,
+    maxPrice,
+  ]);
+
+  // هماهنگی فیلترها با URL
   useEffect(() => {
     if (isFilter) {
       setSearchParams({
@@ -68,8 +90,15 @@ const Store = () => {
     } else {
       setSearchParams({});
     }
+
     setText(
-      `نتایج جستجو برای   ${selectFrame ? "- رنگ  " + selectFrame : ""}   ${selectShape ? "- شکل  " + selectShape : ""} ${selectUsage ? "- مورد استفاده  " + selectUsage : ""}`,
+      `نتایج جستجو برای ${
+        selectFrame ? "- رنگ " + selectFrame : ""
+      } ${
+        selectShape ? "- شکل " + selectShape : ""
+      } ${
+        selectUsage ? "- مورد استفاده " + selectUsage : ""
+      }`,
     );
   }, [
     isFilter,
@@ -81,8 +110,6 @@ const Store = () => {
     setSearchParams,
   ]);
 
-  const [isFilterMobile, setIsFilterMobile] = useState(false);
-
   const handelClickFilter = () => {
     setIsFilterMobile(!isFilterMobile);
   };
@@ -90,10 +117,12 @@ const Store = () => {
   return (
     <div className="wrapper">
       <div className={styles.store__bar}>
-        {/* mobile & tablet  */}
+
+        {/* mobile & tablet */}
         <div className={styles.store__mobile}>
           <div>
             <div onClick={handelClickFilter}>فیلترها</div>
+
             {isFilterMobile ? (
               <div
                 className={styles.store__icon}
@@ -107,22 +136,37 @@ const Store = () => {
               ""
             )}
           </div>
-          <div className={`${isFilterMobile ? "margin-2y" : ""}`}></div>
 
           <div
-            className={`${styles.store__mobileFilter} ${isFilterMobile ? styles.store__isFilter : styles.store__noFilter}`}
+            className={`${isFilterMobile ? "margin-2y" : ""}`}
+          ></div>
+
+          <div
+            className={`${styles.store__mobileFilter} ${
+              isFilterMobile
+                ? styles.store__isFilter
+                : styles.store__noFilter
+            }`}
           >
             <div className={styles.store__myTitleBar}>
-              <div className={styles.store__mainTitle}>اعمال فیلترها</div>
+              <div className={styles.store__mainTitle}>
+                اعمال فیلترها
+              </div>
+
               <div>
-                <MyToggle isFilter={isFilter} setIsFilter={setIsFilter} />
+                <MyToggle
+                  isFilter={isFilter}
+                  setIsFilter={setIsFilter}
+                />
               </div>
             </div>
+
             <br />
 
             <section className="margin-y">
               <div className={styles.store__myTitleBar}>
                 <span className={styles.store__title}>قیمت</span>
+
                 <span
                   className={styles.store__icon}
                   onClick={() => {
@@ -146,6 +190,7 @@ const Store = () => {
               <div className={styles.store__title}>
                 <div className={styles.store__myTitleBar}>
                   <span>رنگ فریم</span>
+
                   <span
                     className={styles.store__icon}
                     onClick={() => setSelectFrame("")}
@@ -163,7 +208,10 @@ const Store = () => {
 
             <section className="margin-y">
               <div className={styles.store__myTitleBar}>
-                <span className={styles.store__title}>شکل فریم</span>
+                <span className={styles.store__title}>
+                  شکل فریم
+                </span>
+
                 <span
                   className={styles.store__icon}
                   title="حذف"
@@ -172,6 +220,7 @@ const Store = () => {
                   <CloseIcon color="var(--color-text)" />
                 </span>
               </div>
+
               <ShapeFrame
                 selectShape={selectShape}
                 setSelectShape={setSelectShape}
@@ -181,6 +230,7 @@ const Store = () => {
             <section className="margin-y">
               <div className={styles.store__myTitleBar}>
                 <span className={styles.store__title}>استفاده</span>
+
                 <span
                   className={styles.store__icon}
                   title="حذف"
@@ -189,6 +239,7 @@ const Store = () => {
                   <CloseIcon color="var(--color-text)" />
                 </span>
               </div>
+
               <Usage
                 selectUsage={selectUsage}
                 setSelectUsage={setSelectUsage}
@@ -196,11 +247,12 @@ const Store = () => {
             </section>
           </div>
         </div>
-        {/* mobile & tablet  end */}
+        {/* mobile & tablet end */}
 
         <div>
           <i>
             <h1>فروشگاه تیزبین</h1>
+
             <h3>
               <span>دسته بندی</span>
               <span> {selectUsage} </span>
@@ -213,8 +265,12 @@ const Store = () => {
             </h3>
           </i>
         </div>
+
         <div className={styles.store__sunglass}>
-          <img src={sunglass} alt="فروشگاه اینترنتی فروش عینک طبی و آفتابی" />
+          <img
+            src={sunglass}
+            alt="فروشگاه اینترنتی فروش عینک طبی و آفتابی"
+          />
         </div>
       </div>
 
@@ -222,14 +278,20 @@ const Store = () => {
       <div className={styles.store}>
         <div className={styles.store__filter}>
           <div className="title-bar">
-            <div className={styles.store__mainTitle}>فیلترها</div>
+            <div className={styles.store__mainTitle}>
+              فیلترها
+            </div>
 
-            <MyToggle isFilter={isFilter} setIsFilter={setIsFilter} />
+            <MyToggle
+              isFilter={isFilter}
+              setIsFilter={setIsFilter}
+            />
           </div>
 
           <section className="margin-y">
             <div className="title-bar padding-none">
               <span className={styles.store__title}>قیمت</span>
+
               <span
                 className={styles.store__icon}
                 onClick={() => {
@@ -253,6 +315,7 @@ const Store = () => {
             <div className={styles.store__title}>
               <div className="title-bar padding-none">
                 <span>رنگ فریم</span>
+
                 <span
                   className={styles.store__icon}
                   onClick={() => setSelectFrame("")}
@@ -262,12 +325,18 @@ const Store = () => {
               </div>
             </div>
 
-            <Frame selectFrame={selectFrame} setSelectFrame={setSelectFrame} />
+            <Frame
+              selectFrame={selectFrame}
+              setSelectFrame={setSelectFrame}
+            />
           </section>
 
           <section className="margin-y">
             <div className="title-bar padding-none">
-              <span className={styles.store__title}>شکل فریم</span>
+              <span className={styles.store__title}>
+                شکل فریم
+              </span>
+
               <span
                 className={styles.store__icon}
                 title="حذف"
@@ -276,6 +345,7 @@ const Store = () => {
                 <CloseIcon color="var(--color-text)" />
               </span>
             </div>
+
             <ShapeFrame
               selectShape={selectShape}
               setSelectShape={setSelectShape}
@@ -284,7 +354,10 @@ const Store = () => {
 
           <section className="margin-y">
             <div className="title-bar padding-none">
-              <span className={styles.store__title}>استفاده</span>
+              <span className={styles.store__title}>
+                استفاده
+              </span>
+
               <span
                 className={styles.store__icon}
                 title="حذف"
@@ -293,20 +366,30 @@ const Store = () => {
                 <CloseIcon color="var(--color-text)" />
               </span>
             </div>
-            <Usage selectUsage={selectUsage} setSelectUsage={setSelectUsage} />
+
+            <Usage
+              selectUsage={selectUsage}
+              setSelectUsage={setSelectUsage}
+            />
           </section>
         </div>
         {/* desktop end */}
 
         <div className={styles.store__cards}>
           <div className="title-bar padding-x margin-2y">
-            <h2>{isFilter ? text : "تیزبین؛ انتخابی برای هر نگاه."}</h2>
-            <div>{parseInt(length).toLocaleString("fa")} مورد یافت شد</div>
+            <h2>
+              {isFilter
+                ? text
+                : "تیزبین؛ انتخابی برای هر نگاه."}
+            </h2>
+
+            <div>
+              {parseInt(length).toLocaleString("fa")} مورد یافت شد
+            </div>
           </div>
 
           <InfiniteLoading
-            key={apiUrl}
-            url={apiUrl}
+            filters={filters}
             limit={10}
             setLength={setLength}
           >

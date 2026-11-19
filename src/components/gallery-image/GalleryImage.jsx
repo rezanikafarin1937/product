@@ -1,4 +1,5 @@
-import styles from "./galleryImage.module.scss"
+
+import styles from "./galleryImage.module.scss";
 
 const GalleryImage = ({ images }) => {
   return (
@@ -6,7 +7,7 @@ const GalleryImage = ({ images }) => {
       {images.map((image, index) => (
         <div key={index} className={styles.imagesImage}>
           <img
-            src={`${process.env.REACT_APP_API_URL}/${image}`}
+            src={`${process.env.PUBLIC_URL}${image}`}
             alt="خرید عینک"
           />
         </div>

@@ -41,7 +41,7 @@ const ZoomImage = ({ images }) => {
             }}
           >
             <img
-              src={`${process.env.REACT_APP_API_URL}/${image}`}
+              src={`${image}`}
               alt="فروشگاه لباس پوشانا"
             />
           </div>
@@ -50,7 +50,7 @@ const ZoomImage = ({ images }) => {
       <div
         ref={zoomImage}
         className={styles.parent__image}
-        style={{ backgroundImage: `url(${process.env.REACT_APP_API_URL}/${images[activeImage]})` }}
+        style={{ backgroundImage: `url(${images[activeImage]})` }}
       ></div>
       <div className={styles.parent__horizontalscroll}>
         <HorizontalScroll gap="1px">
@@ -63,7 +63,7 @@ const ZoomImage = ({ images }) => {
               }}
             >
               <img
-                src={`${process.env.REACT_APP_API_URL}/${image}`}
+                src={`${image}`}
                 alt="فروشگاه لباس پوشانا"
               />
             </div>

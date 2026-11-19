@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../services/api";
@@ -12,63 +13,89 @@ import CloseIcon from "../../icons/close-icon/CloseIcon";
 const ProductDetails = () => {
   const { id } = useParams();
 
-  const [flag, setFlag] = useState(false);
-
   const {
-    handleIncreaseProductQty,
-    handleDecreaseProductQty,
-    getProductQty,
     handleRemoveProduct,
-    cartQty,
   } = useCartContext();
 
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
+    let isMounted = true;
+
+    setLoading(true);
+    setError(false);
+    setProduct(null);
+
     getProduct(id)
       .then((res) => {
-        setProduct(res.data);
-        console.log("in product details data is = ", res.data);
+        if (isMounted) {
+          setProduct(res.data);
+          console.log("DDData = ",res.data.images)
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.error("Get Product Error =", err);
+
+        if (isMounted) {
+          setError(true);
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
-  if (!product) {
-    return <div>Loading...</div>;
+  if (loading) {
+    return <div>در حال بارگذاری محصول...</div>;
   }
 
-  console.log("DETAILS = ", product?.title);
+  if (error || !product) {
+    return <div>محصول موردنظر پیدا نشد.</div>;
+  }
 
   return (
     <div className="wrapper">
       <div style={{ marginTop: "150px" }}></div>
+
       <div className={styles.parent}>
         <div className={styles.parent__info}>
-          <h1 className="primary-title">{product?.title}</h1>
+          <h1 className="primary-title">
+            {product.title}
+          </h1>
+
           <Star rating={Math.floor(Math.random() * 5)} />
 
           <div className="title-item">
-            <span>{product?.price.toLocaleString("fa-IR")}</span>
+            <span>
+              {product.price.toLocaleString("fa-IR")}
+            </span>
             <span>تومان</span>
           </div>
 
           <div className="color-blue">
             <span>با تخفیف</span>{" "}
-            <span>{product?.discount.toLocaleString("fa-IR")}</span>{" "}
+            <span>
+              {product.discount.toLocaleString("fa-IR")}
+            </span>{" "}
             <span>درصد</span>
           </div>
 
           <div className={styles.parent__qtyInfo}>
             <ButtonQty {...product} />
+
             <span style={{ margin: "0 .12rem" }}></span>
+
             <div
               className={styles.parent__btn}
-              onClick={() => {
-                handleRemoveProduct(product?.id);
-                setFlag(true);
-              }}
+              onClick={() => handleRemoveProduct(product.id)}
             >
               <CloseIcon
                 width={15}
@@ -77,16 +104,20 @@ const ProductDetails = () => {
               />
             </div>
           </div>
+
           <Button>افزودن به سبد خرید</Button>
         </div>
+
         <div className={styles.parent__image}>
-          <ZoomImage images={product?.images} />
+          <ZoomImage images={product.images} />
         </div>
       </div>
+
       <br />
+
       <div className={styles.foot}>
         <div className="primary-title">توضیحات</div>
-        <p>{product?.description}</p>
+        <p>{product.description}</p>
       </div>
     </div>
   );

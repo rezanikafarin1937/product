@@ -1,22 +1,29 @@
-import { useEffect,useState } from "react";
 
+import { useEffect, useState } from "react";
 
-export function useLocalStorage(key,initialValue){
-    const [value,setValue] = useState(()=>{
-        let localCart = localStorage.getItem("cartItems");
-        if(localCart !== null){
-            return JSON.parse(localCart);
-        }
-        else{
-            return initialValue
-        }
-    })
+export function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const localData = localStorage.getItem(key);
 
-    useEffect(()=>{
-        localStorage.setItem(key,JSON.stringify(value))
+      if (localData !== null) {
+        return JSON.parse(localData);
+      }
 
-    },[key,value])
+      return initialValue;
+    } catch (error) {
+      console.error("LocalStorage Error:", error);
+      return initialValue;
+    }
+  });
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error("Save LocalStorage Error:", error);
+    }
+  }, [key, value]);
 
-    return [value,setValue]
+  return [value, setValue];
 }

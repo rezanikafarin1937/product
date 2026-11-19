@@ -12,7 +12,7 @@ const CardSwiper = ({ id, title, price, discount, images }) => {
       <Link to={`/product-details/${id}`}>
         <div className={styles.cardImage}>
           <img
-            src={`${process.env.REACT_APP_API_URL}${images?.[0]}`}
+            src={`${process.env.PUBLIC_URL}${images?.[0]}`}
             alt={title}
           />
         </div>
