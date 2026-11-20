@@ -9,7 +9,7 @@ import {
   FaChevronLeft,
   FaHeart,
 } from "react-icons/fa6";
-import styles from "./footer.module.scss";
+import styles from "./Footer.module.scss";
 import Logo from "../logo/Logo";
 import { Link } from "react-router-dom";
 import Input from "../input/Input";
