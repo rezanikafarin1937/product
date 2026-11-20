@@ -13,3 +13,8 @@
 .input:focus {
   background-color: var(--color-white);
 }
+
+.input::placeholder {
+  font-size: 12px;
+  font-weight: 300;
+}

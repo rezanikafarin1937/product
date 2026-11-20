@@ -40,6 +40,11 @@
     border-radius: 50%;
     font-size: 1.125rem;
     cursor: pointer;
+
+    @media (max-width : 425px) {
+      width: 40px;
+      height: 40px;
+    }
   }
   &__titleLogo {
     font-size: 3rem;
@@ -48,6 +53,11 @@
     line-height: 1;
     position: relative;
     top: -1rem;
+
+    @media (max-width : 425px) {
+      font-size: 2rem;
+      top : -.5rem
+    }
   }
   &__title {
     font-size: 1.25rem;
@@ -56,18 +66,32 @@
     line-height: 2;
     width: 100%;
     text-align: center;
+
+    @media (max-width : 425px) {
+      font-size: 1.1rem;
+    }
   }
   &__titleBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 75%;
+    width: 100%;
     line-height: 2.8;
     margin-bottom: 0.5rem;
 
-    @media (max-width: 425px) {
-      flex-wrap: wrap;
+    a {
+      @media (max-width: 425px) {
+        flex-wrap: wrap;
+        font-size: 13px !important;
+        font-weight: 500 !important;
+      }
     }
+        @media (max-width: 425px) {
+      flex-wrap: wrap;
+      font-size: 13px !important;
+      font-weight: 500 !important;
+    }
+
   }
 
   &__line {
@@ -88,15 +112,20 @@
     }
   }
 
+  &__small {
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1;
+  }
+
   &__end {
     background-color: var(--color-primary);
     color: var(--color-white);
     width: 100%;
     padding: 1rem;
 
-    @media (max-width : 768px) {
-          padding-bottom: 4rem;
-
+    @media (max-width: 768px) {
+      padding-bottom: 4rem;
     }
   }
 }

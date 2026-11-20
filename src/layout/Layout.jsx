@@ -8,7 +8,7 @@ function Layout({ children }) {
   return (
     <AppProvider>
       <Header />
-      <main className="margin-top">{children}</main>
+      <main>{children}</main>
       <MobileBottomNav />
       <Footer />
     </AppProvider>

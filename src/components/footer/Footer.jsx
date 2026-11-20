@@ -20,8 +20,10 @@ const Footer = () => {
   return (
     <>
       <div className="wrapper">
-          <div className="margin-4y"></div>
-          <h1 className="foot">تیزبین؛ انتخابی برای دیدی شفاف و استایلی متمایز</h1>
+        <div className="margin-4y"></div>
+        <h1 className="foot">
+          تیزبین؛ انتخابی برای دیدی شفاف و استایلی متمایز
+        </h1>
         <div className={styles.footer}>
           <div className={styles.footer__line}></div>
           {/* Column-1 */}
@@ -68,7 +70,7 @@ const Footer = () => {
               <FaChevronLeft />
             </li>
             <li className={styles.footer__titleBar}>
-              <a href="/faq">سوالات متداول</a>
+              <a href="/blog">مقاله</a>
               <FaChevronLeft />
             </li>
             <li className={styles.footer__titleBar}>
@@ -126,37 +128,43 @@ const Footer = () => {
               <span className={styles.footer__social}>
                 <FaLocationDot />
               </span>
-              <p>تهران، خیابان ولیعصر، پلاک ۱۳۳</p>
+              <p className={styles.footer__small}>
+                تهران، خیابان ولیعصر، پلاک ۱۳۳
+              </p>
             </div>
             <div className={styles.footer__line}></div>
             <div className={styles.footer__news}>
               <h4>عضویت در خبرنامه</h4>
               <p>برای دریافت جدیدترین محصولات و تخفیف‌ها</p>
-              <div className="title-bar-mobile">
+              <div className="margin-2y"></div>
+              <div style={{ position: "relative" }}>
                 <Input placeholder="ایمیل خود را وارد کنید" />
                 <Button
                   style={{
                     borderRadius: "20px",
-                    position: "relative",
-                    left: "30px",
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
                     height: "40px",
+                    padding: "auto 0",
                   }}
                 >
                   عضویت
                 </Button>
               </div>
+              <div className="margin-2y"></div>
             </div>
           </div>
         </div>
       </div>
       <div className={styles.footer__end}>
         <div className="wrapper">
-          <div className={styles.footer__titleBar} style={{width : "100%"}}>
+          <div className={styles.footer__titleBar} style={{ width: "100%" }}>
             <div>
-              <span style={{position : "relative", top : "4px"}}>
+              <span style={{ position: "relative", top: "4px" }}>
                 <FaHeart />
               </span>
-              <span className="margin-x"></span>  
+              <span className="margin-x"></span>
               با عشق برای نگاه بهتر |
             </div>
 

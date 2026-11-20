@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../services/api";
@@ -63,8 +62,6 @@ const ProductDetails = () => {
 
   return (
     <div className="wrapper">
-      <div style={{ marginTop: "150px" }}></div>
-
       <div className={styles.parent}>
         <div className={styles.parent__info}>
           <h1 className="primary-title">

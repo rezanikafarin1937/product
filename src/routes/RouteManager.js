@@ -5,8 +5,8 @@ import Login from "../pages/login/Login";
 import Search from "../pages/search/Search";
 import Store from "../store/Store";
 import ContactUs from "../pages/contact-us/ContactUs";
-import CatsPage from "../pages/cats-page/CatsPage";
 import Category from "../pages/category/Category";
+import EyeHealthArticle from "../pages/blog/EyeHealthArticle";
 
 export const routes = [
   {
@@ -19,11 +19,6 @@ export const routes = [
     element: <Store />,
     title: "محصولات",
   },
-  // {
-  //   path: "/cats-pag",
-  //   element: <CatsPage />,
-  //   title : "دسته بندی ها"
-  // },
   {
     path: "/category",
     element: <Category />,
@@ -51,6 +46,10 @@ export const routes = [
     path: "/product-details/:id",
     element: <ProductDetails />,
   },
+  {
+  path: "/blog",
+  element: <EyeHealthArticle />,
+}
 ];
 
 export const routesMobile = [

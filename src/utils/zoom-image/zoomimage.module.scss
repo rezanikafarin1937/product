@@ -12,6 +12,7 @@
   &__active {
     outline: 2px solid var(--active-text);
     border-radius: var(--border-radius);
+    border: 2px solid var(--color-primary-dark);
   }
 
   &__thumbnails {
@@ -21,9 +22,11 @@
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    flex: 0 0 20%;
+    flex: 1 1 25%;
     height: 400px;
-    padding: 0.125rem 1rem;
+    padding: 1rem;
+    transition: all 0.2s;
+
     scrollbar-width: thin;
     scrollbar-color: var(--active-text) #eee;
 
@@ -32,7 +35,6 @@
       overflow-y: hidden;
       overflow-x: scroll;
       height: 100px;
-
     }
 
     &::-webkit-scrollbar {
@@ -56,8 +58,9 @@
     border-radius: var(--border-radius);
     margin-bottom: 0.25rem;
     flex: 0 0 100px;
+    transition: all .2s;
 
-    @media (max-width: 425px) {
+    @media (max-width: 768px) {
       margin: 0 0.25rem;
     }
 
@@ -66,7 +69,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      border-radius: var(--border-radius)
+      border-radius: var(--border-radius);
     }
   }
 
@@ -84,6 +87,7 @@
     cursor: -moz-zoom-in;
     cursor: -webkit-zoom-in;
     cursor: zoom-in;
+    transition: all 0.2s;
 
     @media (max-width: 768px) {
       width: 100%;

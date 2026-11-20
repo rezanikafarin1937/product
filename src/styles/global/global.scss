@@ -73,10 +73,10 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--padding) 0;
+  // padding: var(--padding) 0;
   user-select: none;
   width: 100%;
-
+  background-color: orange;
 
 }
 
@@ -162,4 +162,8 @@ li {
   @media (max-width : 425px) {
     font-size: .7rem;
   }
+}
+
+.nowrap{
+  white-space: nowrap;
 }

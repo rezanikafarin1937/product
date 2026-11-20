@@ -12,6 +12,8 @@ const Cart = () => {
     totalDiscount,
   } = useCartContext();
 
+  console.log("cartItems = ",cartItems)
+
   return (
     <div className={`${styles.cart} wrapper`}>
       <h1 className="primary-title">سبد خرید</h1>
