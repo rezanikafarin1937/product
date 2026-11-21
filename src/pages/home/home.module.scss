@@ -1,7 +1,22 @@
-.home{
-    &__category{
-        background-color: var(--color-heading);
-        padding: 1rem 0 3rem 0;
-        border-radius: var(--border-radius);
+.home {
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary-dark) !important;
+  }
+
+  &__slider {
+    @media (min-width: 769px) {
+      background-color: var(--color-border);
+      padding: 1rem;
+      border-radius: var(--border-radius);
     }
+  }
+
+  &__category {
+    background-color: var(--color-heading);
+    padding: 1rem 0 3rem 0;
+    border-radius: var(--border-radius);
+  }
 }

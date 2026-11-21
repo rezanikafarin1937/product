@@ -3,13 +3,17 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: .5rem;
 
+  &::after {
+    content: "";
+    flex: auto;
+  }
 
   &__title {
     color: var(--color-primary-dark);
     font-size: 1rem;
     font-weight: 400;
-
 
     @media (max-width: 425px) {
       line-height: 3;
@@ -22,7 +26,7 @@
     display: flex;
     justify-content: space-between;
     align-items: end;
-    margin: .5rem 0 1rem 0;
+    margin: 0.5rem 0 1rem 0;
 
     @media (max-width: 425px) {
       flex-direction: column;
@@ -37,7 +41,7 @@
       font-weight: 300;
       line-height: 0;
 
-      @media (max-width : 425px) {
+      @media (max-width: 425px) {
         line-height: 2;
       }
     }
@@ -48,7 +52,7 @@
     border-radius: var(--border-radius);
     border: 1px solid var(--color-border);
     padding: var(--padding) calc(var(--padding) * 2);
-    margin: 120px 0 1rem 0;
+    margin: 1.5rem 0 1rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;

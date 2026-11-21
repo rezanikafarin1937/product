@@ -1,374 +1,446 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Category.module.scss";
 
-import {
-  FaSliders,
-  FaChevronDown,
-  FaXmark,
-} from "react-icons/fa6";
+const PRODUCTS_URL = `${process.env.PUBLIC_URL}/database/products.json`;
 
-// Components
-// import Card from "../../components/card/Card";
-// import PriceRange from "../../components/priceRange/PriceRange";
-// import Button from "../../components/button/Button";
+const categories = [
+  {
+    id: 1,
+    title: "عینک مردانه",
+    keyword: "مردانه",
+    image: "/cats/man.png",
+    description:
+      "مدل‌های متنوع عینک مردانه برای استایل روزمره و رسمی",
+  },
+  {
+    id: 2,
+    title: "عینک زنانه",
+    keyword: "زنانه",
+    image: "/cats/womean.png",
+    description:
+      "انواع فریم عینک زنانه با طراحی‌های زیبا و متنوع",
+  },
+  {
+    id: 3,
+    title: "عینک بچگانه",
+    keyword: "بچگانه",
+    image: "/cats/child.png",
+    description:
+      "مدل‌های عینک مناسب کودکان با طراحی‌های متنوع",
+  },
+  {
+    id: 4,
+    title: "عینک طبی",
+    keyword: "طبی",
+    image: "/cats/tebi.png",
+    description:
+      "فریم‌های عینک طبی برای استفاده روزانه و راحتی بیشتر",
+  },
+  {
+    id: 5,
+    title: "عینک آفتابی",
+    keyword: "آفتابی",
+    image: "/cats/Aftabi.png",
+    description:
+      "مدل‌های عینک آفتابی برای روزهای روشن و استفاده روزمره",
+  },
+  {
+    id: 6,
+    title: "عینک ورزشی",
+    keyword: "ورزشی",
+    image: "/cats/varzeshi.png",
+    description:
+      "عینک‌های ورزشی برای فعالیت‌های بدنی و فضای باز",
+  },
+];
+
+const PAGE_TITLE =
+  "دسته‌بندی انواع عینک مردانه، زنانه، طبی و آفتابی | تیزبین";
+
+const PAGE_DESCRIPTION =
+  "در فروشگاه اینترنتی تیزبین دسته‌بندی انواع عینک مردانه، زنانه، بچگانه، طبی، آفتابی و ورزشی را مشاهده کنید و مدل موردنظر خود را پیدا کنید.";
 
 const Category = () => {
-  const [showFilter, setShowFilter] = useState(false);
+  const [counts, setCounts] = useState({});
+  const [productsLoaded, setProductsLoaded] = useState(false);
 
-  const products = [
-    {
-      id: 1,
-      title: "عینک آفتابی کلاسیک",
-      price: 2850000,
-      image: "/images/category/clasic.jfif",
-    },
-    {
-      id: 2,
-      title: "عینک آفتابی مدرن",
-      price: 3200000,
-      image: "/images/category/modern.png",
-    },
-    {
-      id: 3,
-      title: "عینک آفتابی اسپرت",
-      price: 2450000,
-      image: "/images/category/3.jfif",
-    },
-    {
-      id: 4,
-      title: "عینک آفتابی زنانه",
-      price: 3650000,
-      image: "/images/category/womean.jfif",
-    },
-  ];
+  // دریافت تعداد محصولات هر دسته
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(PRODUCTS_URL);
+
+        if (!response.ok) {
+          throw new Error("خطا در دریافت محصولات");
+        }
+
+        const products = await response.json();
+
+        const result = {};
+
+        categories.forEach((category) => {
+          result[category.keyword] = products.filter((product) =>
+            (product.title || "")
+              .toLowerCase()
+              .includes(category.keyword.toLowerCase())
+          ).length;
+        });
+
+        if (isMounted) {
+          setCounts(result);
+          setProductsLoaded(true);
+        }
+      } catch (error) {
+        console.error("Category Products Error:", error);
+
+        if (isMounted) {
+          setProductsLoaded(false);
+        }
+      }
+    };
+
+    fetchProducts();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // SEO metadata and structured data
+  useEffect(() => {
+    const canonicalUrl =
+      `${window.location.origin}${window.location.pathname}`;
+
+    const setMeta = (selector, attribute, value, content) => {
+      let element = document.head.querySelector(selector);
+
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, value);
+        document.head.appendChild(element);
+      }
+
+      element.setAttribute("content", content);
+    };
+
+    const setCanonical = (url) => {
+      let link = document.head.querySelector(
+        'link[rel="canonical"]'
+      );
+
+      if (!link) {
+        link = document.createElement("link");
+        link.setAttribute("rel", "canonical");
+        document.head.appendChild(link);
+      }
+
+      link.setAttribute("href", url);
+    };
+
+    document.title = PAGE_TITLE;
+
+    setMeta(
+      'meta[name="description"]',
+      "name",
+      "description",
+      PAGE_DESCRIPTION
+    );
+
+    setMeta(
+      'meta[name="robots"]',
+      "name",
+      "robots",
+      "index, follow, max-image-preview:large"
+    );
+
+    setMeta(
+      'meta[property="og:title"]',
+      "property",
+      "og:title",
+      PAGE_TITLE
+    );
+
+    setMeta(
+      'meta[property="og:description"]',
+      "property",
+      "og:description",
+      PAGE_DESCRIPTION
+    );
+
+    setMeta(
+      'meta[property="og:type"]',
+      "property",
+      "og:type",
+      "website"
+    );
+
+    setMeta(
+      'meta[property="og:url"]',
+      "property",
+      "og:url",
+      canonicalUrl
+    );
+
+    setMeta(
+      'meta[property="og:locale"]',
+      "property",
+      "og:locale",
+      "fa_IR"
+    );
+
+    setMeta(
+      'meta[name="twitter:card"]',
+      "name",
+      "twitter:card",
+      "summary"
+    );
+
+    setMeta(
+      'meta[name="twitter:title"]',
+      "name",
+      "twitter:title",
+      PAGE_TITLE
+    );
+
+    setMeta(
+      'meta[name="twitter:description"]',
+      "name",
+      "twitter:description",
+      PAGE_DESCRIPTION
+    );
+
+    setCanonical(canonicalUrl);
+
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: PAGE_TITLE,
+      description: PAGE_DESCRIPTION,
+      url: canonicalUrl,
+      inLanguage: "fa-IR",
+      mainEntity: {
+        "@type": "ItemList",
+        name: "دسته‌بندی محصولات عینک تیزبین",
+        numberOfItems: categories.length,
+        itemListElement: categories.map((category, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: category.title,
+          description: category.description,
+          url: `${window.location.origin}${process.env.PUBLIC_URL || ""}/search?title=${encodeURIComponent(category.keyword)}`,
+        })),
+      },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "خانه",
+            item: `${window.location.origin}${process.env.PUBLIC_URL || ""}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "دسته‌بندی محصولات",
+            item: canonicalUrl,
+          },
+        ],
+      },
+    };
+
+    let script = document.getElementById(
+      "category-structured-data"
+    );
+
+    if (!script) {
+      script = document.createElement("script");
+      script.id = "category-structured-data";
+      script.type = "application/ld+json";
+      document.head.appendChild(script);
+    }
+
+    script.textContent = JSON.stringify(structuredData);
+
+    return () => {
+      // داده ساختاریافته این صفحه هنگام خروج حذف می‌شود.
+      const currentScript = document.getElementById(
+        "category-structured-data"
+      );
+
+      if (currentScript) {
+        currentScript.remove();
+      }
+    };
+  }, []);
 
   return (
     <main className={styles.category}>
+      <div className="wrapper">
 
-      {/* =========================
-          Breadcrumb
-      ========================== */}
-
-      <nav className={styles.category__breadcrumb}>
-        <a href="/">خانه</a>
-
-        <span>/</span>
-
-        <span>عینک آفتابی</span>
-      </nav>
-
-
-      {/* =========================
-          Category Hero
-      ========================== */}
-
-      <section className={styles.category__hero}>
-
-        <div className={styles.category__heroContent}>
-
-          <span className={styles.category__subtitle}>
-            مجموعه تیزبین
-          </span>
-
-          <h1>
-            عینک آفتابی
-          </h1>
-
-          <p>
-            مجموعه‌ای از عینک‌های آفتابی برای تکمیل استایل
-            و انتخابی متناسب با سلیقه شما.
-          </p>
-
-        </div>
-
-        <div className={styles.category__heroImage}>
-
-            <h2 className={styles.category__heroImageText}>
-                عینک آفتابی تیزبین
-            </h2>
-
-          <img
-            src="/images/category/sunglasses.png"
-            alt="عینک آفتابی تیزبین"
-          />
-
-        </div>
-
-      </section>
-
-
-      {/* =========================
-          Toolbar
-      ========================== */}
-
-      <div className={styles.category__toolbar}>
-
-        <button
-          type="button"
-          className={styles.category__filterButton}
-          onClick={() => setShowFilter(true)}
+        {/* Breadcrumb */}
+        <nav
+          className={styles.breadcrumb}
+          aria-label="مسیر صفحه"
         >
-          <FaSliders />
-
-          <span>
-            فیلتر محصولات
+          <Link to="/">خانه</Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">
+            دسته‌بندی محصولات
           </span>
-        </button>
+        </nav>
 
+        {/* Page introduction */}
+        <header className={styles.category__header}>
+          <div className={styles.category__headerContent}>
+            <span className={styles.category__eyebrow}>
+              مجموعه محصولات تیزبین
+            </span>
 
-        <div className={styles.category__result}>
-          <span>
-            24 محصول
-          </span>
-        </div>
+            <h1>
+              دسته‌بندی انواع عینک در فروشگاه تیزبین
+            </h1>
 
+            <p>
+              در فروشگاه اینترنتی تیزبین می‌توانید انواع عینک
+              مردانه، زنانه، بچگانه، طبی، آفتابی و ورزشی را
+              بررسی کنید. دسته‌بندی موردنظر خود را انتخاب کنید
+              تا محصولات مرتبط را مشاهده کنید.
+            </p>
 
-        <div className={styles.category__sort}>
+            <Link
+              to="/store"
+              className={styles.category__headerLink}
+            >
+              مشاهده همه محصولات
+              <span aria-hidden="true">←</span>
+            </Link>
+          </div>
 
-          <span>
-            مرتب‌سازی:
-          </span>
+          <div className={styles.category__headerImage}>
+            <img
+              src={`${process.env.PUBLIC_URL}/cats/Aftabi.png`}
+              alt="نمونه‌ای از عینک‌های آفتابی فروشگاه تیزبین"
+              width="400"
+              height="300"
+              fetchPriority="high"
+            />
+          </div>
+        </header>
 
-          <select defaultValue="newest">
-
-            <option value="newest">
-              جدیدترین
-            </option>
-
-            <option value="cheapest">
-              ارزان‌ترین
-            </option>
-
-            <option value="expensive">
-              گران‌ترین
-            </option>
-
-            <option value="popular">
-              پرفروش‌ترین
-            </option>
-
-          </select>
-
-          <FaChevronDown />
-
-        </div>
-
-      </div>
-
-
-      {/* =========================
-          Main Content
-      ========================== */}
-
-      <section className={styles.category__content}>
-
-
-        {/* =====================
-            Filter
-        ====================== */}
-
-        <aside
-          className={`${styles.category__filter} ${
-            showFilter ? styles.category__filterActive : ""
-          }`}
+        {/* Category list */}
+        <section
+          className={styles.category__section}
+          aria-labelledby="categories-title"
         >
+          <div className={styles.category__sectionHeading}>
+            <div>
+              <span>انتخاب آسان‌تر</span>
 
-          <div className={styles.category__filterHeader}>
-
-            <h2>
-              فیلتر محصولات
-            </h2>
-
-            <button
-              type="button"
-              onClick={() => setShowFilter(false)}
-              aria-label="بستن فیلتر"
-            >
-              <FaXmark />
-            </button>
-
-          </div>
-
-
-          {/* Price */}
-
-          <div className={styles.category__filterItem}>
-
-            <h3>
-              محدوده قیمت
-            </h3>
-
-            <div className={styles.category__price}>
-
-              {/* PriceRange را بعداً اینجا قرار می‌دهیم */}
-
-              <div className={styles.category__priceLine}>
-                <span>۵۰۰ هزار</span>
-                <span>۱۰ میلیون</span>
-              </div>
-
-            </div>
-
-          </div>
-
-
-          {/* Category */}
-
-          <div className={styles.category__filterItem}>
-
-            <h3>
-              دسته‌بندی
-            </h3>
-
-            <label>
-              <input type="checkbox" />
-              عینک آفتابی
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              عینک طبی
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              عینک ورزشی
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              عینک کودک
-            </label>
-
-          </div>
-
-
-          {/* Color */}
-
-          <div className={styles.category__filterItem}>
-
-            <h3>
-              رنگ
-            </h3>
-
-            <label>
-              <input type="checkbox" />
-              مشکی
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              قهوه‌ای
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              طلایی
-            </label>
-
-            <label>
-              <input type="checkbox" />
-              نقره‌ای
-            </label>
-
-          </div>
-
-
-          <button
-            type="button"
-            className={styles.category__clear}
-          >
-            حذف فیلترها
-          </button>
-
-        </aside>
-
-
-        {/* =====================
-            Products
-        ====================== */}
-
-        <div className={styles.category__products}>
-
-          {products.map((product) => (
-
-            <article
-              className={styles.category__product}
-              key={product.id}
-            >
-
-              <div className={styles.category__productImage}>
-
-                <img
-                  src={product.image}
-                  alt={product.title}
-                />
-
-              </div>
-
-              <h2>
-                {product.title}
+              <h2 id="categories-title">
+                دسته‌بندی محصولات عینک
               </h2>
 
-              <span>
-                {product.price.toLocaleString("fa-IR")} تومان
-              </span>
+              <p>
+                گروه موردنظر خود را انتخاب کنید و محصولات آن را
+                ببینید.
+              </p>
+            </div>
 
-            </article>
+            <span className={styles.category__number}>
+              ۶ دسته‌بندی
+            </span>
+          </div>
 
-          ))}
+          <div className={styles.category__list}>
+            {categories.map((category) => (
+              <Link
+                to={`/search?title=${encodeURIComponent(category.keyword)}`}
+                key={category.id}
+                className={styles.category__card}
+                aria-label={`مشاهده محصولات ${category.title}`}
+              >
+                <div className={styles.category__image}>
+                  <img
+                    src={`${process.env.PUBLIC_URL}${category.image}`}
+                    alt={category.title}
+                    width="300"
+                    height="220"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
 
-        </div>
+                <div className={styles.category__cardContent}>
+                  <h3>{category.title}</h3>
 
-      </section>
+                  <p>{category.description}</p>
 
+                  <div className={styles.category__cardFooter}>
+                    <span>
+                      {productsLoaded
+                        ? `${(counts[category.keyword] || 0).toLocaleString("fa")} محصول`
+                        : "مشاهده محصولات"}
+                    </span>
 
-      {/* =========================
-          Pagination
-      ========================== */}
+                    <span
+                      className={styles.category__arrow}
+                      aria-hidden="true"
+                    >
+                      ←
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-      <div className={styles.category__pagination}>
-
-        <button type="button">
-          قبلی
-        </button>
-
-        <button
-          type="button"
-          className={styles.category__paginationActive}
+        {/* SEO content */}
+        <section
+          className={styles.category__seo}
+          aria-labelledby="category-guide-title"
         >
-          1
-        </button>
+          <h2 id="category-guide-title">
+            راهنمای انتخاب عینک مناسب
+          </h2>
 
-        <button type="button">
-          2
-        </button>
+          <p>
+            برای انتخاب عینک مناسب، ابتدا باید نوع استفاده خود
+            را مشخص کنید. عینک طبی برای اصلاح عیوب انکساری و
+            استفاده روزانه انتخاب می‌شود. در انتخاب عینک آفتابی
+            نیز توجه به محافظت در برابر اشعه فرابنفش اهمیت دارد.
+          </p>
 
-        <button type="button">
-          3
-        </button>
+          <h3>عینک مردانه و زنانه</h3>
 
-        <button type="button">
-          بعدی
-        </button>
+          <p>
+            مدل‌های مردانه و زنانه در طرح، اندازه و شکل فریم
+            تنوع زیادی دارند. هنگام انتخاب فریم، علاوه بر
+            ظاهر، به اندازه صورت، راحتی و تناسب عینک توجه کنید.
+          </p>
+
+          <h3>عینک بچگانه و ورزشی</h3>
+
+          <p>
+            برای کودکان، اندازه مناسب و راحتی فریم اهمیت دارد.
+            در فعالیت‌های ورزشی نیز باید عینکی انتخاب شود که
+            متناسب با نوع فعالیت، محکم و مناسب استفاده باشد.
+          </p>
+
+          <Link to="/store">
+            مشاهده محصولات فروشگاه تیزبین
+            <span aria-hidden="true"> ←</span>
+          </Link>
+        </section>
 
       </div>
-
-
-      {/* =========================
-          Mobile Overlay
-      ========================== */}
-
-      {showFilter && (
-        <div
-          className={styles.category__overlay}
-          onClick={() => setShowFilter(false)}
-        />
-      )}
-
     </main>
   );
 };
 
 export default Category;
-

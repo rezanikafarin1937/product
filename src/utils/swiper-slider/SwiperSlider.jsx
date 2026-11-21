@@ -45,8 +45,9 @@ const MySwiperSlider = ({ data }) => {
       >
         {data?.map((d, index) => (
           <SwiperSlide key={index}>
+            <span className="mr-1"></span>
             <Link to={`/product-details/${d.id}`}>
-              <CardSwiper {...d}  />
+              <CardSwiper {...d} />
             </Link>
           </SwiperSlide>
         ))}

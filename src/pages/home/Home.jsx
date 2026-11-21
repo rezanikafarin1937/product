@@ -4,13 +4,10 @@ import MySwiperSlider from "../../utils/swiper-slider/SwiperSlider";
 import Banner from "../../components/banner/Banner";
 import Benefits from "../../components/Benefit/Benefits/Benefits";
 import Cats from "../../components/cats/Cats";
-import SpecialOffer from "../../components/SpecialOffer/SpecialOffer";
-import ArrowButton from "../../components/arrow-button/ArrowButton";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import Arrow from "../../icons/arrow/Arrow";
 import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
-import BannerCat from "../../components/banner-cat/BannerCat";
 import Heading from "../../components/heading/Heading";
 import Accessories from "../../components/accessories/Accessories";
 import styles from "./home.module.scss";
@@ -25,24 +22,58 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getProducts().then((res) => {
+    const fetchProducts = async () => {
+      const res = await getProducts();
       if (res) {
-        setData(res.data.data);
+        setData(res?.data.slice(0, 10));
+      } else {
+        setData([]);
       }
-    });
+    };
+
+    fetchProducts();
   }, []);
 
   return (
-    <div className={styles.homeCards}>
+    <div className={styles.home}>
       <Banner>
         {images.map((image, index) => (
           <img key={index} src={`/banner/${image}`} alt="سایت فروش عینک" />
         ))}
       </Banner>
       <div className="wrapper">
+        <br />
+        <h1>چرا خرید از تیزبین ؟</h1>
         <Benefits />
-        {/* <SpecialOffer /> */}
-        {/* <br /> */}
+        <br />
+        <div className={styles.home__slider}>
+          <div className="title-bar">
+            <h3 className="primary-title"><span style={{marginRight : "1rem"}}>محصولات پرفروش</span></h3>
+            <Button variant="secondary" onClick={handleClick}>
+              <span>مشاهده همه</span>
+              <span className="margin-x"></span>
+              <Arrow
+                width={20}
+                height={20}
+                color="var(--color-text-secondary)"
+              />
+            </Button>
+          </div>
+          <MySwiperSlider data={data} />
+        </div>
+
+        <br />
+        <Heading
+          title="محصولات شگفت انگیز"
+          linkTitle="مشاهده همه "
+          link="/store"
+        />
+        <br />
+        {/* <ScrollReveal> */}
+          <Accessories />
+        {/* </ScrollReveal> */}
+        <br />
+        <br />
         <div className="title-bar padding-none">
           <h3 className="primary-title">دسته بندی محصولات</h3>
           <Button variant="secondary" onClick={handleClick}>
@@ -51,53 +82,8 @@ const Home = () => {
             <Arrow width={20} height={20} color="var(--color-text-secondary)" />
           </Button>
         </div>
-
-        {/* <BannerCat /> */}
-
-        {/* <div className="margin-4y"></div>
-
-        <div className="margin-4y"></div> */}
+        <br />
         <Cats />
-        {/* <div /> */}
-        {/* <br /> */}
-        {/* <Heading
-          title="جدیدترین محصولات"
-          linkTitle="مشاهده همه "
-          link="/store"
-        /> */}
-
-        {/* <br /> */}
-
-        <ScrollReveal>
-          {/* <div
-            className={styles.home__category}
-            style={{ backgroundColor: "var(--color-primary-light)" }}
-          > */}
-            {/* <div className="wrapper"> */}
-              <div className="title-bar">
-                <h3 className="primary-title">محصولات پرفروش</h3>
-                <Button variant="secondary" onClick={handleClick}>
-                  <span>مشاهده همه</span>
-                  <span className="margin-x"></span>
-                  <Arrow
-                    width={20}
-                    height={20}
-                    color="var(--color-text-secondary)"
-                  />
-                </Button>
-              {/* </div> */}
-            </div>
-              <MySwiperSlider data={data} />
-          {/* </div> */}
-        </ScrollReveal>
-        <br />
-        <Heading
-          title="محصولات شگفت انگیز"
-          linkTitle="مشاهده همه "
-          link="/store"
-        />
-        <br />
-        <Accessories />
       </div>
     </div>
   );

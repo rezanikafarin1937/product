@@ -4,6 +4,47 @@ import { Navigation } from "swiper/modules";
 import { Link } from "react-router-dom";
 
 import styles from "./cats.module.scss";
+import CartItem from "../cartItem/CartItem";
+import { BsHandIndexThumbFill } from "react-icons/bs";
+
+const cats = [
+  {
+    title: "مردانه",
+    image: "../../../cats/man.png",
+    description: "مشاهده محصولات",
+    link: "/search?title=مردانه",
+  },
+  {
+    title: "زنانه",
+    image: "../../../cats/womean.png",
+    description: "مشاهده محصولات",
+    link: "/search?title=زنانه",
+  },
+  {
+    title: "بچگانه",
+    image: "../../../cats/child.png",
+    description: "مشاهده محصولات",
+    link: "/search?title=بچگانه",
+  },
+  {
+    title: "طبی",
+    image: "../../../cats/tebi.png",
+    description: "مشاهده محصولات",
+    link: "/search?title=طبی",
+  },
+  {
+    title: "آفتابی",
+    image: "../../../cats/Aftabi.png",
+    description: "مشاهده محصولات",
+    link: "/search?title=آفتابی",
+  },
+  {
+    title: "ورزشی",
+    image: "../../../cats/varzeshi.png",
+    description: "مشاهده محصولات",
+    link: "/search?title=ورزشی",
+  },
+];
 
 const Cats = () => {
   return (
@@ -39,16 +80,21 @@ const Cats = () => {
         navigation
       >
         <div className={styles.cats}>
-          <SwiperSlide>
-            <Link to="/category">
-              <CatCard
-                title="عینک مردانه"
-                description="مشاهده محصولات"
-                image="../../../cats/man.png"
-              />
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
+          {cats.map((cat, index) => (
+            <div key={index}>
+              <SwiperSlide>
+                <Link to={cat.link}>
+                  <CatCard
+                    title={`عینک ${cat.title}`}
+                    description={cat.description}
+                    image={cat.image}
+                  />
+                </Link>
+              </SwiperSlide>
+            </div>
+          ))}
+
+          {/* <SwiperSlide>
             <Link to="/category">
               <CatCard
                 title="عینک زنانه"
@@ -93,7 +139,7 @@ const Cats = () => {
                 image="../../../cats/Aftabi.png"
               />
             </Link>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </div>
       </Swiper>
     </>
