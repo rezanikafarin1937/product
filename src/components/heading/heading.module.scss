@@ -4,7 +4,7 @@
   align-items: center;
   border-radius: 25px;
   background-color: var(--color-heading);
-  color: var(--color-white);
+  color: var(--color-primary-dark);
   padding: 1rem 1.5rem;
   font-size: 1.1rem;
 
@@ -14,13 +14,29 @@
     justify-content: center;
   }
 
+  &__title{
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    @media (max-width : 425px) {
+      font-size: .9rem;
+    }
+    
+  }
+
+  &__linkTitle{
+    font-size: 1rem;
+    font-weight: bold;
+
+  }
+
   &__link {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s;
-    min-width: 125px;
+    min-width: 108px;
     cursor: pointer;
 
     a {
@@ -39,10 +55,10 @@
   }
 
   &__arrow {
-    width: 13px;
-    height: 13px;
-    border-left: 3px solid #fff;
-    border-bottom: 3px solid #fff;
+    width: 10px;
+    height: 10px;
+    border-left: 3px solid var(--color-primary-dark);
+    border-bottom: 3px solid var(--color-primary-dark);
     transform: rotate(45deg);
     border-radius: 0.25rem;
     transition: all 0.3s;

@@ -11,7 +11,7 @@ import styles from "./benefits.module.scss";
 const Benefits = () => {
 
   return (
-      <section className={styles.benefits}>
+      <ul className={styles.benefits}>
         <BenefitCard
           icon={<CreditCard  color="#000000" />}
           title="پرداخت امن"
@@ -37,7 +37,7 @@ const Benefits = () => {
         />
 
 
-      </section>
+      </ul>
   );
 };
 

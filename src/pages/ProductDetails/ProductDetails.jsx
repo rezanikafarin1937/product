@@ -12,9 +12,7 @@ import CloseIcon from "../../icons/close-icon/CloseIcon";
 const ProductDetails = () => {
   const { id } = useParams();
 
-  const {
-    handleRemoveProduct,
-  } = useCartContext();
+  const { handleRemoveProduct } = useCartContext();
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +29,6 @@ const ProductDetails = () => {
       .then((res) => {
         if (isMounted) {
           setProduct(res.data);
-          console.log("DDData = ",res.data.images)
         }
       })
       .catch((err) => {
@@ -61,27 +58,26 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="wrapper">
+    <main className="wrapper">
       <div className={styles.parent}>
         <div className={styles.parent__info}>
-          <h1 className="primary-title">
-            {product.title}
-          </h1>
+          <h1 className="primary-title">{product.title}</h1>
 
-          <Star rating={Math.floor(Math.random() * 5)} />
+          {/* <Star rating={Math.floor(Math.random() * 5)} /> */}
+          <Star rating={3} />
 
           <div className="title-item">
-            <span>
+            <data value={product.price}>
               {product.price.toLocaleString("fa-IR")}
-            </span>
+            </data>
             <span>تومان</span>
           </div>
 
           <div className="color-blue">
             <span>با تخفیف</span>{" "}
-            <span>
+            <data value={product.discount}>
               {product.discount.toLocaleString("fa-IR")}
-            </span>{" "}
+            </data>{" "}
             <span>درصد</span>
           </div>
 
@@ -90,8 +86,11 @@ const ProductDetails = () => {
 
             <span style={{ margin: "0 .12rem" }}></span>
 
-            <div
+
+            <button
+              type="button"
               className={styles.parent__btn}
+              aria-label={`حذف ${product.title} از سبد خرید`}
               onClick={() => handleRemoveProduct(product.id)}
             >
               <CloseIcon
@@ -99,7 +98,7 @@ const ProductDetails = () => {
                 height={15}
                 color="var(--color-text-secondary)"
               />
-            </div>
+            </button>
           </div>
 
           <Button>افزودن به سبد خرید</Button>
@@ -113,10 +112,10 @@ const ProductDetails = () => {
       <br />
 
       <div className={styles.foot}>
-        <div className="primary-title">توضیحات</div>
+        <h2 className="primary-title">توضیحات</h2>
         <p>{product.description}</p>
       </div>
-    </div>
+    </main>
   );
 };
 

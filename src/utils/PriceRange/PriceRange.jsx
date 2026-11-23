@@ -1,7 +1,8 @@
+
 import styles from "./priceRange.module.scss";
 
 const PriceRange = ({
- min = 0,
+  min = 0,
   max = 50000000,
   minPrice = 0,
   setMinPrice,
@@ -12,7 +13,7 @@ const PriceRange = ({
   const handleMinChange = (e) => {
     const value = Number(e.target.value);
 
-    if (value < maxPrice) {
+    if (value <= maxPrice) {
       setMinPrice(value);
     }
   };
@@ -20,17 +21,21 @@ const PriceRange = ({
   const handleMaxChange = (e) => {
     const value = Number(e.target.value);
 
-    if (value > minPrice) {
+    if (value >= minPrice) {
       setMaxPrice(value);
     }
   };
 
   return (
     <div className={styles.priceRange}>
-      <div className={styles.values}>
-        <span>{minPrice.toLocaleString("fa-IR")} تومان</span>
+      <div className={styles.values} aria-live="polite">
+        <span>
+          {minPrice.toLocaleString("fa-IR")} تومان
+        </span>
 
-        <span>{maxPrice.toLocaleString("fa-IR")} تومان</span>
+        <span>
+          {maxPrice.toLocaleString("fa-IR")} تومان
+        </span>
       </div>
 
       <div className={styles.slider}>
@@ -42,6 +47,8 @@ const PriceRange = ({
           value={minPrice}
           onChange={handleMinChange}
           className={styles.range}
+          aria-label="حداقل قیمت"
+          aria-valuetext={`${minPrice.toLocaleString("fa-IR")} تومان`}
         />
 
         <input
@@ -52,6 +59,8 @@ const PriceRange = ({
           value={maxPrice}
           onChange={handleMaxChange}
           className={styles.range}
+          aria-label="حداکثر قیمت"
+          aria-valuetext={`${maxPrice.toLocaleString("fa-IR")} تومان`}
         />
       </div>
     </div>

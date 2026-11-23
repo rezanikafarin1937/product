@@ -18,11 +18,8 @@ function Header() {
             <span className="margin-x"></span>
           </div>
           <Navbar />
-          <div className={styles.header__logo}>
-             <h1 className="primary-title"><i>Tizbin</i></h1>
-             <Logo />
-          </div>
-         
+          <Logo />
+
           <div className={styles.header__mobileItem}>
             <div className={styles.header__icon}>H</div>
             <span className="margin-x"></span>

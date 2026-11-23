@@ -2,16 +2,24 @@ import styles from "./myToggle.module.scss";
 
 const Toggle = ({ isFilter, setIsFilter }) => {
   return (
-    <div
-      className={`${styles.body}  ${isFilter ? styles.body__active : styles.body__notActive}`}
+    <button
+      type="button"
+      className={`${styles.body} ${
+        isFilter ? styles.body__active : styles.body__notActive
+      }`}
       onClick={() => setIsFilter(!isFilter)}
       title="اعمال فیلترها"
+      aria-label="اعمال فیلترها"
+      aria-pressed={isFilter}
     >
-      <div
-        className={`${styles.circle}  ${isFilter ? styles.circle__active : styles.circle__notActive}`}
-      ></div>
-    </div>
+      <span
+        className={`${styles.circle} ${
+          isFilter ? styles.circle__active : styles.circle__notActive
+        }`}
+      />
+    </button>
   );
 };
 
 export default Toggle;
+

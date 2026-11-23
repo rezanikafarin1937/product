@@ -9,12 +9,16 @@ const Account = () => {
     <div className={styles.account}>
       <ButtonCart />
 
-      <span className={styles.account__mx}></span>
+      <span
+        className={styles.account__mx}
+        aria-hidden="true"
+      ></span>
 
-      <Link to="/login">
+      <Link to="/login" aria-label="ورود به حساب کاربری">
         <div
           title="ورود"
           className={styles.accountUserIcon}
+          aria-hidden="true"
         >
           <UserIcon
             width={20}

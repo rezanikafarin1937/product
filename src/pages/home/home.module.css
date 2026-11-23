@@ -3,6 +3,27 @@
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--color-primary-dark) !important;
+  white-space: wrap;
+  line-height: 1;
+  margin-top: 1rem;
+}
+
+.home h1 span {
+  display: block;
+}
+
+@media (max-width: 425px) {
+  .home h1 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+}
+
+.home__smallTitle {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-primary-light);
+  text-align: right;
 }
 
 @media (min-width: 769px) {
@@ -14,7 +35,7 @@
 }
 
 .home__category {
-  background-color: var(--color-heading);
-  padding: 1rem 0 3rem 0;
-  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
 }

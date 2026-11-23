@@ -5,6 +5,7 @@
   align-items: start;
   min-height: 100vh;
 
+
   @media (max-width: 425px) {
     align-items: center;
     justify-content: center;
@@ -121,8 +122,8 @@
       var(--color-background-soft) 100%
     );
 
-    @media (max-width : 768px) {
-       margin: 3.5rem 0 1rem 0;
+    @media (max-width: 768px) {
+      margin: 3.5rem 0 1rem 0;
     }
   }
 

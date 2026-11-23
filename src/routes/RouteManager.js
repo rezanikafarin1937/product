@@ -7,6 +7,7 @@ import Store from "../store/Store";
 import ContactUs from "../pages/contact-us/ContactUs";
 import Category from "../pages/category/Category";
 import EyeHealthArticle from "../pages/blog/EyeHealthArticle";
+import Accessories from "../pages/accessories/Accessories";
 
 export const routes = [
   {
@@ -14,6 +15,7 @@ export const routes = [
     element: <Home />,
     title: "خانه",
   },
+
   {
     path: "/store",
     element: <Store />,
@@ -47,9 +49,14 @@ export const routes = [
     element: <ProductDetails />,
   },
   {
-  path: "/blog",
-  element: <EyeHealthArticle />,
-}
+    path: "/blog",
+    element: <EyeHealthArticle />,
+  },
+  {
+    path: "/accessories",
+    element: <Accessories />,
+    // title: "اکسسوری",
+  },
 ];
 
 export const routesMobile = [

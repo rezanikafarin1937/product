@@ -1,12 +1,14 @@
+
 import { useState, useRef, useEffect } from "react";
 import HorizontalScroll from "./horizontal-scroll/HorizontalScroll";
 import styles from "./zoomimage.module.scss";
 
-const ZoomImage = ({ images }) => {
+const ZoomImage = ({ images = [], title = "تصویر محصول" }) => {
   const [activeImage, setActiveImage] = useState(0);
   const zoomImage = useRef(null);
+
   useEffect(() => {
-    function handleMouseEnter(e) {
+    function handleMouseEnter() {
       this.style.backgroundSize = "500%";
     }
 
@@ -16,61 +18,91 @@ const ZoomImage = ({ images }) => {
     }
 
     function handleMouseMove(e) {
-      let x = 100 / (this.offsetWidth / e.offsetX);
-      let y = 100 / (this.offsetHeight / e.offsetY);
+      const x = (e.offsetX / this.offsetWidth) * 100;
+      const y = (e.offsetY / this.offsetHeight) * 100;
+
       this.style.backgroundPosition = `${x}% ${y}%`;
     }
 
     const el = zoomImage.current;
+
     if (el) {
       el.addEventListener("mouseenter", handleMouseEnter);
       el.addEventListener("mouseleave", handleMouseLeave);
       el.addEventListener("mousemove", handleMouseMove);
     }
+
+    return () => {
+      if (el) {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
+        el.removeEventListener("mousemove", handleMouseMove);
+      }
+    };
   }, []);
 
+  if (!images.length) {
+    return null;
+  }
+
   return (
-    <div className={styles.parent}>
+    <section className={styles.parent}  aria-label={`تصاویر محصول ${title}`}>
       <div className={styles.parent__thumbnails}>
         {images.map((image, index) => (
-          <div
-            key={index}
-            className={`${styles.parent__img} ${index == activeImage ? styles.parent__active : ""}`}
-            onClick={() => {
-              setActiveImage(() => index);
-            }}
+          <button
+            key={image}
+            type="button"
+            className={`${styles.parent__img} ${
+              index === activeImage ? styles.parent__active : ""
+            }`}
+            aria-label={`نمایش تصویر ${index + 1} از ${title}`}
+            aria-pressed={index === activeImage}
+            onClick={() => setActiveImage(index)}
           >
             <img
-              src={`${image}`}
-              alt="فروشگاه لباس پوشانا"
+              src={image}
+              alt={`${title} - تصویر ${index + 1}`}
+              loading="lazy"
+              decoding="async"
             />
-          </div>
+          </button>
         ))}
       </div>
+
       <div
         ref={zoomImage}
         className={styles.parent__image}
-        style={{ backgroundImage: `url(${images[activeImage]})` }}
-      ></div>
+        role="img"
+        aria-label={`${title} - تصویر ${activeImage + 1}`}
+        style={{
+          backgroundImage: `url(${images[activeImage]})`,
+        }}
+      />
+
       <div className={styles.parent__horizontalscroll}>
         <HorizontalScroll gap="1px">
           {images.map((image, index) => (
-            <div
-              key={index}
-              className={styles.parent__img}
-              onClick={() => {
-                setActiveImage(() => index);
-              }}
+            <button
+              key={image}
+              type="button"
+              className={`${styles.parent__img} ${
+                index === activeImage ? styles.parent__active : ""
+              }`}
+              aria-label={`نمایش تصویر ${index + 1} از ${title}`}
+              aria-pressed={index === activeImage}
+              onClick={() => setActiveImage(index)}
             >
               <img
-                src={`${image}`}
-                alt="فروشگاه لباس پوشانا"
+                src={image}
+                alt={`${title} - تصویر ${index + 1}`}
+                loading="lazy"
+                decoding="async"
               />
-            </div>
+            </button>
           ))}
         </HorizontalScroll>
       </div>
-    </div>
+    </section>
   );
 };
 

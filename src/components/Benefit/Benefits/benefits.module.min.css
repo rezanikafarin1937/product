@@ -1,1 +1,1 @@
-.benefits{width:100%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;background-color:var(--color-background)}
+.benefits{width:100%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;background-color:var(--color-background)}@media (max-width: 425px){.benefits{padding:1rem 0}}

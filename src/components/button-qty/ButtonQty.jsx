@@ -1,5 +1,7 @@
+
 import { useCartContext } from "../../context/CartContext";
 import styles from "./button-qty.module.scss";
+
 const ButtonQty = ({
   id,
   qty,
@@ -13,22 +15,31 @@ const ButtonQty = ({
     handleIncreaseProductQty,
     handleDecreaseProductQty,
     getProductQty,
-    handleRemoveProduct,
   } = useCartContext();
 
   return (
     <div className={styles.btns}>
-      <span
+      <button
+        type="button"
         className={styles.btns__btn}
+        aria-label={`کاهش تعداد ${title}`}
         onClick={() => handleDecreaseProductQty(id)}
       >
         -
-      </span>
-      <span className={styles.btns__btn}>
-        {getProductQty(id).toLocaleString("fa-IR")}
-      </span>
+      </button>
+
       <span
         className={styles.btns__btn}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {getProductQty(id).toLocaleString("fa-IR")}
+      </span>
+
+      <button
+        type="button"
+        className={styles.btns__btn}
+        aria-label={`افزایش تعداد ${title}`}
         onClick={() =>
           handleIncreaseProductQty({
             id,
@@ -42,9 +53,10 @@ const ButtonQty = ({
         }
       >
         +
-      </span>
+      </button>
     </div>
   );
 };
 
 export default ButtonQty;
+

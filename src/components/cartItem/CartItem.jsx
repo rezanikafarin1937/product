@@ -12,11 +12,10 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
   } = useCartContext();
 
   const calcPrice = () => {
+    const totalPrice = qty * (price - price * (discount / 100));
     return (
       <>
-        <span>
-          {(qty * (price - price * (discount / 100)))?.toLocaleString("fa-IR")}
-        </span>
+        <data value={totalPrice}>{totalPrice.toLocaleString("fa-IR")}</data>
         <span> تومان </span>
       </>
     );
@@ -25,7 +24,7 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
   const report = () => {
     return (
       <div className={styles.cart__report}>
-        <div>
+        <article>
           <h3 className="title-item">{title}</h3>
 
           <div className={styles.cart__details}>
@@ -41,7 +40,7 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
               <span>قیمت نهایی :</span> {calcPrice()}
             </div>
           </div>
-        </div>
+        </article>
       </div>
     );
   };
@@ -52,6 +51,8 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
         <img
           src={`${process.env.PUBLIC_URL}${images?.[0]}`}
           alt={title}
+          loading="lazy"
+          decoding="async"
         />
       </div>
     );
@@ -76,7 +77,7 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
         >
           +
         </Button>
-        <Button variant="number">
+        <Button variant="number"  aria-label={`تعداد ${title}`}>
           {getProductQty(id).toLocaleString("fa-IR")}
         </Button>
         <Button variant="number" onClick={() => handleDecreaseProductQty(id)}>
@@ -87,28 +88,32 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
   };
 
   return (
-      <div className={styles.cart}>
-        <div className={styles.cart__right}>
-          {image()}
-          <div className={styles.cart__qtyReport}>
-            {qty.toLocaleString("fa-IR")}
-          </div>
-          <div className={styles.cart__info}>{report()}</div>
-        </div>
+    <section className={styles.cart}>
+      <div className={styles.cart__right}>
+        {image()}
+        <span className={styles.cart__qtyReport}>
+          {qty.toLocaleString("fa-IR")}
+        </span>
+        <div className={styles.cart__info}>{report()}</div>
+      </div>
 
-        <div className={styles.cart__qty}>
-          <div className={`${styles.cart__price} title-item`}>
-            {calcPrice()}
-          </div>
-          <span className="margin-y"></span>
-          {btns()}
-          <div className={styles.cart__qtyDel}>
-            <div onClick={() => handleRemoveProduct(id)}>
-              <CloseIcon width={20} height={20} color="var(--color-text)" />
-            </div>
-          </div>
+      <div className={styles.cart__qty}>
+        <span className={`${styles.cart__price} title-item`}>
+          {calcPrice()}
+        </span>
+        <span className="margin-y"></span>
+        {btns()}
+        <div className={styles.cart__qtyDel}>
+          <button
+            type="button"
+            aria-label={`حذف ${title} از سبد خرید`}
+            onClick={() => handleRemoveProduct(id)}
+          >
+            <CloseIcon width={20} height={20} color="var(--color-text)" />
+          </button>
         </div>
       </div>
+    </section>
   );
 };
 

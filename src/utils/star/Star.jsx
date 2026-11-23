@@ -1,30 +1,26 @@
+
 import styles from "./star.module.scss";
 
-const Star = ({ rating }) => {
+const Star = ({ rating = 0 }) => {
+  const validRating = Math.min(5, Math.max(0, Number(rating) || 0));
+
   function getWidth(value) {
-    switch (value) {
-      case 1:
-        return 20;
-
-      case 2:
-        return 40;
-
-      case 3:
-        return 60;
-
-      case 4:
-        return 80;
-      case 5:
-        return 100;
-      default:
-        return 0;
-    }
+    return (value / 5) * 100;
   }
 
   return (
-    <div className={styles.star}>
+    <div
+      className={styles.star}
+      aria-hidden="true"
+    >
       <span>★ ★ ★ ★ ★</span>
-      <div className={styles.starLike} style={{width : `${getWidth(rating)}px`}}>
+
+      <div
+        className={styles.starLike}
+        style={{
+          width: `${getWidth(validRating)}%`,
+        }}
+      >
         <span>★ ★ ★ ★ ★</span>
       </div>
     </div>
@@ -32,3 +28,4 @@ const Star = ({ rating }) => {
 };
 
 export default Star;
+

@@ -1,3 +1,4 @@
+
 import {
   FaInstagram,
   FaPaperPlane,
@@ -9,142 +10,186 @@ import {
   FaChevronLeft,
   FaHeart,
 } from "react-icons/fa6";
+
 import styles from "./Footer.module.scss";
 import Logo from "../logo/Logo";
 import { Link } from "react-router-dom";
 import Input from "../input/Input";
 import Button from "../button/Button";
-import { BiBorderRadius } from "react-icons/bi";
 
 const Footer = () => {
   return (
-    <>
+    <footer>
       <div className="wrapper">
         <div className="margin-4y"></div>
-        <h1 className="foot">
+
+        <h2 className="foot">
           تیزبین؛ انتخابی برای دیدی شفاف و استایلی متمایز
-        </h1>
+        </h2>
+
         <div className={styles.footer}>
           <div className={styles.footer__line}></div>
+
           {/* Column-1 */}
           <div className={styles.footer__column}>
             <Logo width="100px" height="100px" />
-            <h2 className={styles.footer__titleLogo}>تیزبین</h2>
-            <h3 className="title-item">دیدی بهتر، زندگی زیباتر</h3>
+
+            <h3 className={styles.footer__titleLogo}>تیزبین</h3>
+
+            <h4 className="title-item">دیدی بهتر، زندگی زیباتر</h4>
+
             <p>
               فروشگاه اینترنتی عینک تیزبین با هدف ارائه بهترین برندهای عینک، با
               اصالت کالا و خدماتی مطمئن در کنار شماست.
             </p>
-            <div className={styles.footer__socials}>
-              <div className={styles.footer__social}>
+
+            <div
+              className={styles.footer__socials}
+              aria-label="شبکه‌های اجتماعی"
+            >
+              <div className={styles.footer__social} aria-hidden="true">
                 <FaInstagram />
               </div>
-              <div className={styles.footer__social}>
+
+              <div className={styles.footer__social} aria-hidden="true">
                 <FaPaperPlane />
               </div>
-              <div className={styles.footer__social}>
+
+              <div className={styles.footer__social} aria-hidden="true">
                 <FaTwitter />
               </div>
-              <div className={styles.footer__social}>
+
+              <div className={styles.footer__social} aria-hidden="true">
                 <FaLinkedinIn />
               </div>
             </div>
           </div>
+
           {/* Column-2 */}
-          <ul className={styles.footer__column}>
+          <nav
+            className={styles.footer__column}
+            aria-label="دسترسی سریع"
+          >
             <h3 className={styles.footer__title}>دسترسی سریع</h3>
-            <li className={styles.footer__titleBar}>
-              <Link href="/">صفحه اصلی</Link>
-              <FaChevronLeft />
-            </li>
-            <li className={styles.footer__titleBar}>
-              <Link href="/products">محصولات</Link>
-              <FaChevronLeft />
-            </li>
-            <li className={styles.footer__titleBar}>
-              <Link href="/about">درباره ما</Link>
-              <FaChevronLeft />
-            </li>
-            <li className={styles.footer__titleBar}>
-              <Link href="/guide">راهنمای خرید</Link>
-              <FaChevronLeft />
-            </li>
-            <li className={styles.footer__titleBar}>
-              <a href="/blog">مقاله</a>
-              <FaChevronLeft />
-            </li>
-            <li className={styles.footer__titleBar}>
-              <Link href="/contact">تماس با ما</Link>
-              <FaChevronLeft />
-            </li>
-          </ul>
-          {/* Column-3*/}
-          <ul className={styles.footer__column}>
+
+            <ul>
+              <li>
+                <Link to="/">صفحه اصلی</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+
+              <li>
+                <Link to="/products">محصولات</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+
+              <li>
+                <Link to="/about">درباره ما</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+
+              <li>
+                <Link to="/guide">راهنمای خرید</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+
+              <li>
+                <Link to="/blog">مقاله</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+
+              <li>
+                <Link to="/contact">تماس با ما</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+            </ul>
+          </nav>
+
+          {/* Column-3 */}
+          <nav
+            className={styles.footer__column}
+            aria-label="دسته‌بندی محصولات"
+          >
             <h3 className={styles.footer__title}>دسته‌بندی محصولات</h3>
-            <li className={styles.footer__titleBar}>
-              <Link href="/products/glasses">عینک طبی</Link>
-              <FaChevronLeft />
-            </li>
 
-            <li className={styles.footer__titleBar}>
-              <Link href="/products/sunglasses">عینک آفتابی</Link>
-              <FaChevronLeft />
-            </li>
+            <ul>
+              <li>
+                <Link to="/products/glasses">عینک طبی</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
 
-            <li className={styles.footer__titleBar}>
-              <Link href="/products/sport">عینک ورزشی</Link>
-              <FaChevronLeft />
-            </li>
+              <li>
+                <Link to="/products/sunglasses">عینک آفتابی</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
 
-            <li className={styles.footer__titleBar}>
-              <Link href="/products/kids">عینک بچگانه</Link>
-              <FaChevronLeft />
-            </li>
+              <li>
+                <Link to="/products/sport">عینک ورزشی</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
 
-            <li className={styles.footer__titleBar}>
-              <Link href="/products/accessories">لوازم جانبی</Link>
-              <FaChevronLeft />
-            </li>
-          </ul>
-          {/* Column3 */}
-          <div className={styles.footer__column}>
+              <li>
+                <Link to="/products/kids">عینک بچگانه</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+
+              <li>
+                <Link to="/products/accessories">لوازم جانبی</Link>
+                <FaChevronLeft aria-hidden="true" />
+              </li>
+            </ul>
+          </nav>
+
+          {/* Column-4 */}
+          <section
+            className={styles.footer__column}
+            aria-label="اطلاعات تماس و خبرنامه"
+          >
             <h3 className={styles.footer__title}>تماس با ما</h3>
-            <div className={styles.footer__titleBar}>
-              <div className={styles.footer__social}>
-                <FaPhone />
-              </div>
-              <p>۰۲۱-۱۳۳۴۵۶۷۸</p>
-            </div>
 
-            <div className={styles.footer__titleBar}>
-              <span className={styles.footer__social}>
-                <FaEnvelope />
-              </span>
+            <ul>
+              <li>
+                <div className={styles.footer__social} aria-hidden="true">
+                  <FaPhone />
+                </div>
+                <p>۰۲۱-۱۳۳۴۵۶۷۸</p>
+              </li>
 
-              <p>info@tizzbin.ir</p>
-            </div>
+              <li>
+                <span className={styles.footer__social} aria-hidden="true">
+                  <FaEnvelope />
+                </span>
+                <p>info@tizzbin.ir</p>
+              </li>
 
-            <div className={styles.footer__titleBar}>
-              <span className={styles.footer__social}>
-                <FaLocationDot />
-              </span>
-              <p className={styles.footer__small}>
-                تهران، خیابان ولیعصر، پلاک ۱۳۳
-              </p>
-            </div>
+              <li>
+                <span className={styles.footer__social} aria-hidden="true">
+                  <FaLocationDot />
+                </span>
+                <p className={styles.footer__small}>
+                  تهران، خیابان ولیعصر، پلاک ۱۳۳
+                </p>
+              </li>
+            </ul>
+
             <div className={styles.footer__line}></div>
+
             <div className={styles.footer__news}>
               <h4>عضویت در خبرنامه</h4>
+
               <p>برای دریافت جدیدترین محصولات و تخفیف‌ها</p>
+
               <div className="margin-2y"></div>
+
               <div style={{ position: "relative" }}>
                 <Input placeholder="ایمیل خود را وارد کنید" />
+
                 <Button
                   style={{
                     borderRadius: "20px",
                     position: "absolute",
                     top: "0",
-                    left: "0",
+                    left: "-2px",
                     height: "40px",
                     padding: "auto 0",
                   }}
@@ -152,19 +197,29 @@ const Footer = () => {
                   عضویت
                 </Button>
               </div>
+
               <div className="margin-2y"></div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
+
       <div className={styles.footer__end}>
         <div className="wrapper">
-          <div className={styles.footer__titleBar} style={{ width: "100%" }}>
+          <div
+            className={styles.footer__titleBar}
+            style={{ width: "100%" }}
+          >
             <div>
-              <span style={{ position: "relative", top: "4px" }}>
+              <span
+                style={{ position: "relative", top: "4px" }}
+                aria-hidden="true"
+              >
                 <FaHeart />
               </span>
+
               <span className="margin-x"></span>
+
               با عشق برای نگاه بهتر |
             </div>
 
@@ -172,7 +227,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </>
+    </footer>
   );
 };
 
