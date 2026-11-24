@@ -1,4 +1,5 @@
 
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/button/Button";
@@ -6,6 +7,34 @@ import styles from "./style.module.scss";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const previousTitle = document.title;
+
+    document.title = "ورود کاربران | فروشگاه عینک تیزبین";
+
+    let robots = document.querySelector('meta[name="robots"]');
+    const isNewRobots = !robots;
+    const previousContent = robots?.content;
+
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.name = "robots";
+      document.head.appendChild(robots);
+    }
+
+    robots.content = "noindex, follow";
+
+    return () => {
+      document.title = previousTitle;
+
+      if (isNewRobots) {
+        robots.remove();
+      } else {
+        robots.content = previousContent;
+      }
+    };
+  }, []);
 
   return (
     <div className="wrapper">

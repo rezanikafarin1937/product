@@ -5,13 +5,11 @@ import Support from "../../../icons/Support/Support";
 import Truck from "../../../icons/Truck/Truck";
 import styles from "./benefits.module.scss";
 
-// const widthIcon = "50px";
-// const heightIcon = "50px";
 
 const Benefits = () => {
 
   return (
-      <ul className={styles.benefits}>
+      <ul className={styles.benefits}  aria-label="مزایای خرید از تیزبین">
         <BenefitCard
           icon={<CreditCard  color="#000000" />}
           title="پرداخت امن"

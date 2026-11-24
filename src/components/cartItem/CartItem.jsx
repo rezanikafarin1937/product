@@ -1,3 +1,4 @@
+
 import { useCartContext } from "../../context/CartContext";
 import Button from "../button/Button";
 import CloseIcon from "../../icons/close-icon/CloseIcon";
@@ -13,9 +14,12 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
 
   const calcPrice = () => {
     const totalPrice = qty * (price - price * (discount / 100));
+
     return (
       <>
-        <data value={totalPrice}>{totalPrice.toLocaleString("fa-IR")}</data>
+        <data value={totalPrice}>
+          {totalPrice.toLocaleString("fa-IR")}
+        </data>
         <span> تومان </span>
       </>
     );
@@ -29,13 +33,17 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
 
           <div className={styles.cart__details}>
             <div>
-              <span>قیمت : </span> <del>{price?.toLocaleString("fa-IR")}</del>{" "}
+              <span>قیمت : </span>
+              <del>{price?.toLocaleString("fa-IR")}</del>{" "}
               <span>تومان</span>
             </div>
+
             <div>
-              <span> تخفیف : </span> {discount?.toLocaleString("fa-IR")}
+              <span> تخفیف : </span>
+              {discount?.toLocaleString("fa-IR")}
               <span className="margin-x">درصد </span>
             </div>
+
             <div>
               <span>قیمت نهایی :</span> {calcPrice()}
             </div>
@@ -62,7 +70,9 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
     return (
       <div style={{ display: "flex" }}>
         <Button
+          type="button"
           variant="number"
+          aria-label={`افزایش تعداد ${title}`}
           onClick={() =>
             handleIncreaseProductQty({
               id,
@@ -77,10 +87,22 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
         >
           +
         </Button>
-        <Button variant="number"  aria-label={`تعداد ${title}`}>
+
+        <Button
+          type="button"
+          variant="number"
+          disabled
+          aria-label={`تعداد ${title}: ${getProductQty(id)}`}
+        >
           {getProductQty(id).toLocaleString("fa-IR")}
         </Button>
-        <Button variant="number" onClick={() => handleDecreaseProductQty(id)}>
+
+        <Button
+          type="button"
+          variant="number"
+          aria-label={`کاهش تعداد ${title}`}
+          onClick={() => handleDecreaseProductQty(id)}
+        >
           -
         </Button>
       </div>
@@ -91,9 +113,11 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
     <section className={styles.cart}>
       <div className={styles.cart__right}>
         {image()}
+
         <span className={styles.cart__qtyReport}>
           {qty.toLocaleString("fa-IR")}
         </span>
+
         <div className={styles.cart__info}>{report()}</div>
       </div>
 
@@ -101,15 +125,20 @@ const CartItem = ({ id, qty, price, discount, title, description, images }) => {
         <span className={`${styles.cart__price} title-item`}>
           {calcPrice()}
         </span>
+
         <span className="margin-y"></span>
+
         {btns()}
+
         <div className={styles.cart__qtyDel}>
           <button
             type="button"
             aria-label={`حذف ${title} از سبد خرید`}
             onClick={() => handleRemoveProduct(id)}
           >
-            <CloseIcon width={20} height={20} color="var(--color-text)" />
+            <span aria-hidden="true">
+              <CloseIcon width={20} height={20} color="var(--color-text)" />
+            </span>
           </button>
         </div>
       </div>

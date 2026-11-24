@@ -7,13 +7,20 @@ const ButtonCart = () => {
   const { cartQty } = useCartContext();
 
   return (
-    <Link to="/cart">
+    <Link to="/cart" aria-label={`سبد خرید، ${cartQty} محصول`}>
       <div title="سبد خرید" className={styles.btn}>
-        <div className={styles.btnCounter}>{cartQty}</div>
-        <CartIcon width={20} height={20} color="var(--color-text)" />
+        <div className={styles.btnCounter} aria-hidden="true">
+          {cartQty}
+        </div>
+        <CartIcon
+          width={20}
+          height={20}
+          color="var(--color-text)"
+        />
       </div>
     </Link>
   );
 };
 
 export default ButtonCart;
+

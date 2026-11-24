@@ -8,8 +8,8 @@ const CardSwiper = ({ id, title, price, discount, images }) => {
     return price - result;
   };
   return (
-    <section className={`${styles.card} margin-y`}>
-      <Link to={`/product-details/${id}`}>
+    <article className={`${styles.card} margin-y`}>
+      <Link to={`/product-details/${id}`} aria-label={`مشاهده جزئیات ${title}`}>
         <div className={styles.cardImage}>
           <img
             src={`${process.env.PUBLIC_URL}${images?.[0]}`}
@@ -38,7 +38,7 @@ const CardSwiper = ({ id, title, price, discount, images }) => {
           </span>
         </div>
       </Link>
-    </section>
+    </article>
   );
 };
 

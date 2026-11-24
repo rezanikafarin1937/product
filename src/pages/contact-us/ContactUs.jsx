@@ -1,3 +1,4 @@
+
 import Button from "../../components/button/Button";
 import styles from "./ContactUs.module.scss";
 import ContactUsImage from "./ContactUs.jfif";
@@ -11,20 +12,28 @@ const ContactUs = () => {
       <header className={styles.contactUs__header}>
         <h1>تماس با ما</h1>
 
-        <p>برای خرید، مشاوره و پاسخ به پرسش‌های شما، با ما در ارتباط باشید.</p>
+        <p>
+          برای آشنایی بیشتر با پروژه و مشاهده امکانات فروشگاه تیزبین،
+          این صفحه را بررسی کنید.
+        </p>
       </header>
 
       {/* Contact Information */}
       <section className={styles.contactUs__info}>
         {/* Image */}
         <div className={styles.contactUs__image}>
-          <img src={ContactUsImage} alt="تماس با فروشگاه عینک تیزبین" />
+          <img
+            src={ContactUsImage}
+            alt="صفحه تماس با فروشگاه اینترنتی عینک تیزبین"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         {/* Details */}
         <div className={styles.contactUs__details}>
           <span className={styles.contactUs__subtitle}>
-            با ما در ارتباط باشید
+            راه‌های ارتباطی
           </span>
 
           <h2>
@@ -32,52 +41,52 @@ const ContactUs = () => {
           </h2>
 
           <p className={styles.contactUs__description}>
-            اگر درباره محصولات، خرید یا خدمات تیزبین سوالی دارید، می‌توانید از
-            طریق راه‌های ارتباطی زیر با ما در تماس باشید.
+            این صفحه بخشی از نسخه نمایشی فروشگاه اینترنتی تیزبین است.
+            اطلاعات تماس و خدمات ارتباطی در این نسخه فعال نیستند.
           </p>
 
           <div className={styles.contactUs__items}>
             <div className={styles.contactUs__item}>
               <div className={styles.contactUs__icon}>
-                <FaPhone />
+                <FaPhone aria-hidden="true" />
               </div>
 
               <div>
                 <span>شماره تماس</span>
-                <a href="tel:09120000000">0912 000 0000</a>
+                <span>در نسخه نمایشی تعریف نشده است.</span>
               </div>
             </div>
 
             <div className={styles.contactUs__item}>
               <div className={styles.contactUs__icon}>
-                <FaEnvelope />
+                <FaEnvelope aria-hidden="true" />
               </div>
 
               <div>
                 <span>ایمیل</span>
-                <a href="mailto:info@tizbin.ir">info@tizbin.ir</a>
+                <span>در نسخه نمایشی تعریف نشده است.</span>
               </div>
             </div>
 
             <div className={styles.contactUs__item}>
               <div className={styles.contactUs__icon}>
-                <FaLocationDot />
+                <FaLocationDot aria-hidden="true" />
               </div>
 
               <div>
                 <span>آدرس</span>
-                <p>تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
+                <p>آدرس فیزیکی برای این پروژه نمایشی تعریف نشده است.</p>
               </div>
             </div>
 
             <div className={styles.contactUs__item}>
               <div className={styles.contactUs__icon}>
-                <FaClock />
+                <FaClock aria-hidden="true" />
               </div>
 
               <div>
                 <span>ساعات کاری</span>
-                <p>شنبه تا پنجشنبه، ۹ تا ۲۱</p>
+                <p>فعالیت فروشگاه در این نسخه نمایشی ارائه نمی‌شود.</p>
               </div>
             </div>
           </div>
@@ -92,17 +101,27 @@ const ContactUs = () => {
           <h2>چطور می‌توانیم کمکتان کنیم؟</h2>
 
           <p>
-            پیام خود را برای ما ارسال کنید؛ در اولین فرصت پاسخگوی شما خواهیم
-            بود.
+            این فرم صرفاً برای نمایش رابط کاربری طراحی شده و
+            امکان ارسال واقعی پیام در حال حاضر وجود ندارد.
           </p>
         </div>
 
-        <form className={styles.contactUs__form}>
+        <form
+          className={styles.contactUs__form}
+          onSubmit={(event) => event.preventDefault()}
+        >
           <div className={styles.contactUs__row}>
             <div className={styles.contactUs__field}>
               <label htmlFor="name">نام و نام خانوادگی</label>
 
-              <input id="name" type="text" placeholder="نام خود را وارد کنید" />
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="نام خود را وارد کنید"
+                autoComplete="name"
+                required
+              />
             </div>
 
             <div className={styles.contactUs__field}>
@@ -110,8 +129,11 @@ const ContactUs = () => {
 
               <input
                 id="phone"
+                name="phone"
                 type="tel"
                 placeholder="شماره تماس خود را وارد کنید"
+                autoComplete="tel"
+                required
               />
             </div>
           </div>
@@ -119,7 +141,13 @@ const ContactUs = () => {
           <div className={styles.contactUs__field}>
             <label htmlFor="subject">موضوع</label>
 
-            <input id="subject" type="text" placeholder="موضوع پیام" />
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              placeholder="موضوع پیام"
+              required
+            />
           </div>
 
           <div className={styles.contactUs__field}>
@@ -127,13 +155,15 @@ const ContactUs = () => {
 
             <textarea
               id="message"
+              name="message"
               rows="6"
               placeholder="پیام خود را بنویسید..."
+              required
             />
           </div>
 
           <div className={styles.contactUs__btn}>
-            <Button  type="submit">
+            <Button type="button" disabled>
               ارسال پیام
             </Button>
           </div>

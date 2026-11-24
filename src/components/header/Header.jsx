@@ -11,7 +11,6 @@ function Header() {
           <div className={styles.header__items}>
             <div className={styles.header__right}>
               <Account />
-              {/* <span className="margin-x"></span> */}
               <SearchHeader />
             </div>
 
@@ -19,12 +18,6 @@ function Header() {
           </div>
           <Navbar />
           <Logo />
-
-          <div className={styles.header__mobileItem}>
-            <div className={styles.header__icon}>H</div>
-            <span className="margin-x"></span>
-            <div className={styles.header__icon}>S</div>
-          </div>
         </div>
       </div>
     </header>

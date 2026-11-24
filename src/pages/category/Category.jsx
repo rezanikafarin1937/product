@@ -11,53 +11,47 @@ const categories = [
     title: "عینک مردانه",
     keyword: "مردانه",
     image: "/cats/man.png",
-    description:
-      "مدل‌های متنوع عینک مردانه برای استایل روزمره و رسمی",
+    description: "مدل‌های متنوع عینک مردانه برای استایل روزمره و رسمی",
   },
   {
     id: 2,
     title: "عینک زنانه",
     keyword: "زنانه",
     image: "/cats/womean.png",
-    description:
-      "انواع فریم عینک زنانه با طراحی‌های زیبا و متنوع",
+    description: "انواع فریم عینک زنانه با طراحی‌های زیبا و متنوع",
   },
   {
     id: 3,
     title: "عینک بچگانه",
     keyword: "بچگانه",
     image: "/cats/child.png",
-    description:
-      "مدل‌های عینک مناسب کودکان با طراحی‌های متنوع",
+    description: "مدل‌های عینک مناسب کودکان با طراحی‌های متنوع",
   },
   {
     id: 4,
     title: "عینک طبی",
     keyword: "طبی",
     image: "/cats/tebi.png",
-    description:
-      "فریم‌های عینک طبی برای استفاده روزانه و راحتی بیشتر",
+    description: "فریم‌های عینک طبی برای استفاده روزانه و راحتی بیشتر",
   },
   {
     id: 5,
     title: "عینک آفتابی",
     keyword: "آفتابی",
     image: "/cats/Aftabi.png",
-    description:
-      "مدل‌های عینک آفتابی برای روزهای روشن و استفاده روزمره",
+    description: "مدل‌های عینک آفتابی برای روزهای روشن و استفاده روزمره",
   },
   {
     id: 6,
     title: "عینک ورزشی",
     keyword: "ورزشی",
     image: "/cats/varzeshi.png",
-    description:
-      "عینک‌های ورزشی برای فعالیت‌های بدنی و فضای باز",
+    description: "عینک‌های ورزشی برای فعالیت‌های بدنی و فضای باز",
   },
 ];
 
 const PAGE_TITLE =
-  "دسته‌بندی انواع عینک مردانه، زنانه، طبی و آفتابی | تیزبین";
+  "دسته‌بندی عینک مردانه، زنانه، بچگانه، طبی و آفتابی | تیزبین";
 
 const PAGE_DESCRIPTION =
   "در فروشگاه اینترنتی تیزبین دسته‌بندی انواع عینک مردانه، زنانه، بچگانه، طبی، آفتابی و ورزشی را مشاهده کنید و مدل موردنظر خود را پیدا کنید.";
@@ -68,11 +62,13 @@ const Category = () => {
 
   // دریافت تعداد محصولات هر دسته
   useEffect(() => {
-    let isMounted = true;
+    const controller = new AbortController();
 
     const fetchProducts = async () => {
       try {
-        const response = await fetch(PRODUCTS_URL);
+        const response = await fetch(PRODUCTS_URL, {
+          signal: controller.signal,
+        });
 
         if (!response.ok) {
           throw new Error("خطا در دریافت محصولات");
@@ -90,14 +86,11 @@ const Category = () => {
           ).length;
         });
 
-        if (isMounted) {
-          setCounts(result);
-          setProductsLoaded(true);
-        }
+        setCounts(result);
+        setProductsLoaded(true);
       } catch (error) {
-        console.error("Category Products Error:", error);
-
-        if (isMounted) {
+        if (error.name !== "AbortError") {
+          console.error("Category Products Error:", error);
           setProductsLoaded(false);
         }
       }
@@ -106,7 +99,7 @@ const Category = () => {
     fetchProducts();
 
     return () => {
-      isMounted = false;
+      controller.abort();
     };
   }, []);
 
@@ -114,6 +107,11 @@ const Category = () => {
   useEffect(() => {
     const canonicalUrl =
       `${window.location.origin}${window.location.pathname}`;
+
+    const publicBaseUrl = (process.env.PUBLIC_URL || "").replace(/\/$/, "");
+
+    const absoluteUrl = (path) =>
+      `${window.location.origin}${publicBaseUrl}${path}`;
 
     const setMeta = (selector, attribute, value, content) => {
       let element = document.head.querySelector(selector);
@@ -217,40 +215,46 @@ const Category = () => {
 
     const structuredData = {
       "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      name: PAGE_TITLE,
-      description: PAGE_DESCRIPTION,
-      url: canonicalUrl,
-      inLanguage: "fa-IR",
-      mainEntity: {
-        "@type": "ItemList",
-        name: "دسته‌بندی محصولات عینک تیزبین",
-        numberOfItems: categories.length,
-        itemListElement: categories.map((category, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: category.title,
-          description: category.description,
-          url: `${window.location.origin}${process.env.PUBLIC_URL || ""}/search?title=${encodeURIComponent(category.keyword)}`,
-        })),
-      },
-      breadcrumb: {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "خانه",
-            item: `${window.location.origin}${process.env.PUBLIC_URL || ""}/`,
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          name: PAGE_TITLE,
+          description: PAGE_DESCRIPTION,
+          url: canonicalUrl,
+          inLanguage: "fa-IR",
+          mainEntity: {
+            "@type": "ItemList",
+            name: "دسته‌بندی محصولات عینک تیزبین",
+            numberOfItems: categories.length,
+            itemListElement: categories.map((category, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: category.title,
+              description: category.description,
+              url: absoluteUrl(
+                `/search?title=${encodeURIComponent(category.keyword)}`
+              ),
+            })),
           },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "دسته‌بندی محصولات",
-            item: canonicalUrl,
-          },
-        ],
-      },
+        },
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "خانه",
+              item: absoluteUrl("/"),
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "دسته‌بندی محصولات",
+              item: canonicalUrl,
+            },
+          ],
+        },
+      ],
     };
 
     let script = document.getElementById(
@@ -267,7 +271,6 @@ const Category = () => {
     script.textContent = JSON.stringify(structuredData);
 
     return () => {
-      // داده ساختاریافته این صفحه هنگام خروج حذف می‌شود.
       const currentScript = document.getElementById(
         "category-structured-data"
       );

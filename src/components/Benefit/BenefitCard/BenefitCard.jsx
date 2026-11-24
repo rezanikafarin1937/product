@@ -2,7 +2,7 @@ import styles from "./benefitCard.module.scss";
 
 const BenefitCard = ({ icon, title, description }) => {
   return (
-    <li className={styles.benefitCard}>
+    <li className={styles.benefitCard} aria-hidden="true">
       <div className={styles.benefitCard__icon}>
         {icon}
       </div>

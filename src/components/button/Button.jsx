@@ -5,12 +5,14 @@ const Button = ({
   variant = "primary",
   onClick,
   width = "",
+  type = "button",
   ...rest
 }) => {
   return (
     <button
-      style={width !== "" ? {width : width} : {}}
-      className={`${styles.button} ${styles[variant]}`}
+      type={type}
+      style={width !== "" ? { width } : {}}
+      className={`${styles.button} ${styles[variant] || ""}`}
       onClick={onClick}
       {...rest}
     >
@@ -20,3 +22,4 @@ const Button = ({
 };
 
 export default Button;
+

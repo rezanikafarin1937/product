@@ -1,4 +1,3 @@
-
 import {
   FaInstagram,
   FaPaperPlane,
@@ -63,13 +62,41 @@ const Footer = () => {
                 <FaLinkedinIn />
               </div>
             </div>
+
+            {/* معرفی پروژه و توسعه‌دهنده */}
+
+            <div
+              className={styles.footer__small}
+              style={{ textAlign: "center", marginTop: "12px" }}
+            >
+              <h2 style={{ fontSize: "1.2rem", fontWeight: "bold" }}>تیزبین</h2>
+              <hr />
+
+              <p>
+                یک نمونه‌کار فروشگاه اینترنتی شرکت{" "}
+                <strong style={{ fontWeight: "500" }}>پویاپیج</strong> 
+              </p>
+
+              <p>
+                طراحی و توسعه توسط{" "}
+                <strong style={{ fontWeight: "500" }}>رضا نیک‌آفرین</strong>
+              </p>
+
+
+              <a
+                href="https://rezanikafarin1937.github.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="مشاهده نمونه‌کارهای دیگر توسعه‌دهنده تیزبین"
+                style={{ fontSize: "11px" ,fontWeight : "400"}}
+              >
+                مشاهده سایر نمونه‌کارهای توسعه‌دهنده
+              </a>
+            </div>
           </div>
 
           {/* Column-2 */}
-          <nav
-            className={styles.footer__column}
-            aria-label="دسترسی سریع"
-          >
+          <nav className={styles.footer__column} aria-label="دسترسی سریع">
             <h3 className={styles.footer__title}>دسترسی سریع</h3>
 
             <ul>
@@ -106,10 +133,7 @@ const Footer = () => {
           </nav>
 
           {/* Column-3 */}
-          <nav
-            className={styles.footer__column}
-            aria-label="دسته‌بندی محصولات"
-          >
+          <nav className={styles.footer__column} aria-label="دسته‌بندی محصولات">
             <h3 className={styles.footer__title}>دسته‌بندی محصولات</h3>
 
             <ul>
@@ -206,10 +230,7 @@ const Footer = () => {
 
       <div className={styles.footer__end}>
         <div className="wrapper">
-          <div
-            className={styles.footer__titleBar}
-            style={{ width: "100%" }}
-          >
+          <div className={styles.footer__titleBar} style={{ width: "100%" }}>
             <div>
               <span
                 style={{ position: "relative", top: "4px" }}
@@ -217,9 +238,7 @@ const Footer = () => {
               >
                 <FaHeart />
               </span>
-
               <span className="margin-x"></span>
-
               با عشق برای نگاه بهتر |
             </div>
 

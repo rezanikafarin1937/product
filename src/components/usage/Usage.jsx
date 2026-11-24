@@ -1,16 +1,26 @@
 import styles from "./usage.module.scss";
 
-const shapes = ["طبی","آفتابی","ورزشی","لوازم جانبی"];
+const shapes = ["طبی", "آفتابی", "ورزشی", "لوازم جانبی"];
 
-const Usage = ({selectUsage, setSelectUsage }) => {
-
+const Usage = ({ selectUsage, setSelectUsage }) => {
   return (
-    <div className={styles.frame}>
-        {shapes.map((shape,index)=>(
-            <div onClick={() => setSelectUsage(shapes[index])} key={index} className={ `${styles.frame__shape} ${shapes[index] === selectUsage ? styles.frame__select : {}}`}>{shape}</div>
-        ))}
+    <div className={styles.frame} role="group" aria-label="انتخاب کاربرد عینک">
+      {shapes.map((shape) => (
+        <button
+          type="button"
+          key={shape}
+          onClick={() => setSelectUsage(shape)}
+          aria-pressed={shape === selectUsage}
+          className={`${styles.frame__shape} ${
+            shape === selectUsage ? styles.frame__select : ""
+          }`}
+        >
+          {shape}
+        </button>
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Usage;
+

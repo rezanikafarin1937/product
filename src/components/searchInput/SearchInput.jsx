@@ -3,11 +3,9 @@ import styles from "./input.module.scss";
 
 const Input = ({
   onChange,
-  onKeyDown,
-  type,
+  type = "search",
   placeholder,
   value,
-  onClickSearch,
 }) => {
   return (
     <div className={styles.parent}>
@@ -15,17 +13,22 @@ const Input = ({
         type={type}
         value={value}
         onChange={onChange}
-        onKeyDown={onKeyDown}
         className={styles.parent__input}
         placeholder={placeholder}
+        aria-label="جستجوی محصول"
       />
-      <div className={styles.parent__icon} onClick={onClickSearch}>
-        <div className={styles.parent__svg}>
-          <div style={{width : "20px" , height : "20px"}}>
+
+      <button
+        type="submit"
+        className={styles.parent__icon}
+        aria-label="جستجو"
+      >
+        <div className={styles.parent__svg} aria-hidden="true">
+          <div style={{ width: "20px", height: "20px" }}>
             <SearchIcon color="var(--color-text-secondary)" />
           </div>
         </div>
-      </div>
+      </button>
     </div>
   );
 };
