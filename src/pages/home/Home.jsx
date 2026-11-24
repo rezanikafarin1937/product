@@ -7,9 +7,9 @@ import Cats from "../../components/cats/Cats";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import Arrow from "../../icons/arrow/Arrow";
-import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
 import Heading from "../../components/heading/Heading";
 import Accessories from "../../components/accessories/Accessories";
+// import ScrollReveal from "../../utils/ScrollReveal/ScrollReveal";
 import styles from "./home.module.scss";
 
 const Home = () => {
