@@ -76,6 +76,40 @@ const Store = () => {
     maxPrice,
   ]);
 
+  // SEO صفحه فروشگاه
+  useEffect(() => {
+    const previousTitle = document.title;
+
+    const descriptionContent =
+      "در فروشگاه تیزبین، محصولات عینک طبی و آفتابی را مشاهده کنید و با استفاده از فیلترهای قیمت، رنگ و شکل فریم، محصول موردنظر خود را پیدا کنید.";
+
+    let description = document.querySelector(
+      'meta[name="description"]',
+    );
+
+    const isNewDescription = !description;
+    const previousDescription = description?.content;
+
+    if (!description) {
+      description = document.createElement("meta");
+      description.name = "description";
+      document.head.appendChild(description);
+    }
+
+    document.title = "خرید عینک طبی و آفتابی | فروشگاه تیزبین";
+    description.content = descriptionContent;
+
+    return () => {
+      document.title = previousTitle;
+
+      if (isNewDescription) {
+        description.remove();
+      } else {
+        description.content = previousDescription;
+      }
+    };
+  }, []);
+
   // هماهنگی فیلترها با URL
   useEffect(() => {
     if (isFilter) {
